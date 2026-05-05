@@ -749,6 +749,272 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
 .slide[data-page="48"] .compare .tag { font-size: clamp(18px, 1.5vw, 22px) !important; }
 .slide[data-page="48"] .callout { font-size: clamp(19px, 1.55vw, 23px) !important; line-height: 1.55; }
 
+/* ========================= 5/5 第四輪：溢出修正（P16/P20/P21/P22/P29/P30/P31/P32 + 通用收緊） ========================= */
+
+/* 通用：所有 slide 內容超出時不溢出 */
+.slide .body { overflow: hidden; }
+.slide pre.codeblock,
+.slide .codeblock { white-space: pre-wrap; word-break: break-word; overflow: hidden; }
+
+/* P16 (2-1-1 範例 B2 三階段) — 標題、表格、定版寫法、真實意見全部過大 */
+.slide[data-page="16"] h2.title { font-size: clamp(28px, 2.8vw, 42px) !important; line-height: 1.2; }
+.slide[data-page="16"] table { font-size: clamp(15px, 1.25vw, 19px) !important; }
+.slide[data-page="16"] table th,
+.slide[data-page="16"] table td { padding: 7px 10px !important; line-height: 1.45 !important; }
+.slide[data-page="16"] .codeblock.paper { font-size: clamp(14px, 1.18vw, 18px) !important; padding: 10px 14px !important; line-height: 1.5; }
+.slide[data-page="16"] .body > div:last-child p { font-size: clamp(15px, 1.25vw, 19px) !important; line-height: 1.5 !important; }
+.slide[data-page="16"] .body > div:last-child { padding: 10px 16px !important; }
+
+/* P20 (2-2-2 範例 階段錯/領域不一致) — 內容會被改寫，保留排版收緊 */
+.slide[data-page="20"] h2.title { font-size: clamp(28px, 2.8vw, 42px) !important; line-height: 1.2; }
+.slide[data-page="20"] .compare { padding: 12px 16px !important; gap: 4px !important; }
+.slide[data-page="20"] .compare .tag { font-size: clamp(16px, 1.3vw, 20px) !important; }
+.slide[data-page="20"] .compare p { font-size: clamp(16px, 1.32vw, 20px) !important; line-height: 1.55; }
+.slide[data-page="20"] .codeblock.paper { font-size: clamp(15px, 1.22vw, 19px) !important; padding: 8px 12px !important; line-height: 1.5; }
+.slide[data-page="20"] .checklist li { font-size: clamp(16px, 1.3vw, 20px) !important; line-height: 1.5 !important; }
+
+/* P21 (2-2-3 條文 + 5 字母速查) — 整頁字普遍偏大、100% 縮放會切到 */
+.slide[data-page="21"] h2.title { font-size: clamp(26px, 2.6vw, 40px) !important; line-height: 1.2; }
+.slide[data-page="21"] .rule { font-size: clamp(16px, 1.36vw, 21px) !important; padding: 10px 14px !important; line-height: 1.55; }
+.slide[data-page="21"] table th,
+.slide[data-page="21"] table td { font-size: clamp(15px, 1.28vw, 19px) !important; padding: 7px 10px !important; line-height: 1.45 !important; }
+.slide[data-page="21"] table code { font-size: 1em !important; }
+.slide[data-page="21"] p { font-size: clamp(14px, 1.18vw, 17px) !important; }
+
+/* P22 (2-2-3 範例) — title 兩行、真實意見/callout 收緊 */
+.slide[data-page="22"] h2.title { font-size: clamp(26px, 2.6vw, 38px) !important; line-height: 1.2; }
+.slide[data-page="22"] .compare { padding: 10px 14px !important; }
+.slide[data-page="22"] .compare .codeblock.paper { font-size: clamp(15px, 1.22vw, 19px) !important; padding: 8px 12px !important; }
+.slide[data-page="22"] .body > div:nth-child(4) p { font-size: clamp(15px, 1.25vw, 19px) !important; line-height: 1.5 !important; }
+.slide[data-page="22"] .body > div:nth-child(4) { padding: 10px 16px !important; }
+.slide[data-page="22"] .callout { font-size: clamp(16px, 1.36vw, 21px) !important; padding: 10px 14px !important; line-height: 1.45 !important; }
+
+/* P29 (3-1-2 範例 — 用戶要求字大一點) */
+.slide[data-page="29"] h2.title { font-size: clamp(34px, 3.3vw, 50px) !important; }
+.slide[data-page="29"] .compare { padding: 18px 22px !important; }
+.slide[data-page="29"] .compare .tag { font-size: clamp(18px, 1.5vw, 22px) !important; }
+.slide[data-page="29"] .compare .codeblock.paper { font-size: clamp(20px, 1.66vw, 26px) !important; line-height: 1.6 !important; padding: 14px 18px !important; }
+.slide[data-page="29"] .checklist li { font-size: clamp(22px, 1.85vw, 28px) !important; line-height: 1.6 !important; }
+
+/* P30 (3-1-3 條文) — 禁區/例外 ul 偏大 */
+.slide[data-page="30"] h2.title { font-size: clamp(28px, 2.8vw, 42px) !important; line-height: 1.2; }
+.slide[data-page="30"] .lede { font-size: clamp(16px, 1.4vw, 22px) !important; line-height: 1.55 !important; }
+.slide[data-page="30"] .compare { padding: 12px 16px !important; }
+.slide[data-page="30"] .compare .tag { font-size: clamp(16px, 1.3vw, 20px) !important; }
+.slide[data-page="30"] .compare ul,
+.slide[data-page="30"] .compare ul li,
+.slide[data-page="30"] .compare p { font-size: clamp(16px, 1.32vw, 20px) !important; line-height: 1.55 !important; }
+.slide[data-page="30"] .rule { font-size: clamp(16px, 1.36vw, 21px) !important; padding: 10px 14px !important; line-height: 1.5; }
+
+/* P31 (3-1-3 範例 — 8 行廠商書名表) */
+.slide[data-page="31"] h2.title { font-size: clamp(26px, 2.6vw, 38px) !important; line-height: 1.2; }
+.slide[data-page="31"] table th,
+.slide[data-page="31"] table td { font-size: clamp(14px, 1.18vw, 18px) !important; padding: 6px 10px !important; line-height: 1.4 !important; }
+.slide[data-page="31"] table code { font-size: 0.96em !important; }
+.slide[data-page="31"] .body > div:last-child div p { font-size: clamp(14px, 1.18vw, 17px) !important; line-height: 1.45 !important; }
+.slide[data-page="31"] .checklist li { font-size: clamp(15px, 1.25vw, 18px) !important; }
+
+/* P32 (3-1-4 條文 + GEM 內建比對) — 大數字偏大 */
+.slide[data-page="32"] h2.title { font-size: clamp(28px, 2.8vw, 42px) !important; line-height: 1.2; }
+.slide[data-page="32"] .lede { font-size: clamp(16px, 1.36vw, 22px) !important; line-height: 1.55 !important; }
+.slide[data-page="32"] .rule { font-size: clamp(16px, 1.36vw, 21px) !important; padding: 10px 14px !important; line-height: 1.5; }
+.slide[data-page="32"] .bigstat { font-size: clamp(40px, 4.8vw, 72px) !important; line-height: 0.95 !important; }
+.slide[data-page="32"] .body p { font-size: clamp(15px, 1.25vw, 19px) !important; }
+.slide[data-page="32"] ul li { font-size: clamp(15px, 1.32vw, 20px) !important; line-height: 1.6 !important; }
+
+/* P33 (3-1-4 範例) — 同樣有 grid，預防溢出 */
+.slide[data-page="33"] h2.title { font-size: clamp(28px, 2.8vw, 42px) !important; line-height: 1.2; }
+.slide[data-page="33"] table th,
+.slide[data-page="33"] table td { font-size: clamp(15px, 1.25vw, 19px) !important; padding: 8px 12px !important; line-height: 1.45 !important; }
+.slide[data-page="33"] .body > div > div:last-child p { font-size: clamp(15px, 1.32vw, 20px) !important; line-height: 1.5 !important; }
+
+/* P34 (3-2-1 條文) — 大紅 callout 字偏大 */
+.slide[data-page="34"] h2.title { font-size: clamp(26px, 2.6vw, 38px) !important; line-height: 1.2; }
+.slide[data-page="34"] .rule { font-size: clamp(16px, 1.36vw, 21px) !important; padding: 10px 14px !important; line-height: 1.5; }
+.slide[data-page="34"] .body > div:nth-child(4) p { font-size: clamp(16px, 1.36vw, 21px) !important; line-height: 1.55 !important; }
+.slide[data-page="34"] .body > div:nth-child(4) { padding: 10px 16px !important; }
+.slide[data-page="34"] .body > div:nth-child(5) > div { font-size: clamp(15px, 1.3vw, 20px) !important; }
+
+/* P35 (3-2-1 範例) — 真實意見/checklist */
+.slide[data-page="35"] h2.title { font-size: clamp(28px, 2.8vw, 42px) !important; line-height: 1.2; }
+.slide[data-page="35"] .compare { padding: 12px 16px !important; }
+.slide[data-page="35"] .compare .codeblock.paper { font-size: clamp(15px, 1.25vw, 19px) !important; line-height: 1.55 !important; padding: 8px 12px !important; }
+.slide[data-page="35"] .body > div:nth-child(4) p { font-size: clamp(15px, 1.25vw, 19px) !important; line-height: 1.5 !important; }
+.slide[data-page="35"] .body > div:nth-child(4) { padding: 10px 14px !important; }
+.slide[data-page="35"] .checklist li { font-size: clamp(15px, 1.3vw, 20px) !important; }
+
+/* P37 (3-2-2 18 項白名單) — 預防溢出 */
+.slide[data-page="37"] h2.title { font-size: clamp(28px, 2.8vw, 42px) !important; line-height: 1.2; }
+.slide[data-page="37"] .item-grid { font-size: clamp(15px, 1.32vw, 20px) !important; }
+.slide[data-page="37"] .item-grid .item { padding: 8px 10px !important; }
+
+/* P39 (Q7) — 收緊 */
+.slide[data-page="39"] h2.title { font-size: clamp(24px, 2.4vw, 36px) !important; line-height: 1.2; }
+.slide[data-page="39"] .callout { font-size: clamp(16px, 1.36vw, 21px) !important; line-height: 1.5 !important; padding: 10px 14px !important; }
+.slide[data-page="39"] .compare ul li { font-size: clamp(14px, 1.22vw, 18px) !important; line-height: 1.5 !important; }
+.slide[data-page="39"] .body > p:last-child { font-size: clamp(14px, 1.22vw, 19px) !important; line-height: 1.5 !important; }
+
+/* P40 (5 連動 整合) — 預防 */
+.slide[data-page="40"] h2.title { font-size: clamp(28px, 2.8vw, 42px) !important; line-height: 1.2; }
+.slide[data-page="40"] .lede { font-size: clamp(16px, 1.4vw, 22px) !important; line-height: 1.55 !important; }
+.slide[data-page="40"] table th,
+.slide[data-page="40"] table td { font-size: clamp(15px, 1.28vw, 19px) !important; padding: 7px 10px !important; }
+.slide[data-page="40"] .numbered > li { font-size: clamp(15px, 1.3vw, 20px) !important; line-height: 1.55 !important; }
+
+/* 互動遊戲頁 */
+.slide.game-slide .body { overflow: auto; }
+.slide.game-slide h2.title { font-size: clamp(28px, 2.6vw, 40px) !important; }
+.game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 1.4%; }
+.game-card {
+  background: var(--paper-dark);
+  border: 1px solid var(--rule-soft);
+  border-left: 4px solid var(--vermillion);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-size: clamp(15px, 1.18vw, 18px);
+  line-height: 1.5;
+  position: relative;
+  user-select: none;
+}
+.game-card:hover { background: rgba(184,49,46,0.06); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+.game-card .gc-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(12px, 1vw, 14px);
+  letter-spacing: 0.2em;
+  color: var(--vermillion);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+.game-card .gc-q { font-weight: 500; color: var(--ink); }
+.game-card.flagged { background: rgba(184,49,46,0.16); border-left-color: var(--vermillion); }
+.game-card.flagged::after {
+  content: '✕ 找到了';
+  position: absolute;
+  top: 8px; right: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--vermillion);
+  font-weight: 700;
+}
+.game-card.revealed-correct { background: rgba(45,95,62,0.15); border-left-color: var(--forest); }
+.game-card.revealed-correct::after { content: '✓ 正解'; color: var(--forest); }
+.game-card.revealed-miss { background: rgba(200,133,60,0.16); border-left-color: var(--ochre); }
+.game-card.revealed-miss::after { content: '⚠ 漏抓'; color: var(--ochre); }
+.game-card .gc-explain {
+  display: none;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--rule-faint);
+  font-size: clamp(13px, 1.05vw, 16px);
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.game-card.revealed-correct .gc-explain,
+.game-card.revealed-miss .gc-explain { display: block; }
+.game-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  margin-top: 1%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(14px, 1.15vw, 18px);
+  letter-spacing: 0.12em;
+}
+.game-bar button {
+  background: var(--vermillion);
+  color: var(--paper);
+  border: none;
+  padding: 8px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(14px, 1.15vw, 17px);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.game-bar button:hover { background: var(--vermillion-soft); }
+.game-bar button.reset { background: transparent; color: var(--paper); border: 1px solid rgba(245,239,226,0.4); }
+.game-result {
+  margin-top: 10px;
+  padding: 14px 18px;
+  background: var(--paper-dark);
+  border-left: 4px solid var(--forest);
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(18px, 1.6vw, 24px);
+  display: none;
+}
+.game-result.show { display: block; }
+.game-result .score { font-weight: 900; color: var(--vermillion); font-size: 1.3em; }
+
+/* 資源頁 */
+.slide.resources-slide .body { overflow: hidden; }
+.resource-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; flex: 1; min-height: 0; }
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,253,247,0.6);
+  border: 1px solid var(--rule-soft);
+  padding: 22px 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+  position: relative;
+}
+.resource-card:hover { background: var(--paper-dark); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.12); }
+.resource-card .rc-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(13px, 1.1vw, 16px);
+  letter-spacing: 0.22em;
+  color: var(--vermillion);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.resource-card .rc-title {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 700;
+  font-size: clamp(22px, 2vw, 32px);
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.resource-card .rc-desc {
+  font-size: clamp(15px, 1.25vw, 19px);
+  color: var(--ink-soft);
+  line-height: 1.6;
+  flex: 1;
+}
+.resource-card .rc-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(13px, 1.1vw, 16px);
+  letter-spacing: 0.05em;
+  color: var(--forest);
+  margin-top: 14px;
+  font-weight: 600;
+  word-break: break-all;
+  border-top: 1px dashed var(--rule-faint);
+  padding-top: 10px;
+}
+.resource-card .rc-bullets {
+  list-style: none;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: clamp(14px, 1.18vw, 17px);
+  color: var(--ink-soft);
+}
+.resource-card .rc-bullets li::before {
+  content: '· ';
+  color: var(--vermillion);
+  font-weight: 700;
+}
+
 </style>
 </head>
 <body>
@@ -785,7 +1051,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">PROLOGUE · 開 場</span><span class="topic">時代與定位</span></div>
-      <div class="pageno"><b>2</b> / 55</div>
+      <div class="pageno"><b>2</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHANGE OF EPOCH</div>
@@ -819,7 +1085,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">PROLOGUE · 開 場</span><span class="topic">港湖區現況</span></div>
-      <div class="pageno"><b>3</b> / 55</div>
+      <div class="pageno"><b>3</b> / 58</div>
     </div>
     <div class="body">
       <div class="split-2 thirds" style="flex:1;align-items:stretch;">
@@ -855,7 +1121,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">PROLOGUE · 課 程 定 位</span><span class="topic">部定 vs 校訂</span></div>
-      <div class="pageno"><b>4</b> / 55</div>
+      <div class="pageno"><b>4</b> / 58</div>
     </div>
     <div class="body">
       <h2 class="title" style="margin-bottom:0.6%;">釐清座標 — 國小資訊教育的真實位置</h2>
@@ -891,7 +1157,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">PROLOGUE · 課 程 定 位</span><span class="topic">議題三分類</span></div>
-      <div class="pageno"><b>5</b> / 55</div>
+      <div class="pageno"><b>5</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">三 種 課 程 路 徑</div>
@@ -926,7 +1192,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">PROLOGUE · 課 程 定 位</span><span class="topic">大樹法則</span></div>
-      <div class="pageno"><b>6</b> / 55</div>
+      <div class="pageno"><b>6</b> / 58</div>
     </div>
     <div class="body">
       <div class="split-2 thirds-r" style="flex:1;">
@@ -958,7 +1224,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">PRIMER · 閱 讀 前</span><span class="topic">① 指標來源比一比</span></div>
-      <div class="pageno"><b>7</b> / 55</div>
+      <div class="pageno"><b>7</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">VOCABULARY 01 / 04</div>
@@ -985,7 +1251,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">PRIMER · 閱 讀 前</span><span class="topic">② 議題的雙重身份</span></div>
-      <div class="pageno"><b>8</b> / 55</div>
+      <div class="pageno"><b>8</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">VOCABULARY 02 / 04</div>
@@ -1013,7 +1279,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">PRIMER · 閱 讀 前</span><span class="topic">③ 雙系統最易混淆</span></div>
-      <div class="pageno"><b>9</b> / 55</div>
+      <div class="pageno"><b>9</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">VOCABULARY 03 / 04 ─ THE DECODER RING</div>
@@ -1039,7 +1305,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">PRIMER · 閱 讀 前</span><span class="topic">④ 學習階段碼</span></div>
-      <div class="pageno"><b>10</b> / 55</div>
+      <div class="pageno"><b>10</b> / 58</div>
     </div>
     <div class="body">
       <div class="split-2 thirds" style="flex:1;align-items:stretch;">
@@ -1071,7 +1337,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅰ · 課 程 定 位 與 理 念</span><span class="topic">1-1-1 課程名稱跨域性</span></div>
-      <div class="pageno"><b>11</b> / 55</div>
+      <div class="pageno"><b>11</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 1-1-1 ① ── RULE & WHY</div>
@@ -1101,7 +1367,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅰ · 課 程 定 位 與 理 念</span><span class="topic">1-1-1 命名診斷室</span></div>
-      <div class="pageno"><b>12</b> / 55</div>
+      <div class="pageno"><b>12</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 1-1-1 ② ── 全市真實案例</div>
@@ -1141,7 +1407,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅰ · 課 程 定 位 與 理 念</span><span class="topic">1-1-2 課程理念跨域</span></div>
-      <div class="pageno"><b>13</b> / 55</div>
+      <div class="pageno"><b>13</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 1-1-2 ① ── RULE & WHY</div>
@@ -1162,7 +1428,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅰ · 課 程 定 位 與 理 念</span><span class="topic">1-1-2 範例對照</span></div>
-      <div class="pageno"><b>14</b> / 55</div>
+      <div class="pageno"><b>14</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 1-1-2 ② ── BEFORE / AFTER</div>
@@ -1196,7 +1462,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-1-1 核心素養層級</span></div>
-      <div class="pageno"><b>15</b> / 55</div>
+      <div class="pageno"><b>15</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-1-1 ① ── 寫法三要素</div>
@@ -1221,7 +1487,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-1-1 B2 三階段對照</span></div>
-      <div class="pageno"><b>16</b> / 55</div>
+      <div class="pageno"><b>16</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-1-1 ② ── B2 階段別敘述</div>
@@ -1251,7 +1517,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-2-1 至少 1 單元跨域</span></div>
-      <div class="pageno"><b>17</b> / 55</div>
+      <div class="pageno"><b>17</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-1 ① ── RULE</div>
@@ -1280,7 +1546,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-2-1 跨域單元範例</span></div>
-      <div class="pageno"><b>18</b> / 55</div>
+      <div class="pageno"><b>18</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-1 ② ── 跨域單元寫法</div>
@@ -1311,7 +1577,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-2-2 領域 / 階段一致</span></div>
-      <div class="pageno"><b>19</b> / 55</div>
+      <div class="pageno"><b>19</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-2 ① ── 兩件事要同時對</div>
@@ -1339,35 +1605,36 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-2-2 範例</span></div>
-      <div class="pageno"><b>20</b> / 55</div>
+      <div class="pageno"><b>20</b> / 58</div>
     </div>
     <div class="body">
-      <div class="eyebrow">CHECK 2-2-2 ② ── BEFORE / AFTER</div>
+      <div class="eyebrow">CHECK 2-2-2 ② ── 兩種典型錯誤</div>
       <h2 class="title" style="margin-bottom:2%;">階段／領域對不齊，<br>抄再多指標都會錯。</h2>
       <div class="split-2" style="flex:1;">
         <div class="stack-sm">
           <div class="compare bad">
-            <div class="tag">階段錯</div>
-            <pre class="codeblock paper" style="font-size:0.85em;">核心素養：國小三年級
-學習內容：運 t-Ⅳ-1（國中階段指標）</pre>
+            <div class="tag">錯誤 ①　階段錯（國小填到國中代碼）</div>
+            <pre class="codeblock paper" style="font-size:0.85em;">三年級 學習內容：
+  運 <span style="color:var(--vermillion);font-weight:700;">t-Ⅳ-1</span>  ← Ⅳ 是國中階段</pre>
+            <p style="font-size:0.92em;color:var(--ink-soft);">三年級該用 <code>-Ⅱ-</code>。學習重點抄到 <code>-Ⅳ-</code> 等於把國中課程搬進國小。</p>
           </div>
           <div class="compare bad">
-            <div class="tag">領域不一致</div>
-            <pre class="codeblock paper" style="font-size:0.85em;">核心素養：國-E-A3（國語文）
-學習重點：全部是藝、健體</pre>
+            <div class="tag">錯誤 ②　領域不一致（素養 vs 重點對不上）</div>
+            <pre class="codeblock paper" style="font-size:0.85em;">核心素養：<span style="color:var(--vermillion);font-weight:700;">國-E-A3</span>（國語文）
+學習重點：藝、健體（沒有國語文）</pre>
+            <p style="font-size:0.92em;color:var(--ink-soft);">素養掛了哪個領域，學習重點就要有那個領域。掛國語文卻沒寫國語文 = 假跨域。</p>
           </div>
         </div>
         <div class="compare good" style="display:flex;flex-direction:column;justify-content:center;">
-          <div class="tag">正確</div>
-          <ul class="checklist">
-            <li class="mk-ok">3 年級 → 用 <code>-Ⅱ-</code> 指標</li>
-            <li class="mk-ok">核心素養列哪個領域，學習重點就對應該領域</li>
+          <div class="tag">正解 — 兩件事同時對</div>
+          <ul class="checklist" style="margin-bottom:8px;">
+            <li class="mk-ok"><strong>階段對：</strong>1-2 用 <code>-Ⅰ-</code>、3-4 用 <code>-Ⅱ-</code>、5-6 用 <code>-Ⅲ-</code>，整份不出現 <code>-Ⅳ-</code></li>
+            <li class="mk-ok"><strong>領域對：</strong>核心素養列了「國／藝／自／數」哪一個，學習重點就要有同領域指標</li>
           </ul>
-          <p style="font-family:'JetBrains Mono';font-size:16px;letter-spacing:0.2em;color:var(--mute);margin-top:auto;">SELF-CHECK</p>
-          <ul class="checklist" style="font-size:clamp(18px,1.44vw,22px);">
-            <li>1-2 用 Ⅰ；3-4 用 Ⅱ；5-6 用 Ⅲ；全部無 Ⅳ</li>
-            <li>核心素養領域與學習重點領域對齊</li>
-          </ul>
+          <pre class="codeblock paper" style="font-size:0.82em;margin-top:6px;">三年級 跨「國語文」單元：
+  核心素養：<span style="color:var(--forest);font-weight:700;">E-B2 ＋ 國-E-B2</span>
+  學習重點：資議 a-<span style="color:var(--forest);font-weight:700;">Ⅱ</span>-1 ／ 國 6-<span style="color:var(--forest);font-weight:700;">Ⅱ</span>-1</pre>
+          <p style="font-family:'JetBrains Mono';font-size:14px;letter-spacing:0.2em;color:var(--mute);margin-top:auto;font-weight:600;">→ 階段 Ⅱ ✓　領域 國語文 ✓</p>
         </div>
       </div>
     </div>
@@ -1380,7 +1647,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-2-3 用參考說明</span></div>
-      <div class="pageno"><b>21</b> / 55</div>
+      <div class="pageno"><b>21</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-3 ① ── 兩種代碼層次</div>
@@ -1418,7 +1685,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-2-3 範例</span></div>
-      <div class="pageno"><b>22</b> / 55</div>
+      <div class="pageno"><b>22</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-3 ② ── 對照</div>
@@ -1471,7 +1738,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-2-4 併呈於同一欄</span></div>
-      <div class="pageno"><b>24</b> / 55</div>
+      <div class="pageno"><b>24</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-4 ① ── RULE</div>
@@ -1492,7 +1759,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅱ · 核 心 目 標 與 內 容</span><span class="topic">2-2-4 表格範例</span></div>
-      <div class="pageno"><b>25</b> / 55</div>
+      <div class="pageno"><b>25</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-4 ② ── BEFORE / AFTER</div>
@@ -1527,7 +1794,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅲ · 教 學 實 施 與 資 源</span><span class="topic">3-1-1 實質跨域</span></div>
-      <div class="pageno"><b>26</b> / 55</div>
+      <div class="pageno"><b>26</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-1-1 ① ── 形式 ≠ 實質</div>
@@ -1557,7 +1824,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅲ · 教 學 實 施 與 資 源</span><span class="topic">3-1-1 範例</span></div>
-      <div class="pageno"><b>27</b> / 55</div>
+      <div class="pageno"><b>27</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-1-1 ② ── BEFORE / AFTER</div>
@@ -1596,7 +1863,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅲ · 教 學 實 施 與 資 源</span><span class="topic">3-1-2 五面向一致</span></div>
-      <div class="pageno"><b>28</b> / 55</div>
+      <div class="pageno"><b>28</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-1-2 ① ── 跨域要前後一致</div>
@@ -1624,7 +1891,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅲ · 教 學 實 施 與 資 源</span><span class="topic">3-1-2 範例</span></div>
-      <div class="pageno"><b>29</b> / 55</div>
+      <div class="pageno"><b>29</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-1-2 ② ── 「地圖尋寶」單元</div>
@@ -1808,7 +2075,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅲ · 教 學 實 施 與 資 源</span><span class="topic">3-2-1 資議 / 科議別放錯欄</span></div>
-      <div class="pageno"><b>34</b> / 55</div>
+      <div class="pageno"><b>34</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-2-1 ① ── RULE</div>
@@ -1832,7 +2099,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅲ · 教 學 實 施 與 資 源</span><span class="topic">3-2-1 範例</span></div>
-      <div class="pageno"><b>35</b> / 55</div>
+      <div class="pageno"><b>35</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-2-1 ② ── BEFORE / AFTER</div>
@@ -1872,7 +2139,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅲ · 教 學 實 施 與 資 源</span><span class="topic">3-2-2 — 全市 62.9% 踩坑</span></div>
-      <div class="pageno"><b>36</b> / 55</div>
+      <div class="pageno"><b>36</b> / 58</div>
     </div>
     <div class="body">
       <div class="split-2 thirds" style="flex:1;align-items:stretch;">
@@ -1898,7 +2165,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅲ · 教 學 實 施 與 資 源</span><span class="topic">3-2-2 — 合法 18 項白名單</span></div>
-      <div class="pageno"><b>37</b> / 55</div>
+      <div class="pageno"><b>37</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-2-2 ② ── THE WHITELIST</div>
@@ -2021,7 +2288,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">CONSOLIDATION · 實 戰 整 合</span><span class="topic">5 個連動錯誤</span></div>
-      <div class="pageno"><b>40</b> / 55</div>
+      <div class="pageno"><b>40</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">DOMINO ── 一個錯誤觸發 5 項違規</div>
@@ -2089,7 +2356,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅳ · 學 習 評 量</span><span class="topic">4-1-1 20-40 字黃金法則</span></div>
-      <div class="pageno"><b>43</b> / 55</div>
+      <div class="pageno"><b>43</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 4-1-1 ① ── 全市 46.5% 踩坑</div>
@@ -2123,7 +2390,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">ITEM Ⅳ · 學 習 評 量</span><span class="topic">4-1-1 五級規準</span></div>
-      <div class="pageno"><b>44</b> / 55</div>
+      <div class="pageno"><b>44</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 4-1-1 ② ── 「祝福卡片」單元</div>
@@ -2215,12 +2482,55 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   </div>
 </section>
 
-<!-- ========================= P39 — 麗湖良範例 ========================= -->
+<!-- ========================= P47 — REAL CASE 彙整（4 校） ========================= -->
+<section class="slide" data-page="47b">
+  <div class="frame">
+    <div class="head">
+      <div class="head-left"><span class="chapter" style="color:var(--vermillion);">REAL CASE · 彙 整 ─ 跨 區 4 校</span><span class="topic">同一份規則，不同學校怎麼錯</span></div>
+      <div class="pageno"><b>__</b> / __</div>
+    </div>
+    <div class="body">
+      <div class="eyebrow">PATTERN GALLERY ── 真實審查截圖（校名已隱去）</div>
+      <h2 class="title" style="margin-bottom:1.4%;font-size:clamp(28px,2.8vw,42px);">不只內湖、不只一種錯 — <em>樣態跨區一致</em>。</h2>
+      <p style="font-size:clamp(15px,1.3vw,19px);line-height:1.55;color:var(--ink-soft);margin-bottom:1.4%;max-width:90%;">
+        以下 4 張節選自不同區、不同學校的真實課程計畫。違反項目高度集中在「<strong>命名／領綱層級／資 E 錯置／階段碼前綴</strong>」這幾個踩坑點，跨區一致。<strong>點任何一張可放大檢視</strong>。
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;flex:1;min-height:0;">
+        <div style="display:flex;flex-direction:column;gap:6px;min-height:0;">
+          <img src="images/case-e-naming.png" alt="命名違規（學科名出現）" style="width:100%;height:78%;object-fit:cover;object-position:top;border:1px solid var(--rule-soft);box-shadow:0 4px 14px rgba(0,0,0,0.12);cursor:zoom-in;">
+          <div style="font-family:'JetBrains Mono';font-size:clamp(13px,1.05vw,15px);letter-spacing:0.15em;color:var(--vermillion);font-weight:700;">CASE E · 1-1-1</div>
+          <p style="font-size:clamp(13px,1.1vw,16px);color:var(--ink-soft);line-height:1.45;">命名出現「電腦／資訊」學科文字（內湖某校）</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;min-height:0;">
+          <img src="images/case-f-2-2-3-alt.png" alt="2-2-3 學習重點誤用" style="width:100%;height:78%;object-fit:cover;object-position:top;border:1px solid var(--rule-soft);box-shadow:0 4px 14px rgba(0,0,0,0.12);cursor:zoom-in;">
+          <div style="font-family:'JetBrains Mono';font-size:clamp(13px,1.05vw,15px);letter-spacing:0.15em;color:var(--vermillion);font-weight:700;">CASE F · 2-2-3</div>
+          <p style="font-size:clamp(13px,1.1vw,16px);color:var(--ink-soft);line-height:1.45;">學習重點欄誤用「資 E」（內湖另一校）</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;min-height:0;">
+          <img src="images/case-g-nangang-funit.png" alt="南港多項違規" style="width:100%;height:78%;object-fit:cover;object-position:top;border:1px solid var(--rule-soft);box-shadow:0 4px 14px rgba(0,0,0,0.12);cursor:zoom-in;">
+          <div style="font-family:'JetBrains Mono';font-size:clamp(13px,1.05vw,15px);letter-spacing:0.15em;color:var(--vermillion);font-weight:700;">CASE G · 多項</div>
+          <p style="font-size:clamp(13px,1.1vw,16px);color:var(--ink-soft);line-height:1.45;">同樣的錯，跨到南港某校（4/24 已輔導）</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;min-height:0;">
+          <img src="images/case-h-prefix.png" alt="領綱缺前綴" style="width:100%;height:78%;object-fit:cover;object-position:top;border:1px solid var(--rule-soft);box-shadow:0 4px 14px rgba(0,0,0,0.12);cursor:zoom-in;">
+          <div style="font-family:'JetBrains Mono';font-size:clamp(13px,1.05vw,15px);letter-spacing:0.15em;color:var(--vermillion);font-weight:700;">CASE H · 2-1-1</div>
+          <p style="font-size:clamp(13px,1.1vw,16px);color:var(--ink-soft);line-height:1.45;">領綱核心素養缺「E-」前綴（三下）</p>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:1.4%;background:var(--ink);font-size:clamp(15px,1.36vw,20px);padding:10px 16px;line-height:1.5;">
+        老師看完這 4 張會發現一件事：<em>不是「我們學校特別差」、是「全市都這樣寫」</em>。回去動手改、用 GEM 預審 — 95% 老師一次就到位。
+      </div>
+    </div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P47 — 真實案例彙整</span></div>
+  </div>
+</section>
+
+<!-- ========================= P48 — 麗湖良範例 ========================= -->
 <section class="slide" data-page="47">
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">CASE STUDY · 良 範 例</span><span class="topic">麗湖國小「AI 思維」</span></div>
-      <div class="pageno"><b>47</b> / 55</div>
+      <div class="pageno"><b>48</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">EXEMPLAR ── 5 個對的細節</div>
@@ -2234,7 +2544,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
         <li><div><strong>完美溯源</strong> ─ 總綱與領綱具備完美的下位對應邏輯（B1/B2 ↔ 自-E-B1/B2 + 藝-E-B2；A2/A3 ↔ 數-E-A2/A3；C2 ↔ 國-E-C2）。</div></li>
       </ol>
     </div>
-    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P47 — 良範例</span></div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P48 — 良範例</span></div>
   </div>
 </section>
 
@@ -2264,7 +2574,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">CASE STUDY · 反 面 教 材</span><span class="topic">內湖在地 3 案（匿名）</span></div>
-      <div class="pageno"><b>49</b> / 55</div>
+      <div class="pageno"><b>50</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">REAL DIAGNOSTIC PANELS ── 內湖區 3 案（匿名 · 摘自 172 筆審查）</div>
@@ -2300,7 +2610,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       </div>
       <p style="margin-top:2%;font-size:17px;color:var(--mute);font-family:'JetBrains Mono';letter-spacing:0.15em;">這 3 案來自全市 172 筆真實審查資料，均為內湖區踩坑 ─ 非個案、是常態。14 項全錯反面教材檔：14項全錯反面教材_v4.1.docx</p>
     </div>
-    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P49 — 反面教材</span></div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P50 — 反面教材</span></div>
   </div>
 </section>
 
@@ -2309,7 +2619,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">DEFENSE LINE · 送 審 防 線</span><span class="topic">交件前 5 點檢查表</span></div>
-      <div class="pageno"><b>50</b> / 55</div>
+      <div class="pageno"><b>51</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">FINAL CHECKLIST ── 五 題 全 勾 才 送 出</div>
@@ -2323,7 +2633,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       </ul>
       <div class="callout" style="margin-top:auto;">交件前最後一關，<em>五題全勾</em>才送出。這張 A4 回去釘在辦公桌上。</div>
     </div>
-    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P50 — 送審防線</span></div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P51 — 送審防線</span></div>
   </div>
 </section>
 
@@ -2332,7 +2642,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">TOOLING · AI 助 手</span><span class="topic">GEM v2 雙模式</span></div>
-      <div class="pageno"><b>51</b> / 55</div>
+      <div class="pageno"><b>52</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">YOUR AI REVIEWER</div>
@@ -2361,7 +2671,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       </div>
       <div class="callout" style="margin-top:2%;">⚠ AI 會把「只寫 B2」判合格，但<em>正確必須寫 E-B2 + 階段敘述</em>。AI 結果為預審，最終以人類判斷為主。</div>
     </div>
-    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P51 — AI 工具</span></div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P52 — AI 工具</span></div>
   </div>
 </section>
 
@@ -2370,7 +2680,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">WORKSHOP · 工 作 坊</span><span class="topic">分組輔導與操作步驟</span></div>
-      <div class="pageno"><b>52</b> / 55</div>
+      <div class="pageno"><b>53</b> / 58</div>
     </div>
     <div class="body">
       <div class="split-2 thirds-r" style="flex:1;align-items:stretch;">
@@ -2394,7 +2704,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
         </div>
       </div>
     </div>
-    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P52 — 工作坊</span></div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P53 — 工作坊</span></div>
   </div>
 </section>
 
@@ -2403,7 +2713,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">CLOSING · 收 尾</span><span class="topic">114 → 115 政策時間軸</span></div>
-      <div class="pageno"><b>53</b> / 55</div>
+      <div class="pageno"><b>54</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">TIMELINE — 把握緩衝期，迎接全面落實期</div>
@@ -2428,7 +2738,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       </div>
       <div class="callout" style="margin-top:auto;background:var(--ink);"><em>提早知道，提早準備</em> ─ 我們陪您一起。</div>
     </div>
-    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P53 — 收尾</span></div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P54 — 收尾</span></div>
   </div>
 </section>
 
@@ -2437,7 +2747,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="frame">
     <div class="head">
       <div class="head-left"><span class="chapter">CLOSING · 收 尾</span><span class="topic">三大支柱</span></div>
-      <div class="pageno"><b>54</b> / 55</div>
+      <div class="pageno"><b>55</b> / 58</div>
     </div>
     <div class="body">
       <div class="eyebrow">FROM DECONSTRUCTION TO CONSTRUCTION</div>
@@ -2462,33 +2772,209 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       </div>
       <div class="callout" style="margin-top:2.4%;background:var(--ink);">運用清晰邏輯，避開審查雷區，<em>成就孩子的未來藍圖</em>。</div>
     </div>
-    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P54 — 收尾</span></div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P55 — 收尾</span></div>
   </div>
 </section>
 
-<!-- ========================= P46 — Thank You ========================= -->
-<section class="slide" data-page="55">
+<!-- ========================= P55 — 資源頁（會後即查、立即可下載／開啟） ========================= -->
+<section class="slide resources-slide" data-page="55">
+  <div class="frame">
+    <div class="head">
+      <div class="head-left"><span class="chapter">RESOURCES · 會 後 三 樣 利 器</span><span class="topic">回去就能用</span></div>
+      <div class="pageno"><b>56</b> / 58</div>
+    </div>
+    <div class="body">
+      <div class="eyebrow">TAKE-HOME TOOLKIT — 三 個 連 結 解 決 八 成 問 題</div>
+      <h2 class="title" style="margin-bottom:1.6%;">回到學校馬上能用的<em>三樣工具</em>。</h2>
+      <p class="lede" style="margin-bottom:2.2%;max-width:84%;font-size:clamp(18px,1.5vw,24px);">不必背完今天 14 項規則 — 把這三個連結存好，遇到時查、查完照做，會比硬記更有效。</p>
+      <div class="resource-grid">
+        <a class="resource-card" href="https://sites.google.com/yjps.tp.edu.tw/principal/AI-agent" target="_blank">
+          <div class="rc-tag">① AI AGENT 站</div>
+          <div class="rc-title">永建國小<br>林裕勝校長</div>
+          <div class="rc-desc">
+            校訂課程計畫的多個專屬 AI 助手 — 包含李忠憲老師的 GEM 已被收錄。一站式入口，<strong>建議書籤起來常駐</strong>。
+            <ul class="rc-bullets">
+              <li>校訂計畫專家 GEM</li>
+              <li>14 項檢核多版本</li>
+              <li>跨域單元發想</li>
+              <li>持續更新</li>
+            </ul>
+          </div>
+          <div class="rc-link">sites.google.com/yjps.tp.edu.tw/principal/AI-agent</div>
+        </a>
+        <a class="resource-card" href="downloads/空白表v4.1.docx" download>
+          <div class="rc-tag">② 公版空白表</div>
+          <div class="rc-title">資訊科技課程計畫<br>空白表 v4.1</div>
+          <div class="rc-desc">
+            輔導團公版（最新 4.1 版）。<strong>把學校現有版本汰換掉</strong>，所有欄位設計已對齊 14 項檢核標準。
+            <ul class="rc-bullets">
+              <li>欄位精簡、不再有「參考說明」獨立欄</li>
+              <li>議題融入欄已預留 18 項位置</li>
+              <li>學習重點欄合併、不再分裂</li>
+              <li>4-1-1 評量規準範例</li>
+            </ul>
+          </div>
+          <div class="rc-link">下載 · 空白表v4.1.docx</div>
+        </a>
+        <a class="resource-card" href="https://tinyurl.com/2ck6af5f" target="_blank">
+          <div class="rc-tag">③ AI 預審 GEM</div>
+          <div class="rc-title">李忠憲老師<br>校訂課程專家</div>
+          <div class="rc-desc">
+            最早一批 GEM、技術骨架完整。已被裕勝校長的 AI agent 站收錄。<strong>4 步驟跑完一輪預審：上傳 → 啟動 → 排序修復 → 迭代清零</strong>。
+            <ul class="rc-bullets">
+              <li>14 項標準分高/中/低風險</li>
+              <li>3-1-3／3-1-4 提醒人工確認</li>
+              <li>單一 NotebookLM 知識庫</li>
+              <li>幻覺防護已內建</li>
+            </ul>
+          </div>
+          <div class="rc-link">tinyurl.com/2ck6af5f</div>
+        </a>
+      </div>
+      <div class="callout" style="margin-top:1.6%;background:var(--ink);font-size:clamp(17px,1.45vw,22px);padding:12px 18px;line-height:1.5;">
+        建議流程：先用 ② 空白表寫初稿 → 上傳到 ③ GEM 跑預審 → 對照今天 14 項修一輪 → 在 ① 站找其他工具補強。
+      </div>
+    </div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P56 — 會後資源</span></div>
+  </div>
+</section>
+
+<!-- ========================= P56 — Thank You ========================= -->
+<section class="slide" data-page="56">
   <div class="frame" style="padding:6%;">
     <div class="head">
       <div class="head-left"><span class="chapter">— FIN —</span><span class="topic">Thank You / Q&amp;A</span></div>
-      <div class="pageno"><b>55</b> / 55</div>
+      <div class="pageno"><b>57</b> / 58</div>
     </div>
     <div class="body" style="justify-content:center;align-items:flex-start;">
       <div class="eyebrow">END OF DECK</div>
       <h1 class="display" style="font-size:clamp(60px,8.88vw,144px);margin-bottom:3%;">謝謝大家，<br>QA 時 間 🌿</h1>
-      <div style="margin-top:auto;flex:0 0 auto;max-width:780px;">
-        <div style="font-family:'JetBrains Mono';font-size:16px;letter-spacing:0.25em;color:var(--vermillion);font-weight:700;margin-bottom:10px;">會後資源（點擊下載／開啟）</div>
-        <ul style="list-style:none;font-size:clamp(18px,1.44vw,22px);color:var(--ink-soft);display:flex;flex-direction:column;gap:10px;">
-          <li>· <a href="downloads/空白表v4.1.docx" download style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--vermillion);font-weight:500;">資訊科技課程計畫空白表 v4.1.docx（輔導團公版・必下載）</a></li>
-          <li>· 14 項檢核指標教學手冊 PDF（20260505 版）</li>
-          <li>· 14 項全錯反面教材 docx（v4.1）</li>
-          <li>· <a href="https://drive.google.com/drive/folders/1HWpOJrvYPpkot2ZIj4H2tGAQGPDEyFO-?usp=sharing" target="_blank" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint);">港湖區審查範例 Google Drive（46 校批次詳盡報告）</a></li>
-          <li>· <a href="https://tinyurl.com/2ck6af5f" target="_blank" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint);">李忠憲老師 GEM「校訂課程專家」（tinyurl.com/2ck6af5f）</a></li>
-          <li>· <a href="https://sites.google.com/yjps.tp.edu.tw/principal/AI-agent" target="_blank" style="color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--ink-faint);">永建校長林裕勝 AI agent 站（8 個共備 Gem）</a></li>
-        </ul>
+      <p style="font-family:'Noto Serif TC';font-size:clamp(22px,1.86vw,30px);color:var(--ink-soft);line-height:1.55;max-width:760px;">回程路上歡迎掃<strong>下一頁</strong>的「14 項找錯遊戲」── 用 5 分鐘自測，看看你能找出幾個刻意安排的錯誤。</p>
+      <div style="margin-top:auto;flex:0 0 auto;max-width:760px;font-family:'JetBrains Mono';font-size:clamp(14px,1.18vw,18px);letter-spacing:0.15em;color:var(--mute);line-height:1.6;">
+        Nora（周凡淇） · 蓬萊國小數位學習中心系統組組長<br>
+        nora@hhups.tp.edu.tw · (02) 2556-9835 #580 #12<br>
+        簡報線上版：<a href="https://norason666.github.io/comprep-1150508/" target="_blank" style="color:var(--vermillion);text-decoration:none;">norason666.github.io/comprep-1150508</a>
       </div>
     </div>
-    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P55 — FIN.</span></div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P57 — FIN.</span></div>
+  </div>
+</section>
+
+<!-- ========================= P57 — 互動找錯遊戲（壓軸） ========================= -->
+<section class="slide game-slide" data-page="57">
+  <div class="frame">
+    <div class="head">
+      <div class="head-left"><span class="chapter" style="color:var(--vermillion);">BONUS · 14 項 找 錯 遊 戲</span><span class="topic">看看你能抓到幾個</span></div>
+      <div class="pageno"><b>58</b> / 58</div>
+    </div>
+    <div class="body" style="overflow:auto;">
+      <div class="eyebrow">SPOT THE ERRORS — 一份課程計畫，14 處刻意錯誤</div>
+      <h2 class="title" style="margin-bottom:0.8%;">「<em>數位電腦課</em>」三上資訊科技校訂課程計畫</h2>
+      <p style="font-size:clamp(15px,1.3vw,19px);line-height:1.55;color:var(--ink-soft);margin-bottom:1%;">
+        下方 14 個欄位每個都對應一項違反指標。<strong>點下你認為錯的卡片把它標出來</strong>，全部選好後按「比對答案」，會顯示你抓到幾個 + 漏掉幾個。
+      </p>
+
+      <div class="game-grid" id="game-grid">
+        <!-- 14 cards, all wrong -->
+        <div class="game-card" data-rule="1-1-1" data-explain="課程名稱出現「電腦」「課」字樣 → 違規命名（用學科名）。應改素養導向主題式名稱（例：數位探險家）。">
+          <span class="gc-num">CARD 01 · 課程名稱</span>
+          <div class="gc-q">「<strong>數位電腦課</strong>」</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="1-1-2" data-explain="課程理念只列「會用 Word／Excel」三件套軟體操作，沒有跨域統整與素養落點。應點出「資訊 × 哪些領域」的橋接。">
+          <span class="gc-num">CARD 02 · 課程理念</span>
+          <div class="gc-q">「教會學生 <strong>Word／Excel／PPT</strong> 等基本軟體操作」</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="2-1-1" data-explain="核心素養誤填領綱層級代碼「科-E-A2」（國小無科技領綱！國中才有）。應改總綱層級「A2 系統思考與解決問題」或 E-B2 完整敘述。">
+          <span class="gc-num">CARD 03 · 核心素養</span>
+          <div class="gc-q">「<strong>科-E-A2</strong>　運算思維與問題解決」</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="2-2-1" data-explain="所有 4 個單元的學習重點全部只列「資議／科議」，沒有任何跨域指標。每學期至少要有 1 個單元跨域。">
+          <span class="gc-num">CARD 04 · 學習重點</span>
+          <div class="gc-q">4 個單元學習重點欄全部<strong>只有資議／科議</strong>、無跨域</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="2-2-2" data-explain="三年級用了 -Ⅳ- 階段代碼（國中）。國小三年級對應 -Ⅱ-，全份不該出現 Ⅳ。">
+          <span class="gc-num">CARD 05 · 階段代碼</span>
+          <div class="gc-q">三年級學習內容：「運 <strong>t-Ⅳ-1</strong>」（Ⅳ 是國中）</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="2-2-3" data-explain="學習重點欄填了議題實質內涵代碼「資 E1」。校訂主體應改成參考說明代碼「資議 a-Ⅱ-X」。">
+          <span class="gc-num">CARD 06 · 學習重點代碼</span>
+          <div class="gc-q">「學習內容：<strong>資 E1</strong>　認識常見的資訊系統」</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="2-2-4" data-explain="表格多開一欄「參考說明」獨立放資議。應併入「學習表現／學習內容」欄。">
+          <span class="gc-num">CARD 07 · 表格欄位</span>
+          <div class="gc-q">學習重點旁多開「<strong>參考說明</strong>」獨立欄放資議</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="3-1-1" data-explain="表頭跨國語、教學活動全部「鍵盤打字／Scratch」沒國語。形式跨域不等於實質跨域。">
+          <span class="gc-num">CARD 08 · 教學活動</span>
+          <div class="gc-q">表頭跨國語、活動全是「<strong>鍵盤打字、Scratch</strong>」</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="3-1-2" data-explain="核心素養掛了「社會」、學習重點掛了「藝術」、教學活動只有資訊。五面向所跨領域不一致。">
+          <span class="gc-num">CARD 09 · 五面向</span>
+          <div class="gc-q">素養：<strong>社會</strong>　重點：<strong>藝術</strong>　活動：<strong>純資訊</strong></div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="3-1-3" data-explain="教材直接抄「翰林版電腦第 5 冊」廠商書名。應改成「電腦基礎操作教材」這類通用描述。">
+          <span class="gc-num">CARD 10 · 教材來源</span>
+          <div class="gc-q">教材：「<strong>翰林版電腦第 5 冊</strong>」</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="3-1-4" data-explain="單元名稱「我是天才小畫家」與廠商書名「我是小畫家」高度相似（僅多 2 字）。應大改為與書名無關的名稱。">
+          <span class="gc-num">CARD 11 · 單元名稱</span>
+          <div class="gc-q">單元名「<strong>我是天才小畫家</strong>」（vs 廠商「我是小畫家」）</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="3-2-1" data-explain="議題融入欄填了「資議 a-Ⅱ-1」。資議／科議該放學習重點欄，不能放議題融入欄。">
+          <span class="gc-num">CARD 12 · 議題融入欄 ①</span>
+          <div class="gc-q">議題融入欄：「<strong>資議 a-Ⅱ-1</strong>」（資議跑錯欄）</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="3-2-2" data-explain="議題融入欄填了「資 E1、資 E5、科 E3」。校訂資訊課中資訊已是主體，不能再以議題身份融入自己。">
+          <span class="gc-num">CARD 13 · 議題融入欄 ②</span>
+          <div class="gc-q">議題融入欄：「<strong>資 E1、資 E5、科 E3</strong>」</div>
+          <div class="gc-explain"></div>
+        </div>
+
+        <div class="game-card" data-rule="4-1-1" data-explain="評量規準只列「上課發表 / 實作活動 / 學習態度」三件套類別。應改為跨域 20-40 字的具體可觀察描述。">
+          <span class="gc-num">CARD 14 · 評量規準</span>
+          <div class="gc-q">評量：「<strong>上課發表 ／ 實作活動 ／ 學習態度</strong>」</div>
+          <div class="gc-explain"></div>
+        </div>
+      </div>
+
+      <div class="game-bar">
+        <span>已標記 <b id="g-marked">0</b> / 14　·　按下方比對答案後會揭示漏抓的項目</span>
+        <div style="display:flex;gap:10px;">
+          <button class="reset" id="g-reset">重來</button>
+          <button id="g-check">比對答案</button>
+        </div>
+      </div>
+
+      <div class="game-result" id="g-result">
+        <div>你抓到 <span class="score" id="g-score">0</span> ／ 14 個錯誤<span id="g-comment" style="color:var(--ink-soft);font-size:0.85em;font-family:'Noto Sans TC';margin-left:14px;"></span></div>
+        <div style="margin-top:8px;font-size:clamp(15px,1.25vw,19px);color:var(--ink-soft);line-height:1.55;font-family:'Noto Sans TC';">綠色＝你抓對了；橘色＝你漏掉了。每張卡會展開該指標的解釋，重看一次今天的內容會更有印象。</div>
+      </div>
+    </div>
+    <div class="foot"><span class="brand">2026 / 內湖場</span><span>P58 — BONUS GAME</span></div>
   </div>
 </section>
 
@@ -2496,7 +2982,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
 
 <nav class="nav" id="nav">
   <button id="prev">← PREV</button>
-  <span class="indicator"><b id="cur">01</b> / 55</span>
+  <span class="indicator"><b id="cur">01</b> / 58</span>
   <button id="next">NEXT →</button>
 </nav>
 
@@ -2649,11 +3135,12 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     }
   });
 
-  // click left/right to navigate (avoid clicking on buttons / images / lightbox)
+  // click left/right to navigate (avoid clicking on buttons / images / lightbox / game)
   document.addEventListener('click', e => {
     if (e.target.closest('.nav') || e.target.closest('a') || e.target.closest('button')) return;
     if (e.target.closest('.lightbox-overlay') || lb.classList.contains('active')) return;
     if (e.target.tagName === 'IMG' && /images\/(case-|qr-)/.test(e.target.getAttribute('src') || '')) return;
+    if (e.target.closest('.game-slide')) return;
     const x = e.clientX;
     const w = window.innerWidth;
     if (x < w * 0.3) show(idx - 1);
@@ -2661,6 +3148,74 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   });
 
   // prefetch styles to avoid font flash later (already loaded in head)
+
+  // ===== Game (P57): 14 spot-the-errors =====
+  const gameGrid = document.getElementById('game-grid');
+  if (gameGrid) {
+    const cards = gameGrid.querySelectorAll('.game-card');
+    const marked = document.getElementById('g-marked');
+    const checkBtn = document.getElementById('g-check');
+    const resetBtn = document.getElementById('g-reset');
+    const result = document.getElementById('g-result');
+    const score = document.getElementById('g-score');
+    const comment = document.getElementById('g-comment');
+    let revealed = false;
+
+    function updateMarked() {
+      const n = gameGrid.querySelectorAll('.game-card.flagged').length;
+      marked.textContent = n;
+    }
+    cards.forEach(card => {
+      card.addEventListener('click', e => {
+        if (revealed) return;
+        e.stopPropagation();
+        card.classList.toggle('flagged');
+        updateMarked();
+      });
+    });
+    checkBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (revealed) return;
+      revealed = true;
+      let hit = 0;
+      cards.forEach(card => {
+        const explainText = card.dataset.explain || '';
+        const explainBox = card.querySelector('.gc-explain');
+        if (explainBox && !explainBox.textContent) explainBox.textContent = explainText;
+        if (card.classList.contains('flagged')) {
+          card.classList.remove('flagged');
+          card.classList.add('revealed-correct');
+          hit++;
+        } else {
+          card.classList.add('revealed-miss');
+        }
+      });
+      score.textContent = hit;
+      let msg = '';
+      if (hit === 14) msg = '滿分！— 14 項全抓到，回校就是即戰力。';
+      else if (hit >= 11) msg = '優秀！— 漏的少數幾個回去補今天的 slides 即可。';
+      else if (hit >= 7) msg = '中段班 — 半數抓到，建議再讀一次「項目三」段落。';
+      else if (hit >= 4) msg = '加油 — 今天的 14 項手冊請帶回去仔細看。';
+      else msg = '別灰心 — 今天先有印象，回去搭配 GEM 預審慢慢練。';
+      comment.textContent = '· ' + msg;
+      result.classList.add('show');
+    });
+    resetBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      revealed = false;
+      cards.forEach(card => {
+        card.classList.remove('flagged', 'revealed-correct', 'revealed-miss');
+        const explainBox = card.querySelector('.gc-explain');
+        if (explainBox) explainBox.textContent = '';
+      });
+      result.classList.remove('show');
+      score.textContent = '0';
+      comment.textContent = '';
+      updateMarked();
+    });
+    // Prevent slide left/right click from triggering when interacting with game cards/buttons
+    gameGrid.addEventListener('click', e => e.stopPropagation());
+  }
 })();
 </script>
 
