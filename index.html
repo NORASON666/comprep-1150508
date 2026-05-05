@@ -662,6 +662,84 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
 }
 
 /* speaker mode hidden notes - speaker note via title attribute */
+
+/* ========================= LIGHTBOX (zoom + pan) ========================= */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 8, 12, 0.94);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  overflow: hidden;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-content {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-drag: none;
+  max-width: none;
+  max-height: none;
+  will-change: transform;
+  transform-origin: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.lightbox-content.dragging { cursor: grabbing; }
+.lightbox-hint {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: rgba(245, 240, 224, 0.78);
+  letter-spacing: 0.18em;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 10px 22px;
+  border-radius: 30px;
+  pointer-events: none;
+  z-index: 10000;
+}
+.lightbox-close {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: rgba(245, 240, 224, 0.78);
+  letter-spacing: 0.18em;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 10px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 10000;
+  border: 1px solid rgba(245, 240, 224, 0.2);
+}
+.slide img[src^="images/case-"],
+.slide img[src^="images/qr-"] {
+  cursor: zoom-in;
+}
+
+/* ========================= 留白多的 slide 字體放大（5/5 第二輪） ========================= */
+.slide[data-page="6"] p { font-size: clamp(22px, 1.85vw, 30px) !important; line-height: 1.65; }
+.slide[data-page="6"] .numbered { font-size: clamp(24px, 2.16vw, 33px) !important; }
+
+.slide[data-page="19"] .compare p { font-size: clamp(24px, 2vw, 32px) !important; line-height: 1.7; }
+.slide[data-page="19"] .compare code { font-size: 1em !important; }
+
+.slide[data-page="20"] .compare pre { font-size: clamp(19px, 1.55vw, 25px) !important; line-height: 1.55; }
+.slide[data-page="20"] .checklist li { font-size: clamp(22px, 1.85vw, 28px) !important; line-height: 1.65; }
+
+.slide[data-page="21"] table th,
+.slide[data-page="21"] table td { font-size: clamp(20px, 1.7vw, 26px) !important; line-height: 1.55; padding: 10px 14px; }
+.slide[data-page="21"] table code { font-size: 1.05em !important; }
+.slide[data-page="21"] p { font-size: clamp(18px, 1.5vw, 22px) !important; }
+
+.slide[data-page="27"] .compare pre { font-size: clamp(20px, 1.65vw, 26px) !important; line-height: 1.6; }
+.slide[data-page="27"] .checklist li { font-size: clamp(22px, 1.85vw, 28px) !important; }
+
 </style>
 </head>
 <body>
@@ -2107,8 +2185,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
         <div style="display:flex;flex-direction:column;gap:12px;">
           <div>
             <div style="font-family:'JetBrains Mono';font-size:16px;letter-spacing:0.2em;color:var(--mute);margin-bottom:6px;">GEM 入口</div>
-            <div class="qrbox"></div>
-            <p style="font-size:16px;font-family:'JetBrains Mono';letter-spacing:0.1em;text-align:center;color:var(--ink-soft);margin-top:6px;">十二年國教 課綱專家</p>
+            <img src="images/qr-gem.png" alt="GEM 連結 QR" style="width:100%;aspect-ratio:1;display:block;background:#fff;padding:6%;box-sizing:border-box;border:1px solid var(--rule-soft);border-radius:6px;">
+            <p style="font-size:16px;font-family:'JetBrains Mono';letter-spacing:0.1em;text-align:center;color:var(--ink-soft);margin-top:8px;">十二年國教 課綱專家</p>
           </div>
         </div>
       </div>
@@ -2252,7 +2330,13 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <button id="next">NEXT →</button>
 </nav>
 
-<div class="hint">← → 翻頁　·　F 全螢幕　·　P 列印 PDF</div>
+<div class="hint">← → 翻頁　·　F 全螢幕　·　P 列印 PDF　·　點圖放大</div>
+
+<div class="lightbox-overlay" id="lightbox" aria-hidden="true">
+  <img class="lightbox-content" id="lightbox-img" alt="放大檢視">
+  <div class="lightbox-close" id="lightbox-close">ESC 關閉</div>
+  <div class="lightbox-hint">滾輪縮放 · 拖曳移動 · 雙指縮放</div>
+</div>
 
 <script>
 (function(){
@@ -2261,6 +2345,101 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   const cur = document.getElementById('cur');
   const progress = document.getElementById('progress');
   let idx = 0;
+
+  // ===== Lightbox =====
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbClose = document.getElementById('lightbox-close');
+  let lbScale = 1, lbX = 0, lbY = 0, lbDragging = false, lbStartX = 0, lbStartY = 0;
+  function lbApply() { lbImg.style.transform = `translate(${lbX}px, ${lbY}px) scale(${lbScale})`; }
+  function lbOpen(src) {
+    lbImg.src = src;
+    lbScale = 1; lbX = 0; lbY = 0;
+    lbApply();
+    lb.classList.add('active');
+    lb.setAttribute('aria-hidden', 'false');
+  }
+  function lbCloseFn() {
+    lb.classList.remove('active');
+    lb.setAttribute('aria-hidden', 'true');
+  }
+  document.querySelectorAll('.slide img').forEach(img => {
+    if (!/images\/(case-|qr-)/.test(img.getAttribute('src') || '')) return;
+    img.addEventListener('click', e => {
+      e.stopPropagation();
+      lbOpen(img.src);
+    });
+  });
+  lb.addEventListener('click', e => {
+    if (e.target === lb || e.target === lbClose) lbCloseFn();
+  });
+  // capture-phase keydown so nav listener doesn't fire while lightbox open
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') { lbCloseFn(); }
+    e.stopPropagation();
+    if (e.key === 'Escape' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
+        e.key === ' ' || e.key === 'PageDown' || e.key === 'PageUp' ||
+        e.key === 'Home' || e.key === 'End') {
+      e.preventDefault();
+    }
+  }, true);
+  lb.addEventListener('wheel', e => {
+    if (!lb.classList.contains('active')) return;
+    e.preventDefault();
+    const factor = e.deltaY > 0 ? 0.9 : 1.1;
+    lbScale = Math.max(0.4, Math.min(8, lbScale * factor));
+    lbApply();
+  }, { passive: false });
+  lbImg.addEventListener('mousedown', e => {
+    e.preventDefault();
+    lbDragging = true;
+    lbStartX = e.clientX - lbX;
+    lbStartY = e.clientY - lbY;
+    lbImg.classList.add('dragging');
+  });
+  window.addEventListener('mousemove', e => {
+    if (!lbDragging) return;
+    lbX = e.clientX - lbStartX;
+    lbY = e.clientY - lbStartY;
+    lbApply();
+  });
+  window.addEventListener('mouseup', () => {
+    lbDragging = false;
+    lbImg.classList.remove('dragging');
+  });
+  // touch: single-finger pan + 2-finger pinch zoom
+  let touchInitDist = 0, touchInitScale = 1;
+  lbImg.addEventListener('touchstart', e => {
+    if (e.touches.length === 1) {
+      lbDragging = true;
+      lbStartX = e.touches[0].clientX - lbX;
+      lbStartY = e.touches[0].clientY - lbY;
+    } else if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      touchInitDist = Math.hypot(dx, dy);
+      touchInitScale = lbScale;
+      lbDragging = false;
+    }
+  }, { passive: true });
+  lbImg.addEventListener('touchmove', e => {
+    if (e.touches.length === 1 && lbDragging) {
+      e.preventDefault();
+      lbX = e.touches[0].clientX - lbStartX;
+      lbY = e.touches[0].clientY - lbStartY;
+      lbApply();
+    } else if (e.touches.length === 2 && touchInitDist > 0) {
+      e.preventDefault();
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.hypot(dx, dy);
+      lbScale = Math.max(0.4, Math.min(8, touchInitScale * (dist / touchInitDist)));
+      lbApply();
+    }
+  }, { passive: false });
+  lbImg.addEventListener('touchend', () => { lbDragging = false; });
+  // ===== /Lightbox =====
 
   // jump to slide via URL hash
   if (location.hash) {
@@ -2300,9 +2479,11 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     }
   });
 
-  // click left/right to navigate (avoid clicking on buttons)
+  // click left/right to navigate (avoid clicking on buttons / images / lightbox)
   document.addEventListener('click', e => {
     if (e.target.closest('.nav') || e.target.closest('a') || e.target.closest('button')) return;
+    if (e.target.closest('.lightbox-overlay') || lb.classList.contains('active')) return;
+    if (e.target.tagName === 'IMG' && /images\/(case-|qr-)/.test(e.target.getAttribute('src') || '')) return;
     const x = e.clientX;
     const w = window.innerWidth;
     if (x < w * 0.3) show(idx - 1);
