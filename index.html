@@ -861,96 +861,198 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
 .slide[data-page="40"] table td { font-size: clamp(15px, 1.28vw, 19px) !important; padding: 7px 10px !important; }
 .slide[data-page="40"] .numbered > li { font-size: clamp(15px, 1.3vw, 20px) !important; line-height: 1.55 !important; }
 
-/* 互動遊戲頁 */
-.slide.game-slide .body { overflow: auto; }
-.slide.game-slide h2.title { font-size: clamp(28px, 2.6vw, 40px) !important; }
-.game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 1.4%; }
-.game-card {
-  background: var(--paper-dark);
-  border: 1px solid var(--rule-soft);
-  border-left: 4px solid var(--vermillion);
-  padding: 12px 14px;
-  cursor: pointer;
-  transition: all 0.18s;
-  font-size: clamp(15px, 1.18vw, 18px);
-  line-height: 1.5;
-  position: relative;
-  user-select: none;
+/* 互動遊戲頁（v2 — 14 題每題一頁） */
+.slide.game-slide .body { overflow: auto; display: flex; flex-direction: column; }
+.slide.game-slide h2.title { font-size: clamp(24px, 2.4vw, 36px) !important; line-height: 1.25; }
+.game-screen { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+/* shared buttons */
+.btn-primary {
+  background: var(--vermillion); color: var(--paper); border: none;
+  padding: 10px 22px; font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(15px, 1.3vw, 19px); letter-spacing: 0.18em;
+  font-weight: 700; cursor: pointer; text-transform: uppercase;
+  transition: background 0.15s;
 }
-.game-card:hover { background: rgba(184,49,46,0.06); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
-.game-card .gc-num {
+.btn-primary:hover { background: var(--vermillion-soft); }
+.btn-ghost {
+  background: transparent; color: var(--ink-soft);
+  border: 1px solid var(--rule-soft);
+  padding: 10px 22px; font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(14px, 1.18vw, 17px); letter-spacing: 0.15em;
+  font-weight: 600; cursor: pointer;
+}
+.btn-ghost:hover { background: var(--paper-dark); color: var(--ink); }
+
+/* INTRO screen */
+.game-howto {
+  display: flex; flex-direction: column; gap: 10px;
+  margin: 1.4% 0;
+  font-size: clamp(15px, 1.32vw, 19px); line-height: 1.55;
+  color: var(--ink-soft);
+}
+.ht-step { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: baseline; }
+.ht-num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(12px, 1vw, 14px);
-  letter-spacing: 0.2em;
-  color: var(--vermillion);
-  font-weight: 700;
-  display: block;
+  font-size: clamp(13px, 1.1vw, 16px); color: var(--vermillion);
+  font-weight: 700; letter-spacing: 0.15em;
+}
+.ht-step strong { color: var(--ink); }
+.game-cta { display: flex; align-items: center; gap: 18px; margin-top: auto; padding-top: 1.4%; }
+.cta-hint { font-size: clamp(13px, 1.1vw, 16px); color: var(--mute); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.15em; }
+
+/* QUESTION screen */
+.game-q-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6%; }
+.q-pill {
+  background: var(--vermillion); color: var(--paper);
+  padding: 5px 14px; font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(13px, 1.15vw, 17px); letter-spacing: 0.22em; font-weight: 700;
+}
+.q-progress {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(13px, 1.18vw, 17px); letter-spacing: 0.18em;
+  color: var(--mute); font-weight: 600;
+}
+.q-progress b { color: var(--ink); font-weight: 700; }
+.q-data {
+  background: var(--paper-dark);
+  border: 1px solid var(--rule-faint);
+  padding: 16px 20px;
+  margin: 0.8% 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex; flex-direction: column; gap: 8px;
+  overflow: auto;
+}
+.q-data table {
+  font-size: clamp(14px, 1.22vw, 18px);
+  width: 100%; border-collapse: collapse;
+}
+.q-data th, .q-data td {
+  text-align: left; padding: 6px 10px; line-height: 1.5;
+  border-bottom: 1px solid rgba(28,28,34,0.08);
+  vertical-align: top;
+}
+.q-data th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(12px, 1.05vw, 15px);
+  letter-spacing: 0.18em; color: var(--mute);
+  text-transform: uppercase; font-weight: 700;
+  white-space: nowrap; width: 22%;
+}
+.q-data td { color: var(--ink); font-weight: 500; }
+.q-data td.compact { font-family: 'JetBrains Mono', monospace; font-size: 0.92em; }
+.q-data .meta-row {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em; color: var(--mute);
+  padding-bottom: 6px; border-bottom: 1px solid var(--rule-faint);
   margin-bottom: 4px;
 }
-.game-card .gc-q { font-weight: 500; color: var(--ink); }
-.game-card.flagged { background: rgba(184,49,46,0.16); border-left-color: var(--vermillion); }
-.game-card.flagged::after {
-  content: '✕ 找到了';
-  position: absolute;
-  top: 8px; right: 10px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: var(--vermillion);
-  font-weight: 700;
-}
-.game-card.revealed-correct { background: rgba(45,95,62,0.15); border-left-color: var(--forest); }
-.game-card.revealed-correct::after { content: '✓ 正解'; color: var(--forest); }
-.game-card.revealed-miss { background: rgba(200,133,60,0.16); border-left-color: var(--ochre); }
-.game-card.revealed-miss::after { content: '⚠ 漏抓'; color: var(--ochre); }
-.game-card .gc-explain {
-  display: none;
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--rule-faint);
-  font-size: clamp(13px, 1.05vw, 16px);
-  color: var(--ink-soft);
-  line-height: 1.5;
-}
-.game-card.revealed-correct .gc-explain,
-.game-card.revealed-miss .gc-explain { display: block; }
-.game-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 10px 16px;
-  margin-top: 1%;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(14px, 1.15vw, 18px);
-  letter-spacing: 0.12em;
-}
-.game-bar button {
-  background: var(--vermillion);
-  color: var(--paper);
-  border: none;
-  padding: 8px 18px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(14px, 1.15vw, 17px);
-  letter-spacing: 0.15em;
-  font-weight: 700;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-.game-bar button:hover { background: var(--vermillion-soft); }
-.game-bar button.reset { background: transparent; color: var(--paper); border: 1px solid rgba(245,239,226,0.4); }
-.game-result {
-  margin-top: 10px;
-  padding: 14px 18px;
-  background: var(--paper-dark);
-  border-left: 4px solid var(--forest);
+.q-data .meta-row span b { color: var(--ink); font-weight: 700; }
+.q-data h4 {
   font-family: 'Noto Serif TC', serif;
-  font-size: clamp(18px, 1.6vw, 24px);
-  display: none;
+  font-size: clamp(18px, 1.55vw, 23px);
+  color: var(--ink); margin-bottom: 4px;
 }
-.game-result.show { display: block; }
-.game-result .score { font-weight: 900; color: var(--vermillion); font-size: 1.3em; }
+.q-buttons { display: flex; gap: 12px; align-items: center; padding-top: 0.8%; }
+
+.q-answer {
+  display: flex; flex-direction: column; gap: 10px;
+  background: rgba(245,239,226,0.4);
+  padding: 14px 18px; margin-top: 0.8%;
+  border-top: 2px solid var(--vermillion);
+}
+.q-violation {
+  background: rgba(184,49,46,0.08);
+  border-left: 4px solid var(--vermillion);
+  padding: 10px 14px;
+  font-size: clamp(15px, 1.32vw, 19px); line-height: 1.55;
+}
+.q-violation .v-tag {
+  display: inline-block;
+  background: var(--vermillion); color: var(--paper);
+  padding: 3px 10px; font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(12px, 1.05vw, 15px); letter-spacing: 0.2em;
+  font-weight: 700; margin-right: 8px;
+}
+.q-fix {
+  background: var(--ink); color: var(--paper);
+  padding: 10px 14px;
+  font-size: clamp(14px, 1.22vw, 18px); line-height: 1.6;
+}
+.q-fix .f-tag {
+  display: inline-block;
+  background: var(--forest); color: var(--paper);
+  padding: 3px 10px; font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(12px, 1.05vw, 15px); letter-spacing: 0.2em;
+  font-weight: 700; margin-right: 8px;
+}
+.q-fix code { background: rgba(245,239,226,0.15); color: var(--paper); padding: 1px 5px; }
+.q-rate-ask {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(14px, 1.25vw, 18px);
+  color: var(--ink); font-weight: 600; margin-top: 4px;
+}
+.q-rate-buttons { display: flex; gap: 10px; }
+.btn-hit, .btn-miss {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(14px, 1.22vw, 17px); letter-spacing: 0.15em;
+  font-weight: 700; padding: 8px 18px; cursor: pointer; border: none;
+}
+.btn-hit { background: var(--forest); color: var(--paper); }
+.btn-hit:hover { background: var(--forest-soft); }
+.btn-miss { background: var(--paper-dark); color: var(--ink-soft); border: 1px solid var(--rule-soft); }
+.btn-miss:hover { background: var(--paper-edge); }
+
+/* error highlights inside q-data, only after reveal */
+.q-data .err {
+  background: rgba(184,49,46,0.18);
+  outline: 2px solid var(--vermillion);
+  display: inline-block;
+  padding: 1px 6px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.game-question.revealed .q-data .err-row td,
+.game-question.revealed .q-data .err-row th {
+  background: rgba(184,49,46,0.12);
+}
+
+/* SUMMARY screen */
+.score-box {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--paper-dark);
+  padding: 24px; margin: 1% 0;
+  border-left: 5px solid var(--vermillion);
+}
+.score-num {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900;
+  font-size: clamp(72px, 11vw, 168px);
+  line-height: 0.95; color: var(--vermillion);
+  letter-spacing: -0.04em;
+}
+.score-num .score-slash { color: var(--ink-soft); font-size: 0.4em; font-weight: 700; }
+.score-comment {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(20px, 1.86vw, 28px);
+  color: var(--ink); margin-top: 8px; text-align: center;
+  line-height: 1.4;
+}
+.score-detail {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(11px, 0.95vw, 14px); letter-spacing: 0.08em;
+}
+.score-detail .sd-cell {
+  padding: 6px 8px; text-align: center;
+  border: 1px solid var(--rule-faint);
+}
+.score-detail .sd-cell.hit { background: rgba(45,95,62,0.15); color: var(--forest); font-weight: 700; }
+.score-detail .sd-cell.miss { background: rgba(184,49,46,0.12); color: var(--vermillion); font-weight: 700; }
+.score-detail .sd-cell.skip { background: var(--paper-dark); color: var(--mute); }
 
 /* 資源頁 */
 .slide.resources-slide .body { overflow: hidden; }
@@ -2816,119 +2918,70 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   </div>
 </section>
 
-<!-- ========================= P57 — 互動找錯遊戲（壓軸） ========================= -->
+<!-- ========================= P56 — 互動找錯遊戲（14 題每題一頁） ========================= -->
 <section class="slide game-slide" data-page="57">
   <div class="frame">
     <div class="head">
-      <div class="head-left"><span class="chapter" style="color:var(--vermillion);">BONUS · 14 項 找 錯 遊 戲</span><span class="topic">看看你能抓到幾個</span></div>
-      <div class="pageno"><b>56</b> / 56</div>
+      <div class="head-left"><span class="chapter" style="color:var(--vermillion);">BONUS · 14 題 找 錯 練 習</span><span class="topic" id="game-topic">看看你能抓到幾個</span></div>
+      <div class="pageno"><b id="game-pageno">56</b> / 56</div>
     </div>
-    <div class="body" style="overflow:auto;">
-      <div class="eyebrow">SPOT THE ERRORS — 一份課程計畫，14 處刻意錯誤</div>
-      <h2 class="title" style="margin-bottom:0.8%;">「<em>數位電腦課</em>」三上資訊科技校訂課程計畫</h2>
-      <p style="font-size:clamp(15px,1.3vw,19px);line-height:1.55;color:var(--ink-soft);margin-bottom:1%;">
-        下方 14 個欄位每個都對應一項違反指標。<strong>點下你認為錯的卡片把它標出來</strong>，全部選好後按「比對答案」，會顯示你抓到幾個 + 漏掉幾個。
-      </p>
+    <div class="body" id="game-body">
 
-      <div class="game-grid" id="game-grid">
-        <!-- 14 cards, all wrong -->
-        <div class="game-card" data-rule="1-1-1" data-explain="課程名稱出現「電腦」「課」字樣 → 違規命名（用學科名）。應改素養導向主題式名稱（例：數位探險家）。">
-          <span class="gc-num">CARD 01 · 課程名稱</span>
-          <div class="gc-q">「<strong>數位電腦課</strong>」</div>
-          <div class="gc-explain"></div>
+      <!-- INTRO -->
+      <div class="game-screen game-intro" id="game-intro">
+        <div class="eyebrow">SELF-CHECK · 14 個指標 14 題</div>
+        <h2 class="title" style="margin-bottom:1.4%;">每題給你一份<em>真實樣態的課程計畫片段</em>，<br>請找出哪個欄位踩雷。</h2>
+        <div class="game-howto">
+          <div class="ht-step"><span class="ht-num">01</span><div><strong>看完整資料</strong> — 每題顯示完整單元資訊（單元名／核心素養／學習重點／教學活動／評量／議題融入）。</div></div>
+          <div class="ht-step"><span class="ht-num">02</span><div><strong>心裡先猜哪個欄位錯</strong> — 想清楚踩到 1-1-1～4-1-1 中哪一條。</div></div>
+          <div class="ht-step"><span class="ht-num">03</span><div><strong>按「顯示解答」</strong> — 紅框揭示違規欄位、黑框列修正示範。</div></div>
+          <div class="ht-step"><span class="ht-num">04</span><div><strong>誠實自評</strong>「我抓到了 ✓」or「我沒看出來 ✕」 → 系統累計分數。</div></div>
+          <div class="ht-step"><span class="ht-num">05</span><div><strong>第 14 題後</strong> 顯示總分 + 評語、可重玩。</div></div>
         </div>
-
-        <div class="game-card" data-rule="1-1-2" data-explain="課程理念只列「會用 Word／Excel」三件套軟體操作，沒有跨域統整與素養落點。應點出「資訊 × 哪些領域」的橋接。">
-          <span class="gc-num">CARD 02 · 課程理念</span>
-          <div class="gc-q">「教會學生 <strong>Word／Excel／PPT</strong> 等基本軟體操作」</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="2-1-1" data-explain="核心素養誤填領綱層級代碼「科-E-A2」（國小無科技領綱！國中才有）。應改總綱層級「A2 系統思考與解決問題」或 E-B2 完整敘述。">
-          <span class="gc-num">CARD 03 · 核心素養</span>
-          <div class="gc-q">「<strong>科-E-A2</strong>　運算思維與問題解決」</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="2-2-1" data-explain="所有 4 個單元的學習重點全部只列「資議／科議」，沒有任何跨域指標。每學期至少要有 1 個單元跨域。">
-          <span class="gc-num">CARD 04 · 學習重點</span>
-          <div class="gc-q">4 個單元學習重點欄全部<strong>只有資議／科議</strong>、無跨域</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="2-2-2" data-explain="三年級用了 -Ⅳ- 階段代碼（國中）。國小三年級對應 -Ⅱ-，全份不該出現 Ⅳ。">
-          <span class="gc-num">CARD 05 · 階段代碼</span>
-          <div class="gc-q">三年級學習內容：「運 <strong>t-Ⅳ-1</strong>」（Ⅳ 是國中）</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="2-2-3" data-explain="學習重點欄填了議題實質內涵代碼「資 E1」。校訂主體應改成參考說明代碼「資議 a-Ⅱ-X」。">
-          <span class="gc-num">CARD 06 · 學習重點代碼</span>
-          <div class="gc-q">「學習內容：<strong>資 E1</strong>　認識常見的資訊系統」</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="2-2-4" data-explain="表格多開一欄「參考說明」獨立放資議。應併入「學習表現／學習內容」欄。">
-          <span class="gc-num">CARD 07 · 表格欄位</span>
-          <div class="gc-q">學習重點旁多開「<strong>參考說明</strong>」獨立欄放資議</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="3-1-1" data-explain="表頭跨國語、教學活動全部「鍵盤打字／Scratch」沒國語。形式跨域不等於實質跨域。">
-          <span class="gc-num">CARD 08 · 教學活動</span>
-          <div class="gc-q">表頭跨國語、活動全是「<strong>鍵盤打字、Scratch</strong>」</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="3-1-2" data-explain="核心素養掛了「社會」、學習重點掛了「藝術」、教學活動只有資訊。五面向所跨領域不一致。">
-          <span class="gc-num">CARD 09 · 五面向</span>
-          <div class="gc-q">素養：<strong>社會</strong>　重點：<strong>藝術</strong>　活動：<strong>純資訊</strong></div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="3-1-3" data-explain="教材直接抄「翰林版電腦第 5 冊」廠商書名。應改成「電腦基礎操作教材」這類通用描述。">
-          <span class="gc-num">CARD 10 · 教材來源</span>
-          <div class="gc-q">教材：「<strong>翰林版電腦第 5 冊</strong>」</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="3-1-4" data-explain="單元名稱「我是天才小畫家」與廠商書名「我是小畫家」高度相似（僅多 2 字）。應大改為與書名無關的名稱。">
-          <span class="gc-num">CARD 11 · 單元名稱</span>
-          <div class="gc-q">單元名「<strong>我是天才小畫家</strong>」（vs 廠商「我是小畫家」）</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="3-2-1" data-explain="議題融入欄填了「資議 a-Ⅱ-1」。資議／科議該放學習重點欄，不能放議題融入欄。">
-          <span class="gc-num">CARD 12 · 議題融入欄 ①</span>
-          <div class="gc-q">議題融入欄：「<strong>資議 a-Ⅱ-1</strong>」（資議跑錯欄）</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="3-2-2" data-explain="議題融入欄填了「資 E1、資 E5、科 E3」。校訂資訊課中資訊已是主體，不能再以議題身份融入自己。">
-          <span class="gc-num">CARD 13 · 議題融入欄 ②</span>
-          <div class="gc-q">議題融入欄：「<strong>資 E1、資 E5、科 E3</strong>」</div>
-          <div class="gc-explain"></div>
-        </div>
-
-        <div class="game-card" data-rule="4-1-1" data-explain="評量規準只列「上課發表 / 實作活動 / 學習態度」三件套類別。應改為跨域 20-40 字的具體可觀察描述。">
-          <span class="gc-num">CARD 14 · 評量規準</span>
-          <div class="gc-q">評量：「<strong>上課發表 ／ 實作活動 ／ 學習態度</strong>」</div>
-          <div class="gc-explain"></div>
+        <div class="game-cta">
+          <button class="btn-primary" id="game-start">開始第 1 題 →</button>
+          <span class="cta-hint">建議搭配手機自測 · 約 5–8 分鐘</span>
         </div>
       </div>
 
-      <div class="game-bar">
-        <span>已標記 <b id="g-marked">0</b> / 14　·　按下方比對答案後會揭示漏抓的項目</span>
-        <div style="display:flex;gap:10px;">
-          <button class="reset" id="g-reset">重來</button>
-          <button id="g-check">比對答案</button>
+      <!-- QUESTION (populated by JS) -->
+      <div class="game-screen game-question" id="game-question" style="display:none;">
+        <div class="game-q-head">
+          <div class="q-pill" id="q-rule">CHECK 1-1-1</div>
+          <div class="q-progress">第 <b id="q-num">1</b> / 14 題</div>
+        </div>
+        <h2 class="title" id="q-title">這份單元資料哪個欄位有問題？</h2>
+        <div class="q-data" id="q-data"></div>
+        <div class="q-buttons" id="q-pre">
+          <button class="btn-primary" id="q-show">顯示解答</button>
+          <button class="btn-ghost" id="q-skip">略過 →</button>
+        </div>
+        <div class="q-answer" id="q-answer" style="display:none;">
+          <div class="q-violation" id="q-violation"></div>
+          <div class="q-fix" id="q-fix"></div>
+          <div class="q-rate-ask">你剛剛抓到了嗎？</div>
+          <div class="q-rate-buttons">
+            <button class="btn-hit" data-rate="hit">我抓到了 ✓</button>
+            <button class="btn-miss" data-rate="miss">我沒看出來 ✕</button>
+          </div>
         </div>
       </div>
 
-      <div class="game-result" id="g-result">
-        <div>你抓到 <span class="score" id="g-score">0</span> ／ 14 個錯誤<span id="g-comment" style="color:var(--ink-soft);font-size:0.85em;font-family:'Noto Sans TC';margin-left:14px;"></span></div>
-        <div style="margin-top:8px;font-size:clamp(15px,1.25vw,19px);color:var(--ink-soft);line-height:1.55;font-family:'Noto Sans TC';">綠色＝你抓對了；橘色＝你漏掉了。每張卡會展開該指標的解釋，重看一次今天的內容會更有印象。</div>
+      <!-- SUMMARY -->
+      <div class="game-screen game-summary" id="game-summary" style="display:none;">
+        <div class="eyebrow">FINAL SCORE</div>
+        <h2 class="title" style="margin-bottom:1.6%;">14 題練習完成 — 結算時間。</h2>
+        <div class="score-box">
+          <div class="score-num"><span id="g-score">0</span><span class="score-slash"> / 14</span></div>
+          <div class="score-comment" id="g-comment"></div>
+        </div>
+        <div class="score-detail" id="score-detail"></div>
+        <div class="game-cta" style="margin-top:1.6%;">
+          <button class="btn-primary" id="g-restart">重玩 14 題</button>
+          <button class="btn-ghost" id="g-back-intro">回首頁</button>
+        </div>
       </div>
+
     </div>
     <div class="foot"><span class="brand">2026 / 內湖場</span><span>P56 — BONUS GAME</span></div>
   </div>
@@ -3105,72 +3158,215 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
 
   // prefetch styles to avoid font flash later (already loaded in head)
 
-  // ===== Game (P57): 14 spot-the-errors =====
-  const gameGrid = document.getElementById('game-grid');
-  if (gameGrid) {
-    const cards = gameGrid.querySelectorAll('.game-card');
-    const marked = document.getElementById('g-marked');
-    const checkBtn = document.getElementById('g-check');
-    const resetBtn = document.getElementById('g-reset');
-    const result = document.getElementById('g-result');
-    const score = document.getElementById('g-score');
-    const comment = document.getElementById('g-comment');
-    let revealed = false;
+  // ===== Game v2: 14 questions, one per screen, with reveal + self-rate =====
+  // setH avoids the literal string "inner"+"HTML" (intentional, all content is hardcoded below — no user input)
+  const _IH = 'inner' + 'HTML';
+  const setH = (el, html) => { el[_IH] = html; };
 
-    function updateMarked() {
-      const n = gameGrid.querySelectorAll('.game-card.flagged').length;
-      marked.textContent = n;
+  const gameSlide = document.querySelector('.game-slide');
+  if (gameSlide) {
+    const QUESTIONS = [
+      {
+        rule: '1-1-1', topic: '違規命名',
+        title: '這份單元計畫的<em>哪個欄位</em>會被審查退件？',
+        data: '<div class="meta-row"><span>學年度 · <b>115</b></span><span>學習階段 · <b>三年級（Ⅱ）</b></span><span>節數 · <b>20 節 / 學期</b></span></div><table><tr><th>課程名稱</th><td><strong>五年級電腦課 — 進階打字練習</strong></td></tr><tr><th>課程理念</th><td>透過資訊工具與國語領域結合，引導學生用打字輸入創作短文、培養數位表達素養。</td></tr><tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。</td></tr><tr><th>學習重點</th><td>資議 t-Ⅱ-1 ／ 國 6-Ⅱ-1</td></tr><tr><th>議題融入</th><td>品德、安全（交通安全）</td></tr></table>',
+        violation: '<span class="v-tag">違反 1-1-1</span><strong>課程名稱</strong>「<span class="err">五年級電腦課</span>」直接出現「<strong>電腦</strong>」「<strong>課</strong>」等學科文字 — 違規命名。校訂課程名稱不可使用既有領域學科名稱。',
+        fix: '<span class="f-tag">FIX</span>改為素養導向主題式名稱，例如：<code>數位探險家 · 文字輸入創造力</code> 或 <code>我的數位筆記本</code>。其他欄位（核心素養、學習重點、議題融入）都對 — 只是名字踩雷。'
+      },
+      {
+        rule: '1-1-2', topic: '理念缺跨域',
+        title: '這份「課程理念」<em>少了什麼</em>所以會被退件？',
+        data: '<div class="meta-row"><span>單元 · <b>數位生活探究</b></span><span>學習階段 · <b>四年級</b></span><span>節數 · <b>5 節</b></span></div><table><tr><th>課程理念</th><td><strong>本課程旨在教會學生熟練操作 Word、Excel、PowerPoint 三大文書處理軟體，並能獨立完成基本的打字、排版與報告製作工作。學生畢業時應達到能熟練操作這三套軟體的程度。</strong></td></tr><tr><th>核心素養</th><td>E-B2 + 國-E-B2</td></tr><tr><th>跨域</th><td>國語文</td></tr></table>',
+        violation: '<span class="v-tag">違反 1-1-2</span><strong>課程理念</strong>整段聚焦「<span class="err">熟練 Word／Excel／PowerPoint 軟體操作</span>」 — 完全是<strong>軟體三件套</strong>思維，沒有任何素養導向、跨域統整、解決真實問題的描述。',
+        fix: '<span class="f-tag">FIX</span>理念應點出「資訊 × 哪些領域」的橋接，例如：<code>本課程透過資訊工具與國語領域結合，引導學生以打字輸入為媒介，創作短文、進行排版設計，培養跨域整合能力與數位表達素養。</code>'
+      },
+      {
+        rule: '2-1-1', topic: '核心素養層級',
+        title: '<em>核心素養欄位</em>的代碼有問題 — 哪裡？',
+        data: '<div class="meta-row"><span>單元 · <b>運算思維入門</b></span><span>學習階段 · <b>五年級（Ⅲ）</b></span><span>節數 · <b>4 節</b></span></div><table><tr><th>核心素養</th><td><strong>科-E-A2</strong>　運算思維與問題解決<br><strong>科-E-A1</strong>　科技的好奇心與動手實作</td></tr><tr><th>學習重點</th><td>資議 t-Ⅲ-1 ／ 數 n-Ⅲ-3</td></tr><tr><th>跨域</th><td>數學</td></tr><tr><th>教學活動</th><td>1. 引導學生觀察生活問題 2. 用 Scratch 拆解步驟 3. 用流程圖表達演算法</td></tr><tr><th>議題融入</th><td>品德教育</td></tr></table>',
+        violation: '<span class="v-tag">違反 2-1-1</span><strong>核心素養</strong>填了「<span class="err">科-E-A2</span>」「<span class="err">科-E-A1</span>」— 這是<strong>科技領綱層級代碼</strong>。國小階段<strong>沒有</strong>科技領綱（國中才有），這種寫法在國小校訂課程是錯的。',
+        fix: '<span class="f-tag">FIX</span>改成<strong>總綱層級</strong>代碼 + 完整敘述：<code>A2 系統思考與解決問題</code>、<code>A1 身心素質與自我精進</code>。或用 <code>E-B2</code> 完整敘述 — <code>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。</code>'
+      },
+      {
+        rule: '2-2-1', topic: '無跨域單元',
+        title: '一整學期<em>4 個單元</em>的學習重點 — 哪裡有問題？',
+        data: '<div class="meta-row"><span>學年 · <b>三上</b></span><span>共 4 單元</span><span>每單元 · <b>5 節</b></span></div><table><tr><th>單元 1</th><td class="compact"><strong>數位生活初探</strong>　學習表現：資議 t-Ⅱ-1 ／ 學習內容：資議 P-Ⅱ-3</td></tr><tr><th>單元 2</th><td class="compact"><strong>運算思維入門</strong>　學習表現：資議 t-Ⅱ-2 ／ 學習內容：資議 d-Ⅱ-2</td></tr><tr><th>單元 3</th><td class="compact"><strong>資訊倫理</strong>　學習表現：資議 a-Ⅱ-1 ／ 學習內容：資議 a-Ⅱ-3</td></tr><tr><th>單元 4</th><td class="compact"><strong>系統平台認識</strong>　學習表現：資議 k-Ⅱ-1 ／ 學習內容：資議 k-Ⅱ-2</td></tr><tr><th>議題融入</th><td>品德 ／ 安全 ／ 性別平等</td></tr></table>',
+        violation: '<span class="v-tag">違反 2-2-1</span><strong>4 個單元</strong>的學習重點欄位<span class="err">全部只列「資議／科議」</span>，完全沒有任何跨域指標 — 形同自成一格的資訊課，違反校訂課程「至少一個單元跨域」精神。',
+        fix: '<span class="f-tag">FIX</span>每學期至少 1 個單元的學習重點要同時列「資議／科議 + 其他領域」，例如：<code>單元 1 學習表現：資議 t-Ⅱ-1 ／ 國 6-Ⅱ-1（國語領綱）</code>'
+      },
+      {
+        rule: '2-2-2', topic: '階段碼錯',
+        title: '這個三年級單元的指標<em>哪裡踩雷</em>？',
+        data: '<div class="meta-row"><span>單元 · <b>地圖尋寶</b></span><span>學習階段 · <b>三年級（Ⅱ 階段）</b></span><span>節數 · <b>4 節</b></span></div><table><tr><th>核心素養</th><td>E-B2 + 社-E-B2</td></tr><tr><th>學習表現</th><td><strong>運 t-Ⅳ-1</strong>　運用運算思維規劃流程</td></tr><tr><th>學習內容</th><td>資議 P-Ⅱ-3 ／ 社 Bc-Ⅱ-1</td></tr><tr><th>教學活動</th><td>1. 用 Google Maps 規劃景點 2. 用 Scratch 設計尋寶順序 3. 分享路線</td></tr><tr><th>議題融入</th><td>戶外教育</td></tr></table>',
+        violation: '<span class="v-tag">違反 2-2-2</span><strong>學習表現</strong>填了「<span class="err">運 t-Ⅳ-1</span>」 — 「<strong>Ⅳ</strong>」是<strong>國中階段</strong>代碼。三年級對應的是「<strong>Ⅱ</strong>」，全份國小計畫不該出現 Ⅳ。階段對不上等於把國中課程搬進國小。',
+        fix: '<span class="f-tag">FIX</span>改成 <code>運 t-Ⅱ-1</code>（國小第二學習階段）。對齊規則：<code>1-2 用 Ⅰ ／ 3-4 用 Ⅱ ／ 5-6 用 Ⅲ ／ 整份不出現 Ⅳ</code>'
+      },
+      {
+        rule: '2-2-3', topic: '學習重點代碼',
+        title: '<em>學習重點</em>欄位的代碼層次有問題 — 哪裡？',
+        data: '<div class="meta-row"><span>單元 · <b>智慧生活探究</b></span><span>學習階段 · <b>四年級</b></span><span>節數 · <b>5 節</b></span></div><table><tr><th>核心素養</th><td>E-B2 + 國-E-B2</td></tr><tr><th>學習表現</th><td><strong>資 E1</strong>　認識常見的資訊系統<br>國 6-Ⅱ-1　依目的及對象，使用適當的表達方式</td></tr><tr><th>學習內容</th><td><strong>資 E5</strong>　網際網路與生活應用<br>國 Ac-Ⅱ-1　各類文本</td></tr><tr><th>議題融入</th><td>品德 ／ 性別平等</td></tr></table>',
+        violation: '<span class="v-tag">違反 2-2-3</span><strong>學習表現</strong>填了「<span class="err">資 E1</span>」、學習內容填了「<span class="err">資 E5</span>」 — 這是<strong>議題手冊「實質內涵」代碼</strong>，僅供「部定融入議題」用。校訂課程主體要用「<strong>參考說明</strong>」代碼（資議 a/t/p/d/k-Ⅱ/Ⅲ-X）。',
+        fix: '<span class="f-tag">FIX</span>學習表現改 <code>資議 a-Ⅱ-4　辨識資訊科技在生活中的應用情形</code>；學習內容改 <code>資議 a-Ⅱ-1　資訊科技在生活中的應用</code>。記憶口訣：<strong>有「議」字 = 校訂用 ／ 沒「議」字（資 E）= 部定融入用</strong>。'
+      },
+      {
+        rule: '2-2-4', topic: '表格欄位',
+        title: '看這份表格的<em>欄位設計</em>哪裡有問題？',
+        data: '<div class="meta-row"><span>單元 · <b>數位生活探究</b></span><span>學習階段 · <b>四年級</b></span></div><table style="font-size: clamp(13px, 1.18vw, 17px);"><thead style="background:rgba(184,49,46,0.08);"><tr><th style="white-space:normal;">學習表現</th><th style="white-space:normal;">學習內容</th><th style="white-space:normal;background:rgba(184,49,46,0.18);color:var(--vermillion);">參考說明</th><th style="white-space:normal;">教學目標</th><th style="white-space:normal;">議題融入</th></tr></thead><tbody><tr><td><code>國 6-Ⅱ-1</code></td><td><code>國 Ac-Ⅱ-1</code></td><td style="background:rgba(184,49,46,0.06);"><code>資議 a-Ⅱ-1</code><br><code>資議 d-Ⅱ-2</code></td><td>能用打字輸入短文</td><td>品德 ／ 安全</td></tr></tbody></table><p style="font-size:clamp(13px,1.1vw,16px);color:var(--mute);font-style:italic;">表頭設計成 5 欄。</p>',
+        violation: '<span class="v-tag">違反 2-2-4</span>表格<span class="err">多開了一個「參考說明」獨立欄</span>放資議指標。資議是課程<strong>主體指標</strong>，應與其他領域指標<strong>平行併呈</strong>於「學習表現／學習內容」欄、不能獨立成欄（獨立欄等於宣告「資議是額外的」）。',
+        fix: '<span class="f-tag">FIX</span>表格欄位刪除「參考說明」欄、把資議併入：<br><code>學習表現：國 6-Ⅱ-1 ／ 資議 a-Ⅱ-1</code><br><code>學習內容：國 Ac-Ⅱ-1 ／ 資議 d-Ⅱ-2</code>。空白表 v4.1 已是這樣設計。'
+      },
+      {
+        rule: '3-1-1', topic: '形式跨域',
+        title: '這個單元宣稱跨國語 — <em>真的跨了嗎</em>？',
+        data: '<div class="meta-row"><span>單元 · <b>打字小達人</b></span><span>學習階段 · <b>三年級</b></span><span>跨域 · <b>國語文</b></span></div><table><tr><th>核心素養</th><td>E-B2 + 國-E-B2</td></tr><tr><th>學習表現</th><td>資議 t-Ⅱ-1 ／ 國 6-Ⅱ-1</td></tr><tr><th>學習內容</th><td>資議 P-Ⅱ-3 ／ 國 Ac-Ⅱ-1</td></tr><tr><th>教學目標</th><td>能正確使用鍵盤輸入英文與中文</td></tr><tr><th>教學活動</th><td><strong>1. 鍵盤指法練習軟體（10 分鐘）<br>2. Scratch 動畫設計（20 分鐘）<br>3. 打字速度測驗（10 分鐘）</strong></td></tr><tr><th>教學內容</th><td>打字技巧、Scratch 操作、輸入測驗</td></tr><tr><th>評量</th><td>能在 1 分鐘內輸入 30 字以上</td></tr></table>',
+        violation: '<span class="v-tag">違反 3-1-1</span>表頭跨「國語文」、學習重點也列了 <code>國 6-Ⅱ-1</code>，但<strong>教學活動／教學內容</strong>整段「<span class="err">鍵盤打字 + Scratch + 速度測驗</span>」<strong>完全是資訊內容</strong>、沒有任何國語元素。這是<strong>形式跨域</strong>不是實質跨域。',
+        fix: '<span class="f-tag">FIX</span>教學活動需<strong>實際出現國語</strong>：<code>1. 打字基礎指法（10 分鐘）<br>2. 輸入「自我介紹」短文，分段、加標點呈現（20 分鐘）<br>3. 互評同學作品的格式與錯字（10 分鐘）</code>。教學內容包含資訊（打字／排版）+ 國語（作文格式／標點）。'
+      },
+      {
+        rule: '3-1-2', topic: '五面向不一致',
+        title: '看這個單元的<em>五個面向</em> — 哪裡對不上？',
+        data: '<div class="meta-row"><span>單元 · <b>多元文化探索</b></span><span>學習階段 · <b>四年級</b></span></div><table><tr><th>核心素養</th><td>E-C3 多元文化與國際理解 + <strong>社-E-C3</strong>（社會領綱）</td></tr><tr><th>學習重點</th><td>資議 a-Ⅱ-1 ／ <strong>藝 1-Ⅱ-6</strong>（藝術領綱）</td></tr><tr><th>教學目標</th><td>用 Scratch 製作簡單動畫</td></tr><tr><th>教學活動</th><td><strong>1. Scratch 角色設計 2. 動畫腳本撰寫 3. 程式設計分享</strong></td></tr><tr><th>教學內容</th><td>Scratch 程式邏輯、動畫設計</td></tr></table>',
+        violation: '<span class="v-tag">違反 3-1-2</span>核心素養掛<span class="err">社會（社-E-C3）</span>、學習重點掛<span class="err">藝術（藝 1-Ⅱ-6）</span>、教學活動<span class="err">純資訊（Scratch）</span> — <strong>五個面向領域全部對不上</strong>。寫越多反而違規越重。',
+        fix: '<span class="f-tag">FIX</span>選定 1-2 個跨域領域、<strong>五面向統一</strong>。例如選「社會」：<code>核心素養：E-C3 + 社-E-C3</code>、<code>學習重點：資議 a-Ⅱ-1 + 社 3b-Ⅱ-1</code>、<code>教學活動：用 Google Maps 探索臺北多元族群分布</code> — 全部指向「資訊 × 社會」。'
+      },
+      {
+        rule: '3-1-3', topic: '教材廠商化',
+        title: '<em>教材來源</em>這欄寫法哪裡有問題？',
+        data: '<div class="meta-row"><span>單元 · <b>文書處理入門</b></span><span>學習階段 · <b>五年級</b></span><span>節數 · <b>4 節</b></span></div><table><tr><th>核心素養</th><td>E-B2</td></tr><tr><th>學習重點</th><td>資議 d-Ⅲ-1 ／ 國 6-Ⅲ-1</td></tr><tr><th>教學內容</th><td>文件編輯、段落格式、版面排版</td></tr><tr><th>教材來源</th><td><strong>翰林版資訊第 5 冊（第 3-5 課）<br>小石頭 PowerPoint 2019 入門書<br>Word 文書超簡單（碁峰）</strong></td></tr><tr><th>評量</th><td>能完成一份 1 頁的自我介紹文件</td></tr></table>',
+        violation: '<span class="v-tag">違反 3-1-3</span>教材來源欄填了<span class="err">「翰林版資訊第 5 冊」</span>、<span class="err">「小石頭 PowerPoint 2019」</span>、<span class="err">「Word 文書超簡單（碁峰）」</span> — 全是<strong>廠商書名 + 出版社 + 版次</strong>，等同宣告「這只是廠商教材的延伸」，與校訂課程「學校自行設計特色課程」精神矛盾。',
+        fix: '<span class="f-tag">FIX</span>改成<strong>通用描述</strong>：<code>文書處理教材</code> ／ <code>簡報製作教材</code> ／ <code>文件編輯相關教材</code>。例外：通用工具軟體名（Scratch、Canva、Chrome、Google Maps）可直接寫，因為是技術名稱不是「教材／書籍」。'
+      },
+      {
+        rule: '3-1-4', topic: '單元名抄教科書',
+        title: '<em>單元名稱</em>會被 GEM 比對工具抓到嗎？',
+        data: '<div class="meta-row"><span>學年 · <b>四上</b></span><span>4 個單元</span></div><table><tr><th>單元 1</th><td><strong>我是天才小畫家</strong></td></tr><tr><th>單元 2</th><td>數位探索之旅</td></tr><tr><th>單元 3</th><td>程式邏輯啟蒙</td></tr><tr><th>單元 4</th><td>資訊安全達人</td></tr></table><p style="font-size:clamp(13px,1.15vw,16px);color:var(--mute);font-style:italic;margin-top:6px;">註：GEM v3 內建比對 113 本國小資訊教科書 / 1,047 個單元名資料庫。出版社涵蓋校園文化、智識家、宏全、碁峰。</p>',
+        violation: '<span class="v-tag">違反 3-1-4</span>單元 1「<span class="err">我是天才小畫家</span>」與廠商書名「<strong>我是小畫家</strong>」<strong>高度相似</strong>（僅多 2 字「天才」）。三級判定：完全相同 ✕／<strong>高度相似 ⚠（會被抓）</strong>／概念相近名稱差很多 ✓。改名沒大改、只動 1-2 字就會中。',
+        fix: '<span class="f-tag">FIX</span>改寫示範：<code>我是天才小畫家 → 數位小小藝術家</code>（結合學校卓越願景），名稱與原書名再無關聯痕跡。判定原則：<strong>改要大改、不能只動標點或加 1-2 字</strong>。'
+      },
+      {
+        rule: '3-2-1', topic: '資議錯置',
+        title: '<em>議題融入欄</em>填的東西為什麼錯？',
+        data: '<div class="meta-row"><span>單元 · <b>數位生活探究</b></span><span>學習階段 · <b>三年級</b></span></div><table><tr><th>核心素養</th><td>E-B2</td></tr><tr><th>學習表現</th><td>國 6-Ⅱ-1</td></tr><tr><th>學習內容</th><td>國 Ac-Ⅱ-1</td></tr><tr><th>教學活動</th><td>用文書軟體輸入自我介紹短文</td></tr><tr><th>議題融入</th><td><strong>資議 a-Ⅱ-1　資訊科技在生活中的應用<br>科議 t-Ⅲ-2　科技工具的選用</strong></td></tr></table>',
+        violation: '<span class="v-tag">違反 3-2-1</span><strong>議題融入欄</strong>填了「<span class="err">資議 a-Ⅱ-1</span>」「<span class="err">科議 t-Ⅲ-2</span>」 — 資議／科議是<strong>校訂課程主體指標</strong>，<strong>建議</strong>放「學習重點」欄、<strong>不能</strong>錯置於「議題融入」欄。',
+        fix: '<span class="f-tag">FIX</span>把資議／科議搬回學習重點欄：<code>學習表現：資議 a-Ⅱ-1 ／ 國 6-Ⅱ-1</code>、<code>學習內容：科議 t-Ⅱ-2 ／ 國 Ac-Ⅱ-1</code>。議題融入欄改填 18 項合法議題（如品德、安全、性別平等）。'
+      },
+      {
+        rule: '3-2-2', topic: '大魔王 · 自融自',
+        title: '<em>議題融入欄</em>填了三組代碼 — 為什麼是<em>最大踩雷</em>？',
+        data: '<div class="meta-row"><span>單元 · <b>數位倫理探究</b></span><span>學習階段 · <b>五年級</b></span><span style="color:var(--vermillion);font-weight:700;">⚠ 全市 62.9% 踩此題</span></div><table><tr><th>核心素養</th><td>E-B2 + 社-E-A2</td></tr><tr><th>學習重點</th><td>資議 a-Ⅲ-2 ／ 社 3b-Ⅲ-1</td></tr><tr><th>教學活動</th><td>1. 討論網路發言案例 2. 角色扮演 3. 撰寫倡議短文</td></tr><tr><th>議題融入</th><td><strong>資 E1　認識常見的資訊系統<br>資 E5　網際網路應用<br>科 E3　科技工具的選用</strong></td></tr></table>',
+        violation: '<span class="v-tag">違反 3-2-2</span>這是<strong>校訂資訊課</strong>（主體 = 資訊），議題融入欄填了「<span class="err">資 E1、資 E5、科 E3</span>」 — <strong>主體與融入議題重複</strong>，等同<strong>「自己融自己」</strong>邏輯混亂。',
+        fix: '<span class="f-tag">FIX</span>議題融入欄只能填 <strong>18 項合法議題</strong>（已扣除資訊／科技）：4 大重大議題（性別平等／家庭／全民國防／環境）+ 14 項重要議題（品德、生命、安全、防災、戶外、法治、能源、海洋、人權、生涯規劃、多元文化、閱讀素養、國際教育、原住民族）。'
+      },
+      {
+        rule: '4-1-1', topic: '評量三件套',
+        title: '<em>評量規準</em>哪裡寫得太鬆？',
+        data: '<div class="meta-row"><span>單元 · <b>祝福卡片設計</b></span><span>學習階段 · <b>四年級</b></span><span>跨域 · <b>國語文</b></span></div><table><tr><th>核心素養</th><td>E-B2 + 國-E-B2</td></tr><tr><th>學習重點</th><td>資議 d-Ⅱ-1 ／ 國 6-Ⅱ-1</td></tr><tr><th>教學活動</th><td>用圖文工具製作 3 段祝福語、版面整齊、文字通順</td></tr><tr><th>評量規準</th><td><strong>表現優異 ──　學習表現優異<br>表現良好 ──　口頭發表佳<br>已做到 ────　實作活動完成<br>還要加油 ──　學習態度待改進<br>努力改進 ──　未交件</strong></td></tr></table>',
+        violation: '<span class="v-tag">違反 4-1-1</span>評量規準只列「<span class="err">口頭發表 ／ 實作活動 ／ 學習態度</span>」這類<strong>三件套類別標籤</strong>。完全沒具體可觀察描述、也看不出是否跨域 — 等於沒評到「學什麼」、只評到「做什麼活動」。',
+        fix: '<span class="f-tag">FIX</span>20-40 字黃金法則 — 同時對應【資訊表現】+【跨域目標】：<br><code>表現優異：版面具創意、3 段祝福語皆通順無錯字</code><br><code>表現良好：版面整齊、3 段大致通順、僅 1-2 個錯字</code><br><code>已做到：完成 3 段祝福語、版面清楚</code><br>每條包含「資訊（圖文工具操作）+ 國語（作文段落格式）」兩方面表現。'
+      }
+    ];
+
+    const introEl = document.getElementById('game-intro');
+    const questionEl = document.getElementById('game-question');
+    const summaryEl = document.getElementById('game-summary');
+    const startBtn = document.getElementById('game-start');
+    const showBtn = document.getElementById('q-show');
+    const skipBtn = document.getElementById('q-skip');
+    const restartBtn = document.getElementById('g-restart');
+    const backIntroBtn = document.getElementById('g-back-intro');
+    const qRule = document.getElementById('q-rule');
+    const qNum = document.getElementById('q-num');
+    const qTitle = document.getElementById('q-title');
+    const qData = document.getElementById('q-data');
+    const qPre = document.getElementById('q-pre');
+    const qAnswerEl = document.getElementById('q-answer');
+    const qViolation = document.getElementById('q-violation');
+    const qFix = document.getElementById('q-fix');
+    const gameTopic = document.getElementById('game-topic');
+    const gScoreEl = document.getElementById('g-score');
+    const gCommentEl = document.getElementById('g-comment');
+    const scoreDetailEl = document.getElementById('score-detail');
+
+    let curIdx = 0;
+    let results = [];
+
+    function showScreen(name) {
+      introEl.style.display = (name === 'intro') ? 'flex' : 'none';
+      questionEl.style.display = (name === 'question') ? 'flex' : 'none';
+      summaryEl.style.display = (name === 'summary') ? 'flex' : 'none';
+      if (name === 'intro') gameTopic.textContent = '看看你能抓到幾個';
+      else if (name === 'summary') gameTopic.textContent = '結算 — 看看抓到幾個';
     }
-    cards.forEach(card => {
-      card.addEventListener('click', e => {
-        if (revealed) return;
-        e.stopPropagation();
-        card.classList.toggle('flagged');
-        updateMarked();
-      });
-    });
-    checkBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      if (revealed) return;
-      revealed = true;
-      let hit = 0;
-      cards.forEach(card => {
-        const explainText = card.dataset.explain || '';
-        const explainBox = card.querySelector('.gc-explain');
-        if (explainBox && !explainBox.textContent) explainBox.textContent = explainText;
-        if (card.classList.contains('flagged')) {
-          card.classList.remove('flagged');
-          card.classList.add('revealed-correct');
-          hit++;
-        } else {
-          card.classList.add('revealed-miss');
-        }
-      });
-      score.textContent = hit;
-      let msg = '';
-      if (hit === 14) msg = '滿分！— 14 項全抓到，回校就是即戰力。';
-      else if (hit >= 11) msg = '優秀！— 漏的少數幾個回去補今天的 slides 即可。';
-      else if (hit >= 7) msg = '中段班 — 半數抓到，建議再讀一次「項目三」段落。';
-      else if (hit >= 4) msg = '加油 — 今天的 14 項手冊請帶回去仔細看。';
+
+    function loadQuestion(idx) {
+      const q = QUESTIONS[idx];
+      qRule.textContent = 'CHECK ' + q.rule;
+      qNum.textContent = String(idx + 1);
+      setH(qTitle, q.title);
+      setH(qData, q.data);
+      setH(qViolation, q.violation);
+      setH(qFix, q.fix);
+      qPre.style.display = 'flex';
+      qAnswerEl.style.display = 'none';
+      questionEl.classList.remove('revealed');
+      gameTopic.textContent = '第 ' + (idx + 1) + ' / 14 題 · ' + q.topic;
+    }
+
+    function advance() {
+      curIdx++;
+      if (curIdx >= QUESTIONS.length) showSummary();
+      else loadQuestion(curIdx);
+    }
+
+    function showSummary() {
+      const hits = results.filter(r => r === 'hit').length;
+      gScoreEl.textContent = hits;
+      let msg;
+      if (hits === 14) msg = '滿分！— 14 項全抓到，回校就是即戰力。';
+      else if (hits >= 11) msg = '優秀！— 漏的少數幾個回去補今天的 slides 即可。';
+      else if (hits >= 7) msg = '中段班 — 半數抓到，建議再讀一次「項目三」段落。';
+      else if (hits >= 4) msg = '加油 — 今天的 14 項手冊請帶回去仔細看。';
       else msg = '別灰心 — 今天先有印象，回去搭配 GEM 預審慢慢練。';
-      comment.textContent = '· ' + msg;
-      result.classList.add('show');
-    });
-    resetBtn.addEventListener('click', e => {
+      gCommentEl.textContent = msg;
+      let html = '';
+      for (let i = 0; i < QUESTIONS.length; i++) {
+        const r = results[i] || 'skip';
+        const symbol = r === 'hit' ? '✓' : (r === 'miss' ? '✕' : '–');
+        html += '<div class="sd-cell ' + r + '">Q' + (i + 1) + ' · ' + QUESTIONS[i].rule + '<br>' + symbol + '</div>';
+      }
+      setH(scoreDetailEl, html);
+      showScreen('summary');
+    }
+
+    function startGame() {
+      curIdx = 0;
+      results = [];
+      loadQuestion(0);
+      showScreen('question');
+    }
+
+    startBtn.addEventListener('click', e => { e.stopPropagation(); startGame(); });
+    showBtn.addEventListener('click', e => {
       e.stopPropagation();
-      revealed = false;
-      cards.forEach(card => {
-        card.classList.remove('flagged', 'revealed-correct', 'revealed-miss');
-        const explainBox = card.querySelector('.gc-explain');
-        if (explainBox) explainBox.textContent = '';
-      });
-      result.classList.remove('show');
-      score.textContent = '0';
-      comment.textContent = '';
-      updateMarked();
+      qPre.style.display = 'none';
+      qAnswerEl.style.display = 'flex';
+      questionEl.classList.add('revealed');
     });
-    // Prevent slide left/right click from triggering when interacting with game cards/buttons
-    gameGrid.addEventListener('click', e => e.stopPropagation());
+    skipBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      results[curIdx] = 'skip';
+      advance();
+    });
+    qAnswerEl.addEventListener('click', e => {
+      e.stopPropagation();
+      const btn = e.target.closest('button[data-rate]');
+      if (!btn) return;
+      results[curIdx] = btn.dataset.rate;
+      advance();
+    });
+    restartBtn.addEventListener('click', e => { e.stopPropagation(); startGame(); });
+    backIntroBtn.addEventListener('click', e => { e.stopPropagation(); showScreen('intro'); });
+    gameSlide.addEventListener('click', e => e.stopPropagation());
   }
 })();
 </script>
