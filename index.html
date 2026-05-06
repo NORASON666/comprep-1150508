@@ -472,6 +472,33 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   color: var(--ink-soft);
   line-height: 1.7;
 }
+.cover-meta-right {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+}
+.cover-checkin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.cover-checkin .checkin-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(11px,0.95vw,14px);
+  letter-spacing: 0.3em;
+  color: var(--vermillion);
+  font-weight: 700;
+}
+.cover-checkin img {
+  width: clamp(96px, 9vw, 144px);
+  height: auto;
+  background: #fff;
+  padding: 4%;
+  border: 1px solid var(--rule-soft);
+  display: block;
+  cursor: zoom-in;
+}
 
 /* divider slide */
 .divider {
@@ -1158,10 +1185,16 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
     </div>
     <div class="cover-meta">
       <div class="cover-presenters">周 凡 淇<span class="sep">／</span>羅 成 泰</div>
-      <div class="cover-info">
-        2026 · 05 · 08<br>
-        WEDNESDAY · 09:00–12:00<br>
-        港湖區　第二場
+      <div class="cover-meta-right">
+        <div class="cover-info">
+          2026 · 05 · 08<br>
+          WEDNESDAY · 09:00–12:00<br>
+          港湖區　第二場
+        </div>
+        <div class="cover-checkin">
+          <div class="checkin-label">📱 簽 到</div>
+          <img src="images/qr-checkin.png" alt="2026/05/08 簽到 QR — 場次二 報到用">
+        </div>
       </div>
     </div>
   </div>
