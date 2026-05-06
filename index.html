@@ -3429,6 +3429,11 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   // major: true → 標籤反白 (突出大改版)；false → 一般小修
   const VERSIONS = [
     {
+      v: 'v3.8', date: '2026-05-06 20:35', hash: '0324845', major: false,
+      title: '版本印戳上每張 slide + commit hash 變超連結',
+      desc: '① 每張 slide 左下角加固定版本印戳「VER · v3.X · 日期」、會自動帶最新版資訊、按下打開歷次版本 modal、列印時不顯示。② 歷次版本 modal 裡每個 commit hash 變超連結（→ 透過 raw.githack.com 開新分頁、實際 render 出當時的 HTML 簡報，含字型/圖片）。③ wiki [[5-8 內湖場簡報製作進度]] 加「歷次版本維護 SOP」、教未來怎麼加新版本進 VERSIONS 陣列。'
+    },
+    {
       v: 'v3.7', date: '2026-05-06 20:18', hash: '2f28054', major: true,
       title: '加「歷次版本」modal — 點封面按鈕看 19 版時間軸',
       desc: '封面 P1 加小膠囊按鈕「📜 歷次版本」、點下打開全螢幕 modal、列出所有 v1.0–v3.6 版本：版號 / commit 日期 / 一行標題 / 1-3 句說明。commit 訊息含糊的（如「Audit refs + P9 cleanup + P33 readability」）有實際對 git diff 拆出 ① 全文書名加官方連結 ② P9 刪 Ⅰ 階段 ③ P33 警示框配色。'
