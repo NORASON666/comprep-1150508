@@ -902,7 +902,26 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
 .cta-hint { font-size: clamp(13px, 1.1vw, 16px); color: var(--mute); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.15em; }
 
 /* QUESTION screen */
-.game-q-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6%; }
+.game-q-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6%; gap: 16px; flex-wrap: wrap; }
+.q-nav-cluster { display: flex; align-items: center; gap: 12px; }
+.btn-nav {
+  background: transparent;
+  border: 1px solid var(--rule-soft);
+  color: var(--ink-soft);
+  padding: 8px 16px;
+  font-size: clamp(14px, 1.18vw, 17px);
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.btn-nav:hover:not(:disabled) {
+  background: var(--paper-dark);
+  color: var(--ink);
+  border-color: var(--ink-soft);
+}
+.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
 .q-pill {
   background: var(--vermillion); color: var(--paper);
   padding: 5px 14px; font-family: 'JetBrains Mono', monospace;
@@ -2946,7 +2965,11 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       <div class="game-screen game-question" id="game-question" style="display:none;">
         <div class="game-q-head">
           <div class="q-pill" id="q-rule">CHECK 1-1-1</div>
-          <div class="q-progress">第 <b id="q-num">1</b> / 14 題</div>
+          <div class="q-nav-cluster">
+            <button class="btn-nav" id="q-prev" type="button">← 上一題</button>
+            <span class="q-progress">第 <b id="q-num">1</b> / 14 題</span>
+            <button class="btn-nav" id="q-next" type="button">下一題 →</button>
+          </div>
         </div>
         <h2 class="title" id="q-title">這份單元資料哪個欄位有問題？</h2>
         <div class="q-data" id="q-data"></div>
@@ -3308,6 +3331,11 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       qAnswerEl.style.display = 'none';
       questionEl.classList.remove('revealed');
       gameTopic.textContent = '第 ' + (idx + 1) + ' / 14 題 · ' + q.topic;
+      // refresh nav button states
+      const prevBtn = document.getElementById('q-prev');
+      const nextBtn = document.getElementById('q-next');
+      if (prevBtn) prevBtn.disabled = (idx === 0);
+      if (nextBtn) nextBtn.textContent = (idx === QUESTIONS.length - 1) ? '結算 →' : '下一題 →';
     }
 
     function advance() {
@@ -3353,6 +3381,18 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     skipBtn.addEventListener('click', e => {
       e.stopPropagation();
       results[curIdx] = 'skip';
+      advance();
+    });
+    document.getElementById('q-prev').addEventListener('click', e => {
+      e.stopPropagation();
+      if (curIdx > 0) {
+        curIdx--;
+        loadQuestion(curIdx);
+      }
+    });
+    document.getElementById('q-next').addEventListener('click', e => {
+      e.stopPropagation();
+      if (results[curIdx] === undefined) results[curIdx] = 'skip';
       advance();
     });
     qAnswerEl.addEventListener('click', e => {
