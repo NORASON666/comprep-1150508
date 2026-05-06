@@ -635,7 +635,21 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   font-size: clamp(10px, 0.85vw, 12px);
   color: var(--mute);
   letter-spacing: 0.05em;
-  opacity: 0.65;
+  opacity: 0.7;
+}
+a.version-hash-link {
+  text-decoration: none;
+  border: 1px solid transparent;
+  padding: 2px 5px;
+  margin-top: 2px;
+  transition: all 0.18s;
+  display: inline-block;
+}
+a.version-hash-link:hover {
+  color: var(--vermillion);
+  border-color: rgba(184,49,46,0.3);
+  opacity: 1;
+  background: rgba(184,49,46,0.06);
 }
 .version-content {
   display: flex;
@@ -823,6 +837,34 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   color: rgba(245,239,226,0.5);
   letter-spacing: 0.1em;
   z-index: 99;
+}
+
+/* version stamp - fixed bottom-left (always visible) */
+.version-stamp {
+  position: fixed;
+  bottom: 22px;
+  left: 22px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(245,239,226,0.42);
+  letter-spacing: 0.12em;
+  z-index: 99;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid rgba(245,239,226,0.15);
+  background: rgba(20,19,14,0.55);
+  backdrop-filter: blur(4px);
+  transition: color 0.18s, border-color 0.18s;
+}
+.version-stamp:hover {
+  color: rgba(245,239,226,0.95);
+  border-color: rgba(245,239,226,0.4);
+}
+.version-stamp .vs-tag { color: var(--vermillion-soft); font-weight: 700; }
+.version-stamp .vs-date { opacity: 0.7; }
+@media print {
+  .version-stamp { display: none !important; }
 }
 
 /* print */
@@ -3198,6 +3240,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
 </nav>
 
 <div class="hint">← → 翻頁　·　F 全螢幕　·　P 列印 PDF　·　點圖放大</div>
+<a class="version-stamp" id="version-stamp" href="#" title="點擊查看歷次版本">VER · <span class="vs-tag" id="vs-tag">vX.X</span> · <span class="vs-date" id="vs-date">YYYY-MM-DD</span></a>
 
 <div class="lightbox-overlay" id="lightbox" aria-hidden="true">
   <img class="lightbox-content" id="lightbox-img" alt="放大檢視">
@@ -3386,6 +3429,11 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   // major: true → 標籤反白 (突出大改版)；false → 一般小修
   const VERSIONS = [
     {
+      v: 'v3.7', date: '2026-05-06 20:18', hash: '2f28054', major: true,
+      title: '加「歷次版本」modal — 點封面按鈕看 19 版時間軸',
+      desc: '封面 P1 加小膠囊按鈕「📜 歷次版本」、點下打開全螢幕 modal、列出所有 v1.0–v3.6 版本：版號 / commit 日期 / 一行標題 / 1-3 句說明。commit 訊息含糊的（如「Audit refs + P9 cleanup + P33 readability」）有實際對 git diff 拆出 ① 全文書名加官方連結 ② P9 刪 Ⅰ 階段 ③ P33 警示框配色。'
+    },
+    {
       v: 'v3.6', date: '2026-05-06 11:29', hash: '3d7a2f9', major: false,
       title: 'P44 多錯連動：補「科-E-XX 不存在」警告框',
       desc: 'REAL CASE D 文字格式整理（Markdown ** → strong tag）。新增紅色警告框：說明「科-E-A1」這類代碼<strong>根本不存在於國小</strong>（國小無科技領綱）— 學校會誤用通常是抄到《國中科技領綱草案》、但國中代碼是「科-J-A1」（J = 國中）。國小應改用《參考說明》的「資議／科議」。'
@@ -3486,13 +3534,15 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     const listEl = document.getElementById('version-list');
     if (!listEl) return;
     const setH = (el, h) => { el['inner' + 'HTML'] = h; };
+    // raw.githack.com renders historical commits with proper MIME types + relative asset paths
+    const previewUrl = h => 'https://raw.githack.com/NORASON666/comprep-1150508/' + h + '/index.html';
     let html = '';
     for (const v of VERSIONS) {
       html += '<div class="version-row">';
       html += '<div class="version-meta">';
       html += '<div class="version-tag' + (v.major ? ' major' : '') + '">' + v.v + '</div>';
       html += '<div class="version-date">' + v.date + '</div>';
-      html += '<div class="version-hash">' + v.hash + '</div>';
+      html += '<a class="version-hash version-hash-link" href="' + previewUrl(v.hash) + '" target="_blank" rel="noopener" title="開新分頁查看 ' + v.hash + ' 版本">' + v.hash + ' ↗</a>';
       html += '</div>';
       html += '<div class="version-content">';
       html += '<div class="version-title">' + v.title + '</div>';
@@ -3503,6 +3553,22 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     setH(listEl, html);
   }
   renderVersionList();
+
+  // Populate persistent version stamp (visible on every slide, bottom-left)
+  const stampEl = document.getElementById('version-stamp');
+  if (stampEl && VERSIONS.length > 0) {
+    const latest = VERSIONS[0];
+    document.getElementById('vs-tag').textContent = latest.v;
+    // show YYYY-MM-DD only (drop HH:MM)
+    document.getElementById('vs-date').textContent = latest.date.slice(0, 10);
+    // clicking the stamp opens the version history modal
+    stampEl.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      vModal.classList.add('active');
+      vModal.setAttribute('aria-hidden', 'false');
+    });
+  }
 
   const vModal = document.getElementById('version-modal');
   const vBtn = document.getElementById('version-history-btn');
