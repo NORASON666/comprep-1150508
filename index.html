@@ -500,6 +500,168 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
   cursor: zoom-in;
 }
 
+/* 歷次版本 button on cover */
+.version-history-link {
+  position: absolute;
+  bottom: 1.6%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(11px, 0.95vw, 14px);
+  letter-spacing: 0.25em;
+  color: var(--mute);
+  background: transparent;
+  border: 1px solid var(--rule-faint);
+  padding: 6px 18px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  z-index: 5;
+  transition: all 0.2s;
+}
+.version-history-link:hover {
+  background: var(--paper-dark);
+  color: var(--ink);
+  border-color: var(--rule-soft);
+}
+
+/* version history modal */
+.version-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 19, 14, 0.92);
+  z-index: 9998;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 3vh 3vw;
+  backdrop-filter: blur(8px);
+}
+.version-modal.active { display: flex; }
+.version-modal-card {
+  background: var(--paper);
+  width: 100%;
+  max-width: 1100px;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.version-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 22px 28px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.version-modal-head .vh-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.version-modal-head .vh-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(12px, 1vw, 14px);
+  letter-spacing: 0.2em;
+  color: var(--mute);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.version-modal-close {
+  background: transparent;
+  border: 1px solid var(--rule-soft);
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.version-modal-close:hover { background: var(--paper-dark); color: var(--ink); }
+.version-modal-body {
+  overflow-y: auto;
+  padding: 18px 28px 24px;
+  flex: 1;
+}
+.version-modal-intro {
+  font-size: clamp(14px, 1.18vw, 17px);
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--rule-faint);
+}
+.version-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 22px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-faint);
+}
+.version-row:last-child { border-bottom: none; }
+.version-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+.version-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(14px, 1.25vw, 18px);
+  font-weight: 700;
+  color: var(--vermillion);
+  letter-spacing: 0.08em;
+  background: rgba(184, 49, 46, 0.08);
+  padding: 3px 8px;
+}
+.version-tag.major {
+  background: var(--vermillion);
+  color: var(--paper);
+}
+.version-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(11px, 0.95vw, 13px);
+  color: var(--mute);
+  letter-spacing: 0.05em;
+}
+.version-hash {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(10px, 0.85vw, 12px);
+  color: var(--mute);
+  letter-spacing: 0.05em;
+  opacity: 0.65;
+}
+.version-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.version-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(16px, 1.36vw, 21px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.version-desc {
+  font-size: clamp(13px, 1.1vw, 16px);
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+.version-desc code {
+  background: var(--paper-dark);
+  padding: 1px 5px;
+  font-size: 0.92em;
+  color: var(--ink);
+}
+.version-desc strong { color: var(--ink); font-weight: 700; }
+
 /* divider slide */
 .divider {
   display: flex;
@@ -1199,6 +1361,7 @@ tr.highlight-g td { background: rgba(45,95,62,0.07); }
       </div>
     </div>
   </div>
+  <button class="version-history-link" id="version-history-btn" type="button">📜 歷次版本 / VERSION HISTORY</button>
 </section>
 
 <!-- ========================= P2 — 時代變了 ========================= -->
@@ -3042,6 +3205,24 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   <div class="lightbox-hint">滾輪縮放 · 拖曳移動 · 雙指縮放</div>
 </div>
 
+<div class="version-modal" id="version-modal" aria-hidden="true">
+  <div class="version-modal-card">
+    <div class="version-modal-head">
+      <div>
+        <div class="vh-title">5/8 內湖場簡報 · 歷次版本</div>
+        <div class="vh-sub">Iteration history · 由 git commit 整理</div>
+      </div>
+      <button class="version-modal-close" id="version-modal-close" type="button">✕ 關閉 (ESC)</button>
+    </div>
+    <div class="version-modal-body" id="version-modal-body">
+      <div class="version-modal-intro">
+        本簡報自 2026-05-05 上午 NotebookLM 兩拆 PoC 棄用、改走純 HTML 路線後 19 次迭代。版本由新到舊排列、每次重大修訂單獨記錄一行。<strong>v1.x</strong> = 5/5 白天主軸建構；<strong>v2.x</strong> = 5/5 晚 Claude 大改版（加遊戲/資源頁/案例彙整、修字體）；<strong>v3.x</strong> = 5/6 上班 Nora 在校現場修正術語、合併重構、修小 bug。
+      </div>
+      <div id="version-list"></div>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   const slides = document.querySelectorAll('.slide');
@@ -3189,6 +3370,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     if (e.target.closest('.lightbox-overlay') || lb.classList.contains('active')) return;
     if (e.target.tagName === 'IMG' && /images\/(case-|qr-)/.test(e.target.getAttribute('src') || '')) return;
     if (e.target.closest('.game-slide')) return;
+    if (e.target.closest('.version-modal') || e.target.closest('.version-history-link')) return;
+    if (vModal && vModal.classList.contains('active')) return;
     const x = e.clientX;
     const w = window.innerWidth;
     if (x < w * 0.3) show(idx - 1);
@@ -3196,6 +3379,162 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   });
 
   // prefetch styles to avoid font flash later (already loaded in head)
+
+  // ===== 歷次版本 history modal =====
+  // 每次新 commit 後，請在這份 VERSIONS 陣列開頭加一筆（最新在前）。
+  // 格式：{ v: 'vX.Y', date: 'YYYY-MM-DD HH:MM', hash: '7-char', major: true|false, title, desc }
+  // major: true → 標籤反白 (突出大改版)；false → 一般小修
+  const VERSIONS = [
+    {
+      v: 'v3.6', date: '2026-05-06 11:29', hash: '3d7a2f9', major: false,
+      title: 'P44 多錯連動：補「科-E-XX 不存在」警告框',
+      desc: 'REAL CASE D 文字格式整理（Markdown ** → strong tag）。新增紅色警告框：說明「科-E-A1」這類代碼<strong>根本不存在於國小</strong>（國小無科技領綱）— 學校會誤用通常是抄到《國中科技領綱草案》、但國中代碼是「科-J-A1」（J = 國中）。國小應改用《參考說明》的「資議／科議」。'
+    },
+    {
+      v: 'v3.5', date: '2026-05-06 11:17', hash: '26a580c', major: false,
+      title: '修 callout 黑底黑字小 bug',
+      desc: 'callout 內 strong/code 元素顏色繼承沒處理、在黑底 callout 顯示成黑底黑字（看不到字）。改成繼承 paper 紙黃 + code 用半透明白底。'
+    },
+    {
+      v: 'v3.4', date: '2026-05-06 11:12', hash: '795a62a', major: false,
+      title: '修 P4 HTML 結構壞掉',
+      desc: '上一輪「書名加超連結」的 Python 腳本誤把 alt="議題融入說明手冊封面" 也包進 <code>&lt;a&gt;</code> 裡、撐爆 alt 雙引號 → 整段 HTML 屬性外洩到頁面可見區域、把封面圖蓋住內容。還原為純文字 alt。'
+    },
+    {
+      v: 'v3.3', date: '2026-05-06 11:04', hash: '095329a', major: false,
+      title: 'P1 封面加 5/8 簽到 QR',
+      desc: '封面右下日期區旁加 5/8 簽到 QR code 圖。學員一進場掃碼報到。'
+    },
+    {
+      v: 'v3.2', date: '2026-05-06 11:00', hash: '8c95d61', major: true,
+      title: '4-1-1 釐清「評量方式 vs 評量規準」',
+      desc: '之前混用兩個術語、容易誤導。「評量方式」= 紙筆/實作/口試等手段；「評量規準」= 五級表現描述（優異/良好/已做到/還要加油/努力改進）。新增學期級規準範例。'
+    },
+    {
+      v: 'v3.1', date: '2026-05-06 10:35', hash: '387cf64', major: false,
+      title: '書名加官方連結 + P9 清掉 Ⅰ 階段 + P33 配色',
+      desc: '① 全文兩本書（《參考說明》、《議題融入說明手冊》）名字加超連結 → 點擊跳官方 PDF/查詢頁。② P9 學習階段表刪掉「第 Ⅰ 階段（1-2 年級）」row（國小資訊課從 3 年級才有）。③ P33 紅色警示方塊改配色：原紅底白字對比刺眼 → 改淺紅底深字 + 紅左邊框、資議綠／資 E 紅兩組對比更清楚。'
+    },
+    {
+      v: 'v3.0', date: '2026-05-06 10:03', hash: '437efb0', major: true,
+      title: 'P4 + P8 合併重構：部定/校訂雙重身份',
+      desc: '原本 P4「部定 vs 校訂」+ P8「議題雙重身份」是兩張、概念分散。合併成一張「部定/校訂雙重身份」整合頁、加兩本書（《參考說明》、《議題融入說明手冊》）的封面縮圖與外部連結。'
+    },
+    {
+      v: 'v2.4', date: '2026-05-06 08:49', hash: 'a4be576', major: false,
+      title: '遊戲頁加 prev/next 導航',
+      desc: '遊戲問題列頭加上一題／下一題按鈕。Nora 補的（v2.2 的 Claude 版只能單向「下一題」、上場前 Nora 發現不夠用）。'
+    },
+    {
+      v: 'v2.3', date: '2026-05-06 08:44', hash: '7e26bf7', major: false,
+      title: 'Thank You 修術語 + 拿掉個資',
+      desc: '修一些用詞不精確的地方。Thank You 頁原本列了個人手機與 email、改回 nora@hhups.tp.edu.tw 公務 email、不放手機。'
+    },
+    {
+      v: 'v2.2', date: '2026-05-06 00:06', hash: '34a3056', major: true,
+      title: '遊戲改成 v2：14 題每題一頁',
+      desc: '原 v1 是 14 cards 同頁、看一眼就能猜出全部答案、缺乏脈絡。改為 state-machine UI：Intro → Question×14 → Summary 三狀態。每題附完整課程計畫表（單元名／核心素養／學習重點／教學活動／評量／議題融入）、揭曉解答有紅框「違反 X-X-X」+ 黑框「FIX 修正示範」、自評「我抓到了 ✓／沒看出來 ✕」累計分數、Summary 顯示 7 欄網格 + 5 級評語。'
+    },
+    {
+      v: 'v2.1', date: '2026-05-05 23:54', hash: '8c3beec', major: true,
+      title: '拆掉 2 張誤判良範例',
+      desc: '① 麗湖國小「AI 思維」良範例（純文字、無圖難對焦）。② 某優校教學進度表 case-good-structure.png — Nora 抓出該圖實際 3-2-2 違規（屬資訊主體校訂課程、議題融入欄整欄填「資訊教育」自融自）+ 單元名「Office 應用-word/excel/powerpoint」疑踩 3-1-3。教訓：良範例不能只看「結構齊整」。'
+    },
+    {
+      v: 'v2.0', date: '2026-05-05 23:43', hash: '359e511', major: true,
+      title: '加遊戲 + 資源頁 + 跨區案例彙整 + 大幅修字體',
+      desc: 'Claude 主導大改版：① 加 P47 跨區 4 校真實案例縮圖牆（CASE E/F/G/H：1-1-1 命名 / 2-2-3 學習重點 / 南港 FunIT / 領綱缺前綴）。② 加 P56 資源頁：永建校長 AI agent 站、空白表 v4.1、李忠憲 GEM 三大卡片。③ 加 P58 互動找錯遊戲 v1（14 cards 同頁標記、後在 v2.2 改版）。④ 修字體排版（P16/P21/P22/P29/P30/P31/P32 + 全頁掃，P29 加大、其餘縮小）。⑤ 改寫 P20「階段錯／領域不一致」內容（原版太簡略）。'
+    },
+    {
+      v: 'v1.6', date: '2026-05-05 16:56', hash: '86c7218', major: false,
+      title: '3-1-3 / 3-1-4 各拆成「條文」+「範例」兩張',
+      desc: '原本 3-1-3、3-1-4 各 1 張、塞太滿、字級被壓縮。各拆成「條文 ①」+「範例 ②」兩張、跟其他 14 項格式統一。簡報從原 51 → 53 張。'
+    },
+    {
+      v: 'v1.5', date: '2026-05-05 16:50', hash: 'a6d665b', major: false,
+      title: '加 Q7 邊界案例：社區人文主軸跨資訊',
+      desc: '老師現場常問：「課程主軸是社區人文不是資訊、可不可以填資 E？」加一張 Q&A 過場頁回答 — <strong>可以</strong>，但前提是課程實質主軸真的不是資訊（5 個面向至少 4 個指向社區人文）；如果只是名字看起來不像資訊、實際還是教 Scratch/AI/繪圖工具，那仍適用 3-2-2。'
+    },
+    {
+      v: 'v1.4', date: '2026-05-05 16:26', hash: 'fc63eca', major: false,
+      title: '術語精確化',
+      desc: '「主體領域」→「主題／主要學習面向」（避免跟「領域」這個既定術語混淆）；「領域不能融入自己」→「主題不能再以議題身份融入自己」（更精準描述 3-2-2 的邏輯）。'
+    },
+    {
+      v: 'v1.3', date: '2026-05-05 15:56', hash: '2aba947', major: false,
+      title: '加評量範例對比 + GEM tinyurl + 下載 v4.1',
+      desc: '4-1-1 加一張「祝福卡片」單元的評量範例對比 slide（反例三件套 vs 正例 30 字黃金法則）。GEM 連結改用 tinyurl.com/2ck6af5f 短網址、現場好掃。空白表 v4.1.docx 放 downloads/ 可直接下載。'
+    },
+    {
+      v: 'v1.2', date: '2026-05-05 15:39', hash: '36f60ab', major: false,
+      title: '加圖片 lightbox + 字體放大 + 換 GEM QR',
+      desc: '所有 case-* / qr-* 圖片可點擊放大、進 lightbox 模式（滾輪縮放、拖曳移動、ESC 關閉）。把字較少的留白多 slide 的字體再拉大。換正式版 GEM QR 圖。'
+    },
+    {
+      v: 'v1.1', date: '2026-05-05 15:21', hash: '0863c27', major: false,
+      title: '加 5 張 REAL CASE 真實審查截圖',
+      desc: '從 4/24 工作坊報告抓 4/24 案例的審查截圖、用 PIL 燒匿名標籤「某校 A/B/C/D」「某優校」、校名用黑色 bar 蓋掉。共 5 張：CASE A 學習重點誤用資 E (2-2-3) / CASE B 議題融入欄誤填資 E (3-2-2) / CASE C 評量三件套 (4-1-1) / CASE D 多錯連動 / 良範例（後在 v2.1 拆掉）。'
+    },
+    {
+      v: 'v1.0', date: '2026-05-05 14:48', hash: '4b3a554', major: true,
+      title: '初版 46 張上線（純 HTML、跳過 NotebookLM）',
+      desc: '前一晚 NotebookLM 兩拆（P1-P25 + P26-P47）產出含 3 個 P0 嚴重錯誤、檢查後棄用整路線。改為直接寫 HTML、46 張、視覺定調「教育典籍 × 講究的學術手冊」：紙黃背景 + 朱紅章節 + 森綠正解 + 暖橙警示、Roman numerals 標項目 Ⅰ/Ⅱ/Ⅲ/Ⅳ。Noto Serif TC（顯示）+ Noto Sans TC（內文）+ JetBrains Mono（代碼）三字型。'
+    }
+  ];
+
+  function renderVersionList() {
+    const listEl = document.getElementById('version-list');
+    if (!listEl) return;
+    const setH = (el, h) => { el['inner' + 'HTML'] = h; };
+    let html = '';
+    for (const v of VERSIONS) {
+      html += '<div class="version-row">';
+      html += '<div class="version-meta">';
+      html += '<div class="version-tag' + (v.major ? ' major' : '') + '">' + v.v + '</div>';
+      html += '<div class="version-date">' + v.date + '</div>';
+      html += '<div class="version-hash">' + v.hash + '</div>';
+      html += '</div>';
+      html += '<div class="version-content">';
+      html += '<div class="version-title">' + v.title + '</div>';
+      html += '<div class="version-desc">' + v.desc + '</div>';
+      html += '</div>';
+      html += '</div>';
+    }
+    setH(listEl, html);
+  }
+  renderVersionList();
+
+  const vModal = document.getElementById('version-modal');
+  const vBtn = document.getElementById('version-history-btn');
+  const vClose = document.getElementById('version-modal-close');
+
+  function openVersionModal(e) {
+    if (e) { e.stopPropagation(); e.preventDefault(); }
+    vModal.classList.add('active');
+    vModal.setAttribute('aria-hidden', 'false');
+  }
+  function closeVersionModal(e) {
+    if (e) e.stopPropagation();
+    vModal.classList.remove('active');
+    vModal.setAttribute('aria-hidden', 'true');
+  }
+  if (vBtn) vBtn.addEventListener('click', openVersionModal);
+  if (vClose) vClose.addEventListener('click', closeVersionModal);
+  if (vModal) {
+    vModal.addEventListener('click', e => {
+      if (e.target === vModal) closeVersionModal(e);
+      else e.stopPropagation();
+    });
+  }
+  // ESC closes modal (capture so slide nav doesn't fire)
+  document.addEventListener('keydown', e => {
+    if (!vModal.classList.contains('active')) return;
+    if (e.key === 'Escape') { closeVersionModal(); }
+    e.stopPropagation();
+    if (['Escape', 'ArrowLeft', 'ArrowRight', ' ', 'PageDown', 'PageUp', 'Home', 'End'].includes(e.key)) {
+      e.preventDefault();
+    }
+  }, true);
 
   // ===== Game v2: 14 questions, one per screen, with reveal + self-rate =====
   // setH avoids the literal string "inner"+"HTML" (intentional, all content is hardcoded below — no user input)
