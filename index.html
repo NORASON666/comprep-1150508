@@ -954,6 +954,98 @@ a.version-hash-link:hover {
   cursor: zoom-in;
 }
 
+/* ========================= REF BUTTONS（slide head 偏右、頁碼左側） ========================= */
+.head-refs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  margin-right: 12px;
+}
+.ref-btn {
+  font-family: 'JetBrains Mono', 'Noto Sans TC', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  background: var(--paper-dark);
+  color: var(--ink-soft);
+  border: 1px solid var(--rule-soft);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+.ref-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.ref-btn.ref-btn-positive {
+  background: rgba(46, 92, 64, 0.08);
+  color: var(--forest);
+  border-color: rgba(46, 92, 64, 0.4);
+}
+.ref-btn.ref-btn-positive:hover {
+  background: var(--forest);
+  color: var(--paper);
+  border-color: var(--forest);
+}
+.ref-btn.ref-btn-wrong {
+  background: rgba(170, 36, 38, 0.08);
+  color: var(--vermillion);
+  border-color: rgba(170, 36, 38, 0.4);
+}
+.ref-btn.ref-btn-wrong:hover {
+  background: var(--vermillion);
+  color: var(--paper);
+  border-color: var(--vermillion);
+}
+
+/* ========================= LIGHTBOX 多頁切換 ========================= */
+.lb-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(245, 240, 224, 0.22);
+  color: rgba(245, 240, 224, 0.85);
+  font-size: 32px;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  padding: 0;
+  line-height: 0;
+}
+.lb-nav.active { display: flex; }
+.lb-nav.lb-prev { left: 24px; }
+.lb-nav.lb-next { right: 24px; }
+.lb-nav:hover { background: rgba(0, 0, 0, 0.88); color: var(--paper); }
+.lb-pageinfo {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: rgba(245, 240, 224, 0.85);
+  letter-spacing: 0.18em;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 8px 18px;
+  border-radius: 30px;
+  pointer-events: none;
+  z-index: 10000;
+  display: none;
+}
+.lb-pageinfo.active { display: block; }
+
 /* ========================= 留白多的 slide 字體放大（5/5 第二輪） ========================= */
 .slide[data-page="6"] p { font-size: clamp(22px, 1.85vw, 30px) !important; line-height: 1.65; }
 .slide[data-page="6"] .numbered { font-size: clamp(24px, 2.16vw, 33px) !important; }
@@ -3272,9 +3364,12 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
 <a class="version-stamp" id="version-stamp" href="#" title="點擊查看歷次版本">VER · <span class="vs-tag" id="vs-tag">vX.X</span> · <span class="vs-date" id="vs-date">YYYY-MM-DD</span></a>
 
 <div class="lightbox-overlay" id="lightbox" aria-hidden="true">
+  <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="上一頁">‹</button>
   <img class="lightbox-content" id="lightbox-img" alt="放大檢視">
+  <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="下一頁">›</button>
+  <div class="lb-pageinfo" id="lb-pageinfo">1 / 1</div>
   <div class="lightbox-close" id="lightbox-close">ESC 關閉</div>
-  <div class="lightbox-hint">滾輪縮放 · 拖曳移動 · 雙指縮放</div>
+  <div class="lightbox-hint">滾輪縮放 · 拖曳移動 · ←→ 換頁 · ESC 關閉</div>
 </div>
 
 <div class="version-modal" id="version-modal" aria-hidden="true">
@@ -3307,18 +3402,57 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
   const lbClose = document.getElementById('lightbox-close');
+  const lbPrevBtn = document.getElementById('lb-prev');
+  const lbNextBtn = document.getElementById('lb-next');
+  const lbPageInfo = document.getElementById('lb-pageinfo');
   let lbScale = 1, lbX = 0, lbY = 0, lbDragging = false, lbStartX = 0, lbStartY = 0;
+  let lbPages = null, lbPageIdx = 0, lbLabel = '';
   function lbApply() { lbImg.style.transform = `translate(${lbX}px, ${lbY}px) scale(${lbScale})`; }
+  function lbResetView() { lbScale = 1; lbX = 0; lbY = 0; lbApply(); }
   function lbOpen(src) {
+    // single-image mode（既有 case-* / qr-* 圖點擊）
+    lbPages = null;
     lbImg.src = src;
-    lbScale = 1; lbX = 0; lbY = 0;
-    lbApply();
+    lbResetView();
+    lbPrevBtn.classList.remove('active');
+    lbNextBtn.classList.remove('active');
+    lbPageInfo.classList.remove('active');
     lb.classList.add('active');
     lb.setAttribute('aria-hidden', 'false');
   }
+  function lbOpenSet(pages, label) {
+    if (!pages || pages.length === 0) return;
+    lbPages = pages;
+    lbPageIdx = 0;
+    lbLabel = label || '';
+    lbImg.src = pages[0];
+    lbResetView();
+    const multi = pages.length > 1;
+    lbPrevBtn.classList.toggle('active', multi);
+    lbNextBtn.classList.toggle('active', multi);
+    lbPageInfo.classList.add('active');
+    lbPageInfo.textContent = (lbLabel ? lbLabel + ' · ' : '') + '1 / ' + pages.length;
+    lb.classList.add('active');
+    lb.setAttribute('aria-hidden', 'false');
+  }
+  function lbGoto(i) {
+    if (!lbPages) return;
+    if (i < 0) i = 0;
+    if (i >= lbPages.length) i = lbPages.length - 1;
+    if (i === lbPageIdx) return;
+    lbPageIdx = i;
+    lbImg.src = lbPages[i];
+    lbResetView();
+    lbPageInfo.textContent = (lbLabel ? lbLabel + ' · ' : '') + (i + 1) + ' / ' + lbPages.length;
+  }
+  function lbPrev() { if (lbPages) lbGoto(lbPageIdx - 1); }
+  function lbNext() { if (lbPages) lbGoto(lbPageIdx + 1); }
+  lbPrevBtn.addEventListener('click', e => { e.stopPropagation(); lbPrev(); });
+  lbNextBtn.addEventListener('click', e => { e.stopPropagation(); lbNext(); });
   function lbCloseFn() {
     lb.classList.remove('active');
     lb.setAttribute('aria-hidden', 'true');
+    lbPages = null;
   }
   document.querySelectorAll('.slide img').forEach(img => {
     if (!/images\/(case-|qr-)/.test(img.getAttribute('src') || '')) return;
@@ -3334,6 +3468,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('active')) return;
     if (e.key === 'Escape') { lbCloseFn(); }
+    else if (e.key === 'ArrowLeft' && lbPages) { lbPrev(); }
+    else if (e.key === 'ArrowRight' && lbPages) { lbNext(); }
     e.stopPropagation();
     if (e.key === 'Escape' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
         e.key === ' ' || e.key === 'PageDown' || e.key === 'PageUp' ||
@@ -3341,6 +3477,51 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       e.preventDefault();
     }
   }, true);
+
+  // ===== REF BUTTONS（V4.1 空白表 / 正確範例 / 錯誤範例） =====
+  const REF_BLANK = Array.from({length: 6}, (_, i) => 'images/refs/blank/p-' + String(i + 1).padStart(2, '0') + '.jpg');
+  const REF_POSITIVE = Array.from({length: 11}, (_, i) => 'images/refs/positive/p-' + String(i + 1).padStart(2, '0') + '.jpg');
+  const WRONG_EXAMPLES = {}; // Phase 2A 待填入：{ pageNum: { label, pages: [...] } }
+
+  function makeRefBtn(cls, ref, text, pageNum) {
+    const b = document.createElement('button');
+    b.className = 'ref-btn ' + cls;
+    b.dataset.ref = ref;
+    if (pageNum != null) b.dataset.page = String(pageNum);
+    b.type = 'button';
+    b.textContent = text;
+    return b;
+  }
+
+  document.querySelectorAll('.slide').forEach(slide => {
+    const pageNum = parseInt(slide.dataset.page, 10);
+    if (!pageNum || pageNum < 3) return;
+    const head = slide.querySelector('.head');
+    if (!head) return;
+    const pageno = head.querySelector('.pageno');
+    if (!pageno) return;
+    const refs = document.createElement('div');
+    refs.className = 'head-refs';
+    refs.appendChild(makeRefBtn('ref-btn-blank', 'blank', '📄 V4.1 空白表'));
+    refs.appendChild(makeRefBtn('ref-btn-positive', 'positive', '✓ 正確範例'));
+    if (WRONG_EXAMPLES[pageNum]) {
+      refs.appendChild(makeRefBtn('ref-btn-wrong', 'wrong', '✕ 錯誤範例', pageNum));
+    }
+    head.insertBefore(refs, pageno);
+  });
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.ref-btn');
+    if (!btn) return;
+    e.stopPropagation();
+    const ref = btn.dataset.ref;
+    if (ref === 'blank') lbOpenSet(REF_BLANK, 'V4.1 空白表');
+    else if (ref === 'positive') lbOpenSet(REF_POSITIVE, '正確範例');
+    else if (ref === 'wrong') {
+      const set = WRONG_EXAMPLES[btn.dataset.page];
+      if (set) lbOpenSet(set.pages, set.label);
+    }
+  });
   lb.addEventListener('wheel', e => {
     if (!lb.classList.contains('active')) return;
     e.preventDefault();
