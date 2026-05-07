@@ -1001,6 +1001,16 @@ a.version-hash-link:hover {
   color: var(--paper);
   border-color: var(--vermillion);
 }
+.ref-btn.ref-btn-check {
+  background: rgba(38, 70, 130, 0.08);
+  color: #264682;
+  border-color: rgba(38, 70, 130, 0.4);
+}
+.ref-btn.ref-btn-check:hover {
+  background: #264682;
+  color: var(--paper);
+  border-color: #264682;
+}
 
 /* ========================= LIGHTBOX 多頁切換 ========================= */
 .lb-nav {
@@ -1694,15 +1704,9 @@ a.version-hash-link:hover {
           <p style="font-family:'JetBrains Mono';font-size:16px;letter-spacing:0.18em;color:var(--mute);">CHECKPOINT — 計畫說明一須勾選此項</p>
         </div>
         <div style="display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--rule-soft);padding-left:4%;">
-          <div style="font-family:'JetBrains Mono';font-size:16px;letter-spacing:0.2em;color:var(--mute);margin-bottom:14px;">校訂課程四大類</div>
-          <ul class="numbered" style="font-size:clamp(22px,1.98vw,30px);">
-            <li style="background:rgba(45,95,62,0.08);padding:14px 18px;border-left:3px solid var(--forest);">
-              <span style="font-weight:700;color:var(--ink);">統整性主題／專題／議題探究<br><span style="font-size:0.65em;font-weight:400;color:var(--forest);font-family:'JetBrains Mono';letter-spacing:0.1em;">↳ 資訊科技校訂課程在此</span></span>
-            </li>
-            <li><span style="color:var(--ink-soft);">社團活動與技藝課程</span></li>
-            <li><span style="color:var(--ink-soft);">特殊需求領域課程</span></li>
-            <li><span style="color:var(--ink-soft);">其他類課程</span></li>
-          </ul>
+          <div style="font-family:'JetBrains Mono';font-size:16px;letter-spacing:0.2em;color:var(--mute);margin-bottom:14px;">校訂課程四大類 — 大樹法則</div>
+          <img src="images/tree-curriculum.png" alt="課程發展的大樹法則：深植根本，跨域開枝散葉（資料來源：臺北市國小資訊科技課程教學綱要 2.0）" style="width:100%;max-height:74%;object-fit:contain;border:1px solid var(--rule-soft);box-shadow:0 4px 14px rgba(0,0,0,0.12);cursor:zoom-in;background:#fff;">
+          <div style="font-family:'JetBrains Mono';font-size:13px;letter-spacing:0.1em;color:var(--mute);margin-top:10px;">SOURCE — 臺北市國小資訊科技課程教學綱要 2.0　·　點圖放大</div>
         </div>
       </div>
     </div>
@@ -3528,7 +3532,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     lbPages = null;
   }
   document.querySelectorAll('.slide img').forEach(img => {
-    if (!/images\/(case-|qr-)/.test(img.getAttribute('src') || '')) return;
+    if (!/images\/(case-|qr-|tree-)/.test(img.getAttribute('src') || '')) return;
     img.addEventListener('click', e => {
       e.stopPropagation();
       lbOpen(img.src);
@@ -3551,7 +3555,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     }
   }, true);
 
-  // ===== REF BUTTONS（V4.1 空白表 / 正確範例 / 錯誤範例） =====
+  // ===== REF BUTTONS（檢核表 / V4.1 空白表 / 正確範例 / 錯誤範例） =====
+  const REF_CHECKLIST = ['images/refs/checklist.png'];
   const REF_BLANK = Array.from({length: 6}, (_, i) => 'images/refs/blank/p-' + String(i + 1).padStart(2, '0') + '.jpg');
   const REF_POSITIVE = Array.from({length: 8}, (_, i) => 'images/refs/positive/p-' + String(i + 1).padStart(2, '0') + '.jpg');
   const WRONG_EXAMPLES = (function(){
@@ -3591,6 +3596,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     if (!pageno) return;
     const refs = document.createElement('div');
     refs.className = 'head-refs';
+    refs.appendChild(makeRefBtn('ref-btn-check', 'check', '📋 檢核表'));
     refs.appendChild(makeRefBtn('ref-btn-blank', 'blank', '📄 V4.1 空白表'));
     refs.appendChild(makeRefBtn('ref-btn-positive', 'positive', '✓ 正確範例'));
     if (WRONG_EXAMPLES[pageNum]) {
@@ -3604,7 +3610,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     if (!btn) return;
     e.stopPropagation();
     const ref = btn.dataset.ref;
-    if (ref === 'blank') lbOpenSet(REF_BLANK, 'V4.1 空白表');
+    if (ref === 'check') lbOpenSet(REF_CHECKLIST, '14 項檢核表');
+    else if (ref === 'blank') lbOpenSet(REF_BLANK, 'V4.1 空白表');
     else if (ref === 'positive') lbOpenSet(REF_POSITIVE, '正確範例');
     else if (ref === 'wrong') {
       const set = WRONG_EXAMPLES[btn.dataset.page];
