@@ -225,6 +225,25 @@ code, .mono {
   text-transform: uppercase;
   font-weight: 700;
 }
+.rule.compact {
+  padding: 7px 14px;
+  margin: 4px 0 8px 0;
+  font-size: clamp(13px, 1.08vw, 16px);
+  line-height: 1.55;
+  font-weight: 400;
+  border-left-width: 3px;
+  background: rgba(28,28,34,0.04);
+  color: var(--ink-soft);
+}
+.rule.compact .label {
+  display: inline-block;
+  margin-bottom: 0;
+  margin-right: 10px;
+  font-size: clamp(11px, 0.95vw, 13px);
+  vertical-align: baseline;
+}
+.rule.compact code { font-size: 0.95em; padding: 1px 4px; }
+.rule.compact strong { color: var(--vermillion); }
 
 /* split layouts */
 .split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; flex: 1; min-height: 0; }
@@ -1846,7 +1865,8 @@ a.version-hash-link:hover {
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 1-1-1 ② ── 全市真實案例</div>
-      <h2 class="title" style="margin-bottom:2%;">命名診斷室</h2>
+      <h2 class="title" style="margin-bottom:1%;">命名診斷室</h2>
+      <div class="rule compact"><span class="label">CLAUSE 1-1-1</span>課程名稱需能展現跨域之課程性質且符合素養導向理念，<strong>不能使用既有之領域名稱命名</strong>，或使用特定領域內容之文字（例如：英文、資訊課、藝術…）。</div>
       <div class="split-2" style="flex:1;">
         <div class="compare bad">
           <div class="tag">傳統學科式 ✕</div>
@@ -1907,7 +1927,8 @@ a.version-hash-link:hover {
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 1-1-2 ② ── BEFORE / AFTER</div>
-      <h2 class="title" style="margin-bottom:2.2%;">理念範例 — 錯與對</h2>
+      <h2 class="title" style="margin-bottom:1%;">理念範例 — 錯與對</h2>
+      <div class="rule compact"><span class="label">CLAUSE 1-1-2</span>課程理念之敘述，<strong>不能僅描述單一領域之精神</strong>，即要求該課程必須跨域。</div>
       <div class="stack" style="flex:1;">
         <div class="compare bad">
           <div class="tag">錯誤（只談資訊或形式跨域）</div>
@@ -1966,7 +1987,8 @@ a.version-hash-link:hover {
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-1-1 ② ── B2 階段別敘述</div>
-      <h2 class="title" style="margin-bottom:1.6%;">B2「科技資訊與媒體素養」三階段對照</h2>
+      <h2 class="title" style="margin-bottom:0.8%;">B2「科技資訊與媒體素養」三階段對照</h2>
+      <div class="rule compact"><span class="label">CLAUSE 2-1-1</span>核心素養欄位「國小科議／資議」面向，<strong>應</strong>填總綱層級指標（如 <code>E-B2</code>），<strong>不能</strong>填科技領綱層級（如 <code>科-J-A1</code>）。</div>
       <table style="margin-bottom:2.4%;">
         <thead><tr><th>階段</th><th>代碼</th><th style="width:65%;">敘述（須整段抄）</th></tr></thead>
         <tbody>
@@ -2028,7 +2050,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-1 ② ── 跨域單元寫法</div>
-      <h2 class="title" style="margin-bottom:2%;">某單元同列「資議 + 其他領域」</h2>
+      <h2 class="title" style="margin-bottom:1%;">某單元同列「資議 + 其他領域」</h2>
+      <div class="rule compact"><span class="label">CLAUSE 2-2-1</span>學習表現與學習內容<strong>不能只有「參考說明」中之指標</strong>，應包含跨域指標。即要求該課程中至少有一個單元為跨域單元。</div>
       <div class="codeblock">單元「地圖尋寶」
 學習表現：
   資議 t-Ⅱ-1   運用運算思維規劃流程
@@ -2087,7 +2110,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-2 ② ── 兩種典型錯誤</div>
-      <h2 class="title" style="margin-bottom:2%;">階段／領域對不齊，<br>抄再多指標都會錯。</h2>
+      <h2 class="title" style="margin-bottom:1%;">階段／領域對不齊，<br>抄再多指標都會錯。</h2>
+      <div class="rule compact"><span class="label">CLAUSE 2-2-2</span>學習重點必須對應核心素養，跨域課程應包含所跨領域的學習重點，所有學習重點必須<strong>符合學習階段</strong>（國小階段不得出現國中科技領域之學習重點）。</div>
       <div class="split-2" style="flex:1;">
         <div class="stack-sm">
           <div class="compare bad">
@@ -2172,7 +2196,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-3 ② ── 對照</div>
-      <h2 class="title" style="margin-bottom:2%;">資 E1 → 資議 a-Ⅱ-4，差不多？<br><span style="color:var(--vermillion);">用途完全不同。</span></h2>
+      <h2 class="title" style="margin-bottom:1%;">資 E1 → 資議 a-Ⅱ-4，差不多？<br><span style="color:var(--vermillion);">用途完全不同。</span></h2>
+      <div class="rule compact"><span class="label">CLAUSE 2-2-3</span>學習重點欄位應以【教學綱要／參考說明】（如：<code>科議 a-Ⅲ-2</code>）為本，<strong>不能用議題手冊的「實質內涵」代碼</strong>（如：<code>科 E4</code>）來取代。</div>
       <div class="split-2" style="flex:1;">
         <div class="compare bad">
           <div class="tag">錯誤</div>
@@ -2246,7 +2271,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 2-2-4 ② ── BEFORE / AFTER</div>
-      <h2 class="title" style="margin-bottom:2%;">表格設計 — 把資議「併」進來</h2>
+      <h2 class="title" style="margin-bottom:1%;">表格設計 — 把資議「併」進來</h2>
+      <div class="rule compact"><span class="label">CLAUSE 2-2-4</span>學習表現與學習內容指標（包含所跨領域）應<strong>併呈於同一個學習重點欄位中</strong>，不能獨立成一個【教學綱要／參考說明】欄位。</div>
       <div class="stack-lg" style="flex:1;">
         <div>
           <div class="tag" style="color:var(--vermillion);font-family:'JetBrains Mono';font-size:16px;letter-spacing:0.25em;font-weight:700;margin-bottom:6px;">— 錯誤（多了一欄）</div>
@@ -2311,7 +2337,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-1-1 ② ── BEFORE / AFTER</div>
-      <h2 class="title" style="margin-bottom:2%;">「打字小達人」單元 — 跨國語</h2>
+      <h2 class="title" style="margin-bottom:1%;">「打字小達人」單元 — 跨國語</h2>
+      <div class="rule compact"><span class="label">CLAUSE 3-1-1</span>跨域的課程單元，<strong>不能只有核心素養與學習重點跨域</strong>，也需於教學目標、教學活動和教學內容呈現跨域內容。</div>
       <div class="split-2" style="flex:1;">
         <div class="compare bad">
           <div class="tag">錯誤</div>
@@ -2378,7 +2405,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-1-2 ② ── 「地圖尋寶」單元</div>
-      <h2 class="title" style="margin-bottom:2%;">表頭跨什麼，活動就要做什麼。</h2>
+      <h2 class="title" style="margin-bottom:1%;">表頭跨什麼，活動就要做什麼。</h2>
+      <div class="rule compact"><span class="label">CLAUSE 3-1-2</span>核心素養、學習重點、教學目標、教學活動、教學內容<strong>所跨的領域應一致</strong>。</div>
       <div class="split-2" style="flex:1;">
         <div class="compare bad">
           <div class="tag">錯誤（社會跑出來但沒做）</div>
@@ -2447,7 +2475,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-1-3 ② ── 教材替換對照（真實案例）</div>
-      <h2 class="title" style="margin-bottom:1.4%;">8 個常見廠商書名 → 正確改寫。</h2>
+      <h2 class="title" style="margin-bottom:0.8%;">8 個常見廠商書名 → 正確改寫。</h2>
+      <div class="rule compact"><span class="label">CLAUSE 3-1-3</span>請上網搜尋，確認課程內容中所引用的「教材來源」<strong>不是廠商書籍名稱或書籍內的單元名稱</strong>。</div>
       <div style="display:grid;grid-template-columns:7fr 5fr;gap:24px;flex:1;align-items:stretch;">
         <table>
           <thead><tr><th>錯誤（特定廠商 · 真實案例）</th><th>正確（通用描述）</th></tr></thead>
@@ -2522,7 +2551,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-1-4 ② ── 三級判定 + 具體案例</div>
-      <h2 class="title" style="margin-bottom:1.4%;">三級判定 — 改要大改、不能只動標點。</h2>
+      <h2 class="title" style="margin-bottom:0.8%;">三級判定 — 改要大改、不能只動標點。</h2>
+      <div class="rule compact"><span class="label">CLAUSE 3-1-4</span>請上網搜尋，確認單元名稱／主題、進度、教學流程／重點<strong>不能直接抄錄</strong>領域教科書的內容。</div>
       <div style="display:grid;grid-template-columns:6fr 6fr;gap:24px;flex:1;align-items:stretch;">
         <div>
           <table>
@@ -2588,7 +2618,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-2-1 ② ── BEFORE / AFTER</div>
-      <h2 class="title" style="margin-bottom:2%;">把資議從議題融入欄搬回學習重點欄</h2>
+      <h2 class="title" style="margin-bottom:1%;">把資議從議題融入欄搬回學習重點欄</h2>
+      <div class="rule compact"><span class="label">CLAUSE 3-2-1</span>「參考說明」的指標（即「<code>資議</code>」「<code>科議</code>」），<strong>建議</strong>置於「學習重點」欄位，<strong>不能</strong>錯置於「議題融入」欄位。</div>
       <div class="split-2" style="flex:1;">
         <div class="compare bad">
           <div class="tag">錯誤</div>
@@ -2655,7 +2686,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 3-2-2 ② ── THE WHITELIST</div>
-      <h2 class="title" style="margin-bottom:1.4%;">合法 <em>18 項議題</em>（4 重大 + 14 其他）</h2>
+      <h2 class="title" style="margin-bottom:0.8%;">合法 <em>18 項議題</em>（4 重大 + 14 其他）</h2>
+      <div class="rule compact"><span class="label">CLAUSE 3-2-2</span>「重大議題」或「議題融入」欄位，若專屬於資訊教育議題除外的其它<strong>十八項議題</strong>，應填寫該議題之實質內涵代碼，<strong>不能</strong>填寫「資訊教育（<code>資 E…</code>）」之實質內涵代碼（校訂資訊主體＝資訊、自融自）。</div>
       <div style="display:grid;grid-template-columns:5fr 7fr;gap:24px;flex:1;">
         <div>
           <div style="background:var(--vermillion);color:var(--paper);padding:6px 12px;font-family:'JetBrains Mono';font-size:16px;letter-spacing:0.2em;font-weight:700;margin-bottom:8px;">✕ 絕對禁止</div>
@@ -2893,7 +2925,8 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
     </div>
     <div class="body">
       <div class="eyebrow">CHECK 4-1-1 ② ── 空白表 v4.1 對應結構</div>
-      <h2 class="title" style="margin-bottom:1%;">學期級評量規準 — <em>放計畫最後、分學期一張</em>。</h2>
+      <h2 class="title" style="margin-bottom:0.6%;">學期級評量規準 — <em>放計畫最後、分學期一張</em>。</h2>
+      <div class="rule compact"><span class="label">CLAUSE 4-1-1</span>跨域單元的評量內容，<strong>不能與所跨領域之評量內容相似或相同</strong>，而必須同時對應資訊教育議題和相關領域（若有融入）的學習表現。</div>
       <p class="lede" style="margin-bottom:1.4%;font-size:clamp(17px,1.4vw,21px);">不是每個單元一張、是整份計畫最後分第一／第二學期各一張。每條規準同時對應「<strong>資訊 + 跨域</strong>」學習表現。</p>
       <div style="background:#F5DBB0;font-weight:700;padding:10px 16px;font-family:'JetBrains Mono';font-size:clamp(15px,1.25vw,18px);letter-spacing:0.05em;color:var(--ink);margin-bottom:0;">第一學期 · 質性評量規準 <span style="font-family:'Noto Serif TC';color:var(--vermillion);font-size:0.95em;font-weight:600;">（對應檢核表 4-1）</span></div>
       <table style="margin-top:0;font-size:clamp(13px,1.1vw,16px);">
