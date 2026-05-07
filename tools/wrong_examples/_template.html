@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>{{TITLE}}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+  body {
+    margin: 0;
+    padding: 36px 48px;
+    font-family: 'Noto Serif TC', 'PingFang TC', '標楷體', serif;
+    background: #f5f0e0;
+    color: #1a1a1a;
+    width: 1180px;
+    box-sizing: border-box;
+  }
+  .badge {
+    display: inline-block;
+    background: #aa2426;
+    color: #f5f0e0;
+    padding: 6px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 32px;
+    margin: 0 0 8px;
+    color: #1a1a1a;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .check-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    color: #aa2426;
+    letter-spacing: 0.15em;
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .form-table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #999;
+    margin-bottom: 18px;
+  }
+  .form-table th, .form-table td {
+    border: 1px solid #999;
+    padding: 12px 16px;
+    vertical-align: top;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .form-table th {
+    background: #e0d8be;
+    font-weight: 600;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 18%;
+    text-align: center;
+  }
+  .err {
+    background: #fff0f0;
+    color: #aa2426;
+    font-weight: 700;
+    text-decoration: underline wavy #aa2426 2px;
+    padding: 1px 4px;
+  }
+  .err-row td {
+    background: #fff5f5;
+  }
+  .annotation {
+    background: #1a1a1a;
+    color: #f5f0e0;
+    padding: 18px 24px;
+    margin-top: 18px;
+    border-left: 6px solid #d0833f;
+  }
+  .annotation-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: #d0833f;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .annotation p {
+    margin: 4px 0;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .annotation strong { color: #f0b87a; }
+  .x-icon {
+    color: #aa2426;
+    font-weight: 900;
+    margin-right: 6px;
+  }
+  .check-icon {
+    color: #2e5c40;
+    font-weight: 900;
+    margin-right: 6px;
+  }
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .compare-card {
+    border: 2px solid;
+    padding: 16px 20px;
+    background: #ffffff;
+  }
+  .compare-card.bad { border-color: #aa2426; background: #fff5f5; }
+  .compare-card.good { border-color: #2e5c40; background: #f0f6f1; }
+  .compare-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .compare-card.bad .compare-tag { color: #aa2426; }
+  .compare-card.good .compare-tag { color: #2e5c40; }
+  .compare-card p { margin: 6px 0; font-size: 17px; line-height: 1.6; }
+  .compare-card code {
+    font-family: 'JetBrains Mono', monospace;
+    background: #1a1a1a;
+    color: #f5f0e0;
+    padding: 2px 8px;
+    font-size: 14px;
+  }
+  .source-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: #666;
+    margin-top: 16px;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+{{BODY}}
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>P43 — 4-1-1 評量規準錯誤範例</title>
+<style>
+  body { margin: 0; padding: 36px 48px; font-family: 'PingFang TC', '標楷體', 'Noto Serif TC', serif; background: #f5f0e0; color: #1a1a1a; width: 1180px; box-sizing: border-box; }
+  .badge { display: inline-block; background: #aa2426; color: #f5f0e0; padding: 6px 16px; font-family: 'Menlo', monospace; font-size: 14px; letter-spacing: 0.3em; font-weight: 700; margin-bottom: 14px; }
+  h1 { font-family: 'PingFang TC', sans-serif; font-size: 30px; margin: 0 0 6px; font-weight: 700; }
+  .check-id { font-family: 'Menlo', monospace; font-size: 17px; color: #aa2426; letter-spacing: 0.15em; margin-bottom: 22px; font-weight: 600; }
+  .rule-quote { background: #fffaf0; border-left: 4px solid #d0833f; padding: 12px 18px; font-family: 'PingFang TC', serif; font-size: 14px; line-height: 1.6; margin-bottom: 16px; color: #444; font-style: italic; }
+  .rule-quote strong { color: #1a1a1a; font-style: normal; }
+  .label-strip { display: flex; align-items: center; gap: 10px; margin: 16px 0 8px; }
+  .label-strip .lbl { font-family: 'Menlo', monospace; font-size: 13px; letter-spacing: 0.22em; font-weight: 700; padding: 4px 12px; }
+  .lbl-bad { background: #aa2426; color: #f5f0e0; }
+  .lbl-good { background: #2e5c40; color: #f5f0e0; }
+  .label-strip .desc { font-size: 13px; color: #666; }
+  .form-table { border-collapse: collapse; width: 100%; background: #ffffff; border: 1px solid #999; }
+  .form-table th, .form-table td { border: 1px solid #999; padding: 10px 12px; vertical-align: top; font-size: 14px; line-height: 1.5; }
+  .form-table thead th { background: #1a1a1a; color: #f5f0e0; font-weight: 600; font-family: 'PingFang TC', sans-serif; text-align: center; padding: 10px 8px; font-size: 13px; letter-spacing: 0.05em; }
+  .form-table tbody th { background: #e0d8be; font-weight: 600; font-family: 'PingFang TC', sans-serif; width: 22%; }
+  .err-table tbody td { background: #fff5f5; color: #aa2426; font-weight: 700; }
+  .good-table tbody td { background: #f0f6f1; font-size: 13px; line-height: 1.55; }
+  .annotation { background: #1a1a1a; color: #f5f0e0; padding: 14px 22px; margin-top: 12px; border-left: 6px solid #d0833f; }
+  .annotation-tag { font-family: 'Menlo', monospace; font-size: 13px; letter-spacing: 0.25em; color: #d0833f; font-weight: 700; margin-bottom: 6px; }
+  .annotation p { margin: 4px 0; font-size: 15px; line-height: 1.6; }
+  .annotation strong { color: #f0b87a; }
+  .source-tag { font-family: 'Menlo', monospace; font-size: 11px; letter-spacing: 0.18em; color: #666; margin-top: 14px; text-align: right; }
+  .err-issues { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+  .err-issues .ei { background: #fff5f5; border: 1px solid #aa2426; padding: 8px 12px; font-size: 13px; line-height: 1.5; }
+  .err-issues .ei .t { font-family: 'Menlo', monospace; font-size: 11px; letter-spacing: 0.18em; color: #aa2426; font-weight: 700; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+  <div class="badge">✕ ERROR EXAMPLE</div>
+  <h1>4-1-1 評量規準 — 「三件套」與「單元級」雙錯</h1>
+  <div class="check-id">CHECK 4-1-1 ／ 對應 P40–P43 ／ 全市 48.8% 踩此題</div>
+
+  <div class="rule-quote">
+    <strong>條文：</strong>評量規準須<strong>同時對應資訊教育議題與所跨領域的學習表現</strong>。應為<strong>學期級</strong>跨域評量、5 等級、每格約 20–40 字、可觀察可評。<strong>不能</strong>只列「口頭發表 / 實作活動 / 學習態度」這類類別標籤。
+  </div>
+
+  <div class="label-strip">
+    <span class="lbl lbl-bad">✕ 錯誤寫法</span>
+    <span class="desc">把「評量方式」（四字類別）誤當「評量規準」、且為單元級不是學期級</span>
+  </div>
+
+  <table class="form-table err-table">
+    <thead>
+      <tr><th style="width:22%;">評 量 規 準</th><th>表現優異</th><th>表現良好</th><th>已經做到</th><th>還要加油</th><th>努力改進</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>祝福卡片設計（單元級）</th>
+        <td>學習表現優異</td>
+        <td>口頭發表佳</td>
+        <td>實作活動完成</td>
+        <td>學習態度待改進</td>
+        <td>未交件</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="err-issues">
+    <div class="ei"><div class="t">✕ 問題 ①</div>「口頭發表 / 實作活動 / 學習態度」是<strong>評量方式（四字類別）</strong>、不是評量規準。</div>
+    <div class="ei"><div class="t">✕ 問題 ②</div>規準應為<strong>學期級</strong>、不是「祝福卡片設計」這種<strong>單元級</strong>。</div>
+    <div class="ei"><div class="t">✕ 問題 ③</div><strong>沒跨域訊號</strong>、看不出對應哪個資議／領域學習表現、也不可觀察。</div>
+  </div>
+
+  <div class="label-strip" style="margin-top: 22px;">
+    <span class="lbl lbl-good">✓ 正確寫法</span>
+    <span class="desc">學期級、跨域 20–40 字、5 等級、對應資議 + 領域 + 議題實質內涵</span>
+  </div>
+
+  <table class="form-table good-table">
+    <thead>
+      <tr><th style="width:22%;">評 量 規 準</th><th>表現優異</th><th>表現良好</th><th>已經做到</th><th>還要加油</th><th>努力改進</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>能整合資訊工具與自然觀察方法、蒐集校園環境資料、轉化為圖表並提出具體改善建議。<br><span style="font-family:'Menlo',monospace;font-size:11px;color:#2e5c40;letter-spacing:0.1em;">（對應：資議 a-Ⅱ-1、tr-Ⅱ-1、環 E2／E5）</span></th>
+        <td>能主動規劃完整的觀察與資料蒐集流程，圖表呈現清晰且具創意，並提出多面向且具行動性的改善建議。</td>
+        <td>能依步驟完成觀察、資料整理與圖表製作，並就觀察結果提出 2 項以上的合理改善建議。</td>
+        <td>能在小組合作下完成觀察與資料整理，可以製作基本圖表，並提出 1 項改善建議。</td>
+        <td>能在教師或同學協助下完成觀察與資料整理，但圖表呈現不完整或建議內容不夠具體。</td>
+        <td>觀察、資料整理與圖表製作多項未能完成，需教師重新引導才能參與後續學習。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="annotation">
+    <div class="annotation-tag">⚠ 評量方式 vs 評量規準（兩個不同欄位）</div>
+    <p><strong>評量方式欄</strong>：四字類別（實作評量 / 口頭發表 / 紙筆測驗 / 觀察評量 / 檔案評量⋯）— 4-1 過。</p>
+    <p><strong>評量規準表</strong>：學期級 5 等級、跨域 20–40 字、可觀察、標代碼 — 4-1-1 過。</p>
+    <p>把方式寫進規準欄 = 4-1-1 不過。</p>
+  </div>
+
+  <div class="source-tag">依據：14 項檢核指標 4-1-1 ／ 4-24 共備裕勝校長／恩萱老師釋義</div>
+</body>
+</html>

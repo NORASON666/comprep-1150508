@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>P37 — 3-2-2 自融自</title>
+<style>
+  body { margin: 0; padding: 36px 48px; font-family: 'PingFang TC', '標楷體', 'Noto Serif TC', serif; background: #f5f0e0; color: #1a1a1a; width: 1180px; box-sizing: border-box; }
+  .badge { display: inline-block; background: #aa2426; color: #f5f0e0; padding: 6px 16px; font-family: 'Menlo', monospace; font-size: 14px; letter-spacing: 0.3em; font-weight: 700; margin-bottom: 14px; }
+  h1 { font-family: 'PingFang TC', sans-serif; font-size: 30px; margin: 0 0 6px; font-weight: 700; }
+  .check-id { font-family: 'Menlo', monospace; font-size: 17px; color: #aa2426; letter-spacing: 0.15em; margin-bottom: 22px; font-weight: 600; }
+  .rule-quote { background: #fffaf0; border-left: 4px solid #d0833f; padding: 12px 18px; font-family: 'PingFang TC', serif; font-size: 15px; line-height: 1.6; margin-bottom: 18px; color: #444; font-style: italic; }
+  .rule-quote strong { color: #1a1a1a; font-style: normal; }
+  .form-table { border-collapse: collapse; width: 100%; background: #ffffff; border: 1px solid #999; }
+  .form-table th, .form-table td { border: 1px solid #999; padding: 12px 16px; vertical-align: top; font-size: 16px; line-height: 1.6; }
+  .form-table th { background: #e0d8be; font-weight: 600; font-family: 'PingFang TC', sans-serif; width: 18%; text-align: center; vertical-align: middle; }
+  .err-cell { background: #fff5f5; position: relative; }
+  .err-cell::before { content: '✕ 大魔王 — 自融自'; position: absolute; top: -10px; right: 8px; background: #aa2426; color: #f5f0e0; font-family: 'Menlo', monospace; font-size: 11px; letter-spacing: 0.2em; padding: 2px 8px; font-weight: 700; }
+  .err-cell strong { color: #aa2426; text-decoration: underline wavy #aa2426 2px; }
+  .err-list { line-height: 1.8; }
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px; }
+  .compare-card { border: 2px solid; padding: 14px 18px; background: #ffffff; }
+  .compare-card.bad { border-color: #aa2426; background: #fff5f5; }
+  .compare-card.good { border-color: #2e5c40; background: #f0f6f1; }
+  .compare-tag { font-family: 'Menlo', monospace; font-size: 12px; letter-spacing: 0.22em; font-weight: 700; margin-bottom: 6px; }
+  .compare-card.bad .compare-tag { color: #aa2426; }
+  .compare-card.good .compare-tag { color: #2e5c40; }
+  .compare-card p { margin: 4px 0; font-size: 15px; line-height: 1.6; }
+  .compare-card .val { padding: 6px 0; font-size: 15px; line-height: 1.65; }
+  .compare-card.good .val strong { color: #2e5c40; }
+  .annotation { background: #1a1a1a; color: #f5f0e0; padding: 16px 22px; margin-top: 14px; border-left: 6px solid #d0833f; }
+  .annotation-tag { font-family: 'Menlo', monospace; font-size: 13px; letter-spacing: 0.25em; color: #d0833f; font-weight: 700; margin-bottom: 8px; }
+  .annotation p { margin: 4px 0; font-size: 16px; line-height: 1.65; }
+  .annotation strong { color: #f0b87a; }
+  .source-tag { font-family: 'Menlo', monospace; font-size: 11px; letter-spacing: 0.18em; color: #666; margin-top: 14px; text-align: right; }
+  .stat { font-family: 'Menlo', monospace; font-size: 12px; color: #aa2426; font-weight: 700; letter-spacing: 0.18em; }
+</style>
+</head>
+<body>
+  <div class="badge">✕ ERROR EXAMPLE — 大魔王</div>
+  <h1>3-2-2 — 議題融入欄填了「資 E」（自融自）</h1>
+  <div class="check-id">CHECK 3-2-2 ／ 對應 P35–P37 ／ <span class="stat">全市 63.4% 踩此題（最高）</span></div>
+
+  <div class="rule-quote">
+    <strong>條文：</strong>「重大議題」或「議題融入」欄位，若專屬於資訊教育議題除外的其它<strong>十八項議題</strong>（如：科技、安全、性平、人權等），應填寫該議題之實質內涵代碼，<strong>不能</strong>填寫「資訊教育（資 E…）」之實質內涵代碼。
+  </div>
+
+  <table class="form-table">
+    <tr><th>單元</th><td>數位倫理探究 ／ 五年級 ／ 6 節</td></tr>
+    <tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養⋯</td></tr>
+    <tr><th>學習表現</th><td>資議 a-Ⅲ-2 ／ 社 3b-Ⅲ-1</td></tr>
+    <tr><th>教學活動</th><td>1. 討論網路發言案例 2. 角色扮演 3. 撰寫倡議短文</td></tr>
+    <tr><th>議題融入</th><td class="err-cell">
+      <div class="err-list">
+        <strong>資 E1　認識常見的資訊系統</strong><br>
+        <strong>資 E2　使用資訊科技</strong><br>
+        <strong>資 E5　資料表示、處理及分析</strong><br>
+        <strong>資 E12　數位禮儀</strong><br>
+        <strong>資 E13　資訊倫理</strong>
+      </div>
+    </td></tr>
+  </table>
+
+  <div class="compare">
+    <div class="compare-card bad">
+      <div class="compare-tag">✕ 為什麼錯</div>
+      <p>這是<strong>校訂資訊課</strong>（主體 = 資訊）。</p>
+      <p>議題融入欄填的全是「資 E…」 — 等於<strong>「我教資訊、再融入資訊議題到自己」</strong>。主客相同、邏輯混亂。</p>
+      <p>類比：國語課的議題融入欄填「國 E1」就是同類錯誤。</p>
+    </div>
+    <div class="compare-card good">
+      <div class="compare-tag">✓ 修正後（議題融入只剩 18 項可選）</div>
+      <div class="val"><strong>環 E2</strong>　覺知人類的生活型態對其他生物與生態系造成的影響</div>
+      <div class="val"><strong>安 E5</strong>　了解網路安全與個人資訊的保護</div>
+      <div class="val"><strong>性平 E5</strong>　覺察性別在媒體中的呈現</div>
+      <p style="font-size: 13px; color: #2e5c40; margin-top: 6px;">※ 18 項可填 = 19 項議題 − 資訊（自融自）。<strong>科技教育（科 E…）可融入</strong>。</p>
+    </div>
+  </div>
+
+  <div class="annotation">
+    <div class="annotation-tag">⚠ RULE OF THUMB</div>
+    <p>校訂資訊課議題融入欄<strong>不會出現「資 E」</strong>。</p>
+    <p>看到「資 E1、資 E2、資 E5⋯」立刻判 3-2-2 不合格。</p>
+  </div>
+
+  <div class="source-tag">依據：14 項檢核指標 3-2-2 ／ 對應 5/8 簡報 P37 case B 真實案例（已匿名）</div>
+</body>
+</html>

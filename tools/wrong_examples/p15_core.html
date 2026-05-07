@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>P15 — 2-1-1 核心素養錯誤範例</title>
+<style>
+  body { margin: 0; padding: 36px 48px; font-family: 'PingFang TC', '標楷體', 'Noto Serif TC', serif; background: #f5f0e0; color: #1a1a1a; width: 1180px; box-sizing: border-box; }
+  .badge { display: inline-block; background: #aa2426; color: #f5f0e0; padding: 6px 16px; font-family: 'Menlo', monospace; font-size: 14px; letter-spacing: 0.3em; font-weight: 700; margin-bottom: 14px; }
+  h1 { font-family: 'PingFang TC', sans-serif; font-size: 30px; margin: 0 0 6px; font-weight: 700; }
+  .check-id { font-family: 'Menlo', monospace; font-size: 17px; color: #aa2426; letter-spacing: 0.15em; margin-bottom: 22px; font-weight: 600; }
+  .rule-quote { background: #fffaf0; border-left: 4px solid #d0833f; padding: 12px 18px; font-family: 'PingFang TC', serif; font-size: 15px; line-height: 1.6; margin-bottom: 18px; color: #444; font-style: italic; }
+  .rule-quote strong { color: #1a1a1a; font-style: normal; }
+  .form-table { border-collapse: collapse; width: 100%; background: #ffffff; border: 1px solid #999; margin-bottom: 14px; }
+  .form-table th, .form-table td { border: 1px solid #999; padding: 12px 16px; vertical-align: top; font-size: 16px; line-height: 1.6; }
+  .form-table th { background: #e0d8be; font-weight: 600; font-family: 'PingFang TC', sans-serif; width: 22%; text-align: center; vertical-align: middle; }
+  .err-row td { background: #fff5f5; }
+  .err-row .case-cell { color: #aa2426; font-weight: 700; }
+  .err-mark { display: inline-block; background: #aa2426; color: #f5f0e0; font-family: 'Menlo', monospace; font-size: 12px; letter-spacing: 0.18em; padding: 2px 8px; margin-right: 8px; font-weight: 700; }
+  .good-row td { background: #f0f6f1; }
+  .good-row .case-cell { color: #2e5c40; font-weight: 700; }
+  .good-mark { display: inline-block; background: #2e5c40; color: #f5f0e0; font-family: 'Menlo', monospace; font-size: 12px; letter-spacing: 0.18em; padding: 2px 8px; margin-right: 8px; font-weight: 700; }
+  .reason { font-size: 14px; color: #666; line-height: 1.5; margin-top: 6px; }
+  .reason strong { color: #aa2426; }
+  .good-row .reason { color: #2e5c40; }
+  .good-row .reason strong { color: #2e5c40; }
+  .annotation { background: #1a1a1a; color: #f5f0e0; padding: 16px 22px; margin-top: 14px; border-left: 6px solid #d0833f; }
+  .annotation-tag { font-family: 'Menlo', monospace; font-size: 13px; letter-spacing: 0.25em; color: #d0833f; font-weight: 700; margin-bottom: 8px; }
+  .annotation p { margin: 4px 0; font-size: 16px; line-height: 1.65; }
+  .annotation strong { color: #f0b87a; }
+  .source-tag { font-family: 'Menlo', monospace; font-size: 11px; letter-spacing: 0.18em; color: #666; margin-top: 14px; text-align: right; }
+</style>
+</head>
+<body>
+  <div class="badge">✕ ERROR EXAMPLE</div>
+  <h1>2-1-1 核心素養 — 四種常見踩雷</h1>
+  <div class="check-id">CHECK 2-1-1 ／ 對應 P14–P15</div>
+
+  <div class="rule-quote">
+    <strong>條文：</strong>「核心素養」欄需填寫<strong>總綱層級</strong>指標（如「<strong>E-B2 科技資訊與媒體素養</strong>」）。國小校訂資訊課<strong>不能填寫科技領域綱要的指標</strong>（如「科-J-A1」），因為國小階段沒有資訊／科技領域。
+  </div>
+
+  <table class="form-table">
+    <tr><th>狀況</th><th>核心素養欄填寫內容</th></tr>
+    <tr class="err-row">
+      <td><span class="err-mark">踩雷 ①</span>只寫項目層</td>
+      <td>
+        <div class="case-cell">B2</div>
+        <div class="reason"><strong>✕ 缺階段層碼（E-）+ 完整敘述</strong>。「B2」是含國小／國中／高中三個階段的項目層、看不出針對國小階段。</div>
+      </td>
+    </tr>
+    <tr class="err-row">
+      <td><span class="err-mark">踩雷 ②</span>用不存在的代碼</td>
+      <td>
+        <div class="case-cell">科-E-A1<br>科-E-B2 科技資訊與媒體素養</div>
+        <div class="reason"><strong>✕「科-E」代碼根本不存在</strong>。國小無科技領域。常因誤用《科技領域草案》造此代碼。國中正確寫法是「科-J-A1」（J = 國中）、不是「科-E」。</div>
+      </td>
+    </tr>
+    <tr class="err-row">
+      <td><span class="err-mark">踩雷 ③</span>缺完整敘述</td>
+      <td>
+        <div class="case-cell">E-B2</div>
+        <div class="reason"><strong>✕ 階段層碼有了、但缺整段敘述</strong>。教育部要求總綱層級寫法是「<u>代碼 + 敘述全文</u>」（裕勝校長 4/24 共識）。</div>
+      </td>
+    </tr>
+    <tr class="err-row">
+      <td><span class="err-mark">踩雷 ④</span>填領域核心素養</td>
+      <td>
+        <div class="case-cell">資-E-A2 ／ 自-E-A2 具備探索問題的思考能力⋯</div>
+        <div class="reason"><strong>✕ 校訂資訊課不對應任何部定領域</strong>。國小階段沒有「資訊／科技領域」、彈性學習課程不屬部定領域、所以不能用領綱核心素養（資-E-* 不存在；自-E-A2 屬自然科學領域、不能在資訊課的核心素養欄）。</div>
+      </td>
+    </tr>
+    <tr class="good-row">
+      <td><span class="good-mark">合格範例</span>階段層 + 全文</td>
+      <td>
+        <div class="case-cell">E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。</div>
+        <div class="reason"><strong>✓ 過 2-1-1 條文</strong>。階段碼 E-（國小）+ 完整敘述、來自 12 年國教課綱總綱階段層。</div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="annotation">
+    <div class="annotation-tag">⚠ 一句話 RULE OF THUMB</div>
+    <p>國小校訂資訊課的核心素養 = <strong>總綱階段層 E-XX + 完整敘述</strong>。看到「B2」「科-E」「資-E」就是錯。</p>
+  </div>
+
+  <div class="source-tag">依據：14 項檢核指標 2-1-1 ／ 4-24 港湖區共備裕勝校長提醒</div>
+</body>
+</html>

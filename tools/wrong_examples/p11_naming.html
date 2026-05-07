@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>P11 — 1-1-1 課程名稱錯誤範例</title>
+<style>
+  body { margin: 0; padding: 36px 48px; font-family: 'PingFang TC', '標楷體', 'Noto Serif TC', serif; background: #f5f0e0; color: #1a1a1a; width: 1180px; box-sizing: border-box; }
+  .badge { display: inline-block; background: #aa2426; color: #f5f0e0; padding: 6px 16px; font-family: 'Menlo', monospace; font-size: 14px; letter-spacing: 0.3em; font-weight: 700; margin-bottom: 14px; }
+  h1 { font-family: 'PingFang TC', sans-serif; font-size: 30px; margin: 0 0 6px; font-weight: 700; }
+  .check-id { font-family: 'Menlo', monospace; font-size: 17px; color: #aa2426; letter-spacing: 0.15em; margin-bottom: 22px; font-weight: 600; }
+  .case-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+  .case-card { background: #ffffff; border: 2px solid #aa2426; padding: 16px 18px; }
+  .case-card.good { border-color: #2e5c40; background: #f0f6f1; }
+  .case-tag { font-family: 'Menlo', monospace; font-size: 12px; letter-spacing: 0.22em; color: #aa2426; font-weight: 700; margin-bottom: 8px; }
+  .case-card.good .case-tag { color: #2e5c40; }
+  .case-name { font-family: 'PingFang TC', sans-serif; font-size: 26px; font-weight: 700; padding: 10px 14px; background: #1a1a1a; color: #f5f0e0; text-align: center; margin-bottom: 10px; letter-spacing: 0.05em; }
+  .case-card.good .case-name { background: #2e5c40; }
+  .case-reason { font-size: 15px; line-height: 1.55; color: #444; }
+  .case-card.good .case-reason { color: #1a1a1a; }
+  .strike { text-decoration: line-through wavy #aa2426 2px; }
+  .annotation { background: #1a1a1a; color: #f5f0e0; padding: 16px 22px; margin-top: 16px; border-left: 6px solid #d0833f; }
+  .annotation-tag { font-family: 'Menlo', monospace; font-size: 13px; letter-spacing: 0.25em; color: #d0833f; font-weight: 700; margin-bottom: 8px; }
+  .annotation p { margin: 4px 0; font-size: 16px; line-height: 1.65; }
+  .annotation strong { color: #f0b87a; }
+  .source-tag { font-family: 'Menlo', monospace; font-size: 11px; letter-spacing: 0.18em; color: #666; margin-top: 14px; text-align: right; }
+  .rule-quote { background: #fffaf0; border-left: 4px solid #d0833f; padding: 12px 18px; font-family: 'PingFang TC', serif; font-size: 15px; line-height: 1.6; margin-bottom: 18px; color: #444; font-style: italic; }
+  .rule-quote strong { color: #1a1a1a; font-style: normal; }
+</style>
+</head>
+<body>
+  <div class="badge">✕ ERROR EXAMPLE</div>
+  <h1>1-1-1 課程名稱 — 三種常見踩雷</h1>
+  <div class="check-id">CHECK 1-1-1 ／ 對應 P10–P11</div>
+
+  <div class="rule-quote">
+    <strong>條文：</strong>課程名稱需展現<strong>跨域</strong>之課程性質且符合<strong>素養導向理念</strong>，<strong>不能與部定領域名稱相同或雷同</strong>（科技、資訊科技、生活科技），亦<strong>不得與舊課綱學科名稱相同或雷同</strong>（資訊、電腦）。<strong>僅為領域名加序號</strong>（如：資訊課一、科技課三）視為不合格。
+  </div>
+
+  <div class="case-grid">
+    <div class="case-card">
+      <div class="case-tag">✕ 踩雷 ① 與部定領域同名</div>
+      <div class="case-name">資 訊</div>
+      <div class="case-reason">與部定「資訊科技」領域名稱相同／雷同。<strong>違反 1-1-1 條文</strong>，無法呈現校訂課程之主題性質。</div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">✕ 踩雷 ② 舊課綱學科名</div>
+      <div class="case-name">電 腦</div>
+      <div class="case-reason">「電腦」是九年一貫舊課綱的學科名、不是 108 課綱用詞。<strong>違反 1-1-1 條文</strong>，且看不出主題。</div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">✕ 踩雷 ③ 領域名 + 序號</div>
+      <div class="case-name">資訊課一</div>
+      <div class="case-reason">僅為「資訊課」加上序號編排、毫無素養導向。<strong>違反 1-1-1 條文</strong>，視為與部定領域同名。</div>
+    </div>
+  </div>
+
+  <div class="case-grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="case-card">
+      <div class="case-tag">✕ 也踩 ④ 用符號／英文／單一活動名</div>
+      <div class="case-name">資訊樂園 ／ Coding Time ／ Scratch 探索</div>
+      <div class="case-reason">「資訊樂園」單純活動名、看不出素養目標；「Coding Time」純英文 + 單一活動名；「Scratch 探索」偏向特定軟體技能、缺跨域訊號。</div>
+    </div>
+    <div class="case-card good">
+      <div class="case-tag">✓ 合格範例</div>
+      <div class="case-name">校園資訊探究家</div>
+      <div class="case-reason">「校園」呈現情境、「資訊」展現面向、「探究家」展現素養導向、整體名稱可看出主題與跨域性。<strong>過 1-1-1 條文</strong>。</div>
+    </div>
+  </div>
+
+  <div class="annotation">
+    <div class="annotation-tag">⚠ 一句話 RULE OF THUMB</div>
+    <p>能讓非資訊老師<strong>看名字就大致猜到課程在做什麼跨域主題</strong>、就比較可能過 1-1-1。</p>
+    <p>反之，如果名稱<strong>只能聯想到「上電腦課」</strong>、那十之八九踩雷。</p>
+  </div>
+
+  <div class="source-tag">依據：14 項檢核指標 1-1-1 ／ 教育部 115 學年度國小校訂資訊科技課程計畫撰寫工作坊指引</div>
+</body>
+</html>
