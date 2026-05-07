@@ -3719,6 +3719,11 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
   // major: true → 標籤反白 (突出大改版)；false → 一般小修
   const VERSIONS = [
     {
+      v: 'v3.18', date: '2026-05-07 13:00', hash: 'pending', major: false,
+      title: '遊戲題目修正：核心素養完整敘述 + 偽造代碼移除',
+      desc: 'Nora 點出遊戲多題核心素養只寫「E-B2」缺敘述、且 Q5 用了不存在的「運 t-Ⅳ-1」代碼。修正：<strong>(A) Q5 (2-2-2 階段碼錯)</strong> — 偽碼「運 t-Ⅳ-1」改為真實代碼「資議 t-Ⅲ-1」（Ⅲ 是 5-6 年級代碼、放在三年級單元 = 階段錯）；學習內容跟著對齊「資議 T-Ⅲ-1」+ 社 Bc-Ⅲ-1；fix 寫「Ⅳ 是國中、且國中不是資議前綴」說清楚。<strong>(B) Q6 / Q10 / Q12 / Q13</strong> 核心素養補完整敘述「E-B2 具備科技與資訊應用的基本素養⋯」（取代只寫「E-B2」）。<strong>(C) Q7</strong> 加核心素養列於主表格上方（原本沒有）+ 修「資議 d-Ⅱ-2」→「資議 A-Ⅱ-1」（學習內容應大寫）。<strong>(D) Q4 順手修</strong>：學習內容前綴全改大寫（D/A/T/S）；「資議 k-Ⅱ-1」改為「資議 c-Ⅱ-1」（k 不是有效前綴）。<strong>(E) Q12 (3-2-1 範例) 順手修</strong>：「科議 t-Ⅲ-2」改為「科議 t-Ⅱ-1」對齊三年級階段；fix 增「學習表現＝小寫前綴；學習內容＝大寫前綴」說明。'
+    },
+    {
       v: 'v3.17', date: '2026-05-07 12:30', hash: 'a1b5ead', major: false,
       title: '17→18 第二輪：科 E 在議題融入欄是合法的（不要再列為錯）',
       desc: 'Nora 點出 P33 錯誤範例與其它幾處仍把「科 E」列為錯誤。第二輪修正：<strong>(A) P3 TOP 5 表</strong>「資E／科E」→「資 E（自融自）」。<strong>(B) P5 callout</strong>「議題融入欄絕不出現資 E／科 E」→「絕不出現資 E（科 E 可融入）」。<strong>(C) P8 雙系統表</strong>科 E 那一行從紅色 ✕ 改為綠色 ✓ 可融入；底部口訣同步調整。<strong>(D) P34 caption</strong>「資 E／科 E 任何欄位都不該出現」→ 拆兩條：資 E 不出現（自融自）；科 E 可放議題融入欄。<strong>(E) P34 真實審查意見 quote</strong> 把「（如 科E3、資E2、資E5）」改為「（如 資E1、資E2、資E5）」、把「（資 E…、科 E…）」改為「（資 E…）」+ 加 ※ 註：原審查列科 E 屬保守判讀、依 5/7 共識已剔除。<strong>(F) P37 topic 標題</strong>「誤填「資 E／科 E」」→「誤填「資 E」（自融自）」。<strong>(G) P33 錯誤範例圖 (p34.jpg) 重生</strong>：條文加「科 E1」入合法清單；修正後寫法的議題融入示例加「科 E1」；annotation 調整為三條（資議＝學習重點 / 環 E2、安 E5、科 E1＝合法議題融入 / 資 E1＝自融自）。<strong>(H) 14 項手冊</strong> 6 處同步修正。'
@@ -3974,30 +3979,30 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       {
         rule: '2-2-1', topic: '無跨域單元',
         title: '一整學期<em>4 個單元</em>的學習重點 — 哪裡有問題？',
-        data: '<div class="meta-row"><span>學年 · <b>三上</b></span><span>共 4 單元</span><span>每單元 · <b>5 節</b></span></div><table><tr><th>單元 1</th><td class="compact"><strong>數位生活初探</strong>　學習表現：資議 t-Ⅱ-1 ／ 學習內容：資議 P-Ⅱ-3</td></tr><tr><th>單元 2</th><td class="compact"><strong>運算思維入門</strong>　學習表現：資議 t-Ⅱ-2 ／ 學習內容：資議 d-Ⅱ-2</td></tr><tr><th>單元 3</th><td class="compact"><strong>資訊倫理</strong>　學習表現：資議 a-Ⅱ-1 ／ 學習內容：資議 a-Ⅱ-3</td></tr><tr><th>單元 4</th><td class="compact"><strong>系統平台認識</strong>　學習表現：資議 k-Ⅱ-1 ／ 學習內容：資議 k-Ⅱ-2</td></tr><tr><th>議題融入</th><td>品德 ／ 安全 ／ 性別平等</td></tr></table>',
+        data: '<div class="meta-row"><span>學年 · <b>三上</b></span><span>共 4 單元</span><span>每單元 · <b>5 節</b></span></div><table><tr><th>單元 1</th><td class="compact"><strong>數位生活初探</strong>　學習表現：資議 t-Ⅱ-1 ／ 學習內容：資議 T-Ⅱ-1</td></tr><tr><th>單元 2</th><td class="compact"><strong>運算思維入門</strong>　學習表現：資議 a-Ⅱ-1 ／ 學習內容：資議 D-Ⅱ-1</td></tr><tr><th>單元 3</th><td class="compact"><strong>資訊倫理</strong>　學習表現：資議 t-Ⅱ-2 ／ 學習內容：資議 A-Ⅱ-1</td></tr><tr><th>單元 4</th><td class="compact"><strong>系統平台認識</strong>　學習表現：資議 c-Ⅱ-1 ／ 學習內容：資議 S-Ⅱ-1</td></tr><tr><th>議題融入</th><td>品德 ／ 安全 ／ 性別平等</td></tr></table>',
         violation: '<span class="v-tag">違反 2-2-1</span><strong>4 個單元</strong>的學習重點欄位<span class="err">全部只列「資議／科議」</span>，完全沒有任何跨域指標 — 形同自成一格的資訊課，違反校訂課程「至少一個單元跨域」精神。',
         fix: '<span class="f-tag">FIX</span>每學期至少 1 個單元的學習重點要同時列「資議／科議 + 其他領域」，例如：<code>單元 1 學習表現：資議 t-Ⅱ-1 ／ 國 6-Ⅱ-1（國語領綱）</code>'
       },
       {
         rule: '2-2-2', topic: '階段碼錯',
         title: '這個三年級單元的指標<em>哪裡踩雷</em>？',
-        data: '<div class="meta-row"><span>單元 · <b>地圖尋寶</b></span><span>學習階段 · <b>三年級（Ⅱ 階段）</b></span><span>節數 · <b>4 節</b></span></div><table><tr><th>核心素養</th><td>E-B2 + 社-E-B2</td></tr><tr><th>學習表現</th><td><strong>運 t-Ⅳ-1</strong>　運用運算思維規劃流程</td></tr><tr><th>學習內容</th><td>資議 P-Ⅱ-3 ／ 社 Bc-Ⅱ-1</td></tr><tr><th>教學活動</th><td>1. 用 Google Maps 規劃景點 2. 用 Scratch 設計尋寶順序 3. 分享路線</td></tr><tr><th>議題融入</th><td>戶外教育</td></tr></table>',
-        violation: '<span class="v-tag">違反 2-2-2</span><strong>學習表現</strong>填了「<span class="err">運 t-Ⅳ-1</span>」 — 「<strong>Ⅳ</strong>」是<strong>國中階段</strong>代碼。三年級對應的是「<strong>Ⅱ</strong>」，全份國小計畫不該出現 Ⅳ。階段對不上等於把國中課程搬進國小。',
-        fix: '<span class="f-tag">FIX</span>改成 <code>運 t-Ⅱ-1</code>（國小第二學習階段）。對齊規則：<code>1-2 用 Ⅰ ／ 3-4 用 Ⅱ ／ 5-6 用 Ⅲ ／ 整份不出現 Ⅳ</code>'
+        data: '<div class="meta-row"><span>單元 · <b>地圖尋寶</b></span><span>學習階段 · <b>三年級（Ⅱ 階段）</b></span><span>節數 · <b>4 節</b></span></div><table><tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。 + 社-E-B2</td></tr><tr><th>學習表現</th><td><strong>資議 t-Ⅲ-1</strong>　運用常見網路設備、行動裝置及系統平台之功能應用</td></tr><tr><th>學習內容</th><td><strong>資議 T-Ⅲ-1</strong>　常見網路設備、行動裝置及系統平台之功能應用 ／ 社 Bc-Ⅲ-1</td></tr><tr><th>教學活動</th><td>1. 用 Google Maps 規劃景點 2. 用 Scratch 設計尋寶順序 3. 分享路線</td></tr><tr><th>議題融入</th><td>戶外教育</td></tr></table>',
+        violation: '<span class="v-tag">違反 2-2-2</span>學習表現／內容填了「<span class="err">資議 t-Ⅲ-1</span>」「<span class="err">資議 T-Ⅲ-1</span>」「<span class="err">社 Bc-Ⅲ-1</span>」 — 「<strong>Ⅲ</strong>」是<strong>國小 5-6 年級</strong>階段碼。三年級應對應「<strong>Ⅱ</strong>」階段，整份不該出現 Ⅲ 階段碼。階段對不上等於把高年級課程搬進中年級。',
+        fix: '<span class="f-tag">FIX</span>改成 <code>資議 t-Ⅱ-1</code>（學習表現）、<code>資議 T-Ⅱ-1</code>（學習內容）、<code>社 Bc-Ⅱ-1</code>。對齊規則：<code>1-2 用 Ⅰ ／ 3-4 用 Ⅱ ／ 5-6 用 Ⅲ ／ 整份不出現 Ⅳ</code>（Ⅳ 是國中階段碼、且國中不是「資議」前綴）。'
       },
       {
         rule: '2-2-3', topic: '學習重點代碼',
         title: '<em>學習重點</em>欄位的代碼層次有問題 — 哪裡？',
-        data: '<div class="meta-row"><span>單元 · <b>智慧生活探究</b></span><span>學習階段 · <b>四年級</b></span><span>節數 · <b>5 節</b></span></div><table><tr><th>核心素養</th><td>E-B2 + 國-E-B2</td></tr><tr><th>學習表現</th><td><strong>資 E1</strong>　認識常見的資訊系統<br>國 6-Ⅱ-1　依目的及對象，使用適當的表達方式</td></tr><tr><th>學習內容</th><td><strong>資 E5</strong>　網際網路與生活應用<br>國 Ac-Ⅱ-1　各類文本</td></tr><tr><th>議題融入</th><td>品德 ／ 性別平等</td></tr></table>',
+        data: '<div class="meta-row"><span>單元 · <b>智慧生活探究</b></span><span>學習階段 · <b>四年級</b></span><span>節數 · <b>5 節</b></span></div><table><tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。 + 國-E-B2</td></tr><tr><th>學習表現</th><td><strong>資 E1</strong>　認識常見的資訊系統<br>國 6-Ⅱ-1　依目的及對象，使用適當的表達方式</td></tr><tr><th>學習內容</th><td><strong>資 E5</strong>　網際網路與生活應用<br>國 Ac-Ⅱ-1　各類文本</td></tr><tr><th>議題融入</th><td>品德 ／ 性別平等</td></tr></table>',
         violation: '<span class="v-tag">違反 2-2-3</span><strong>學習表現</strong>填了「<span class="err">資 E1</span>」、學習內容填了「<span class="err">資 E5</span>」 — 這是<strong>議題手冊「實質內涵」代碼</strong>，僅供「部定融入議題」用。校訂課程主體要用「<strong>參考說明</strong>」代碼（資議 a/t/p/d/k-Ⅱ/Ⅲ-X）。',
         fix: '<span class="f-tag">FIX</span>學習表現改 <code>資議 a-Ⅱ-4　辨識資訊科技在生活中的應用情形</code>；學習內容改 <code>資議 a-Ⅱ-1　資訊科技在生活中的應用</code>。記憶口訣：<strong>有「議」字 = 校訂用 ／ 沒「議」字（資 E）= 部定融入用</strong>。'
       },
       {
         rule: '2-2-4', topic: '表格欄位',
         title: '看這份表格的<em>欄位設計</em>哪裡有問題？',
-        data: '<div class="meta-row"><span>單元 · <b>數位生活探究</b></span><span>學習階段 · <b>四年級</b></span></div><table style="font-size: clamp(13px, 1.18vw, 17px);"><thead style="background:rgba(184,49,46,0.08);"><tr><th style="white-space:normal;">學習表現</th><th style="white-space:normal;">學習內容</th><th style="white-space:normal;background:rgba(184,49,46,0.18);color:var(--vermillion);">參考說明</th><th style="white-space:normal;">教學目標</th><th style="white-space:normal;">議題融入</th></tr></thead><tbody><tr><td><code>國 6-Ⅱ-1</code></td><td><code>國 Ac-Ⅱ-1</code></td><td style="background:rgba(184,49,46,0.06);"><code>資議 a-Ⅱ-1</code><br><code>資議 d-Ⅱ-2</code></td><td>能用打字輸入短文</td><td>品德 ／ 安全</td></tr></tbody></table><p style="font-size:clamp(13px,1.1vw,16px);color:var(--mute);font-style:italic;">表頭設計成 5 欄。</p>',
+        data: '<div class="meta-row"><span>單元 · <b>數位生活探究</b></span><span>學習階段 · <b>四年級</b></span></div><table style="margin-bottom:8px;"><tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。 + 國-E-B2</td></tr></table><table style="font-size: clamp(13px, 1.18vw, 17px);"><thead style="background:rgba(184,49,46,0.08);"><tr><th style="white-space:normal;">學習表現</th><th style="white-space:normal;">學習內容</th><th style="white-space:normal;background:rgba(184,49,46,0.18);color:var(--vermillion);">參考說明</th><th style="white-space:normal;">教學目標</th><th style="white-space:normal;">議題融入</th></tr></thead><tbody><tr><td><code>國 6-Ⅱ-1</code></td><td><code>國 Ac-Ⅱ-1</code></td><td style="background:rgba(184,49,46,0.06);"><code>資議 a-Ⅱ-1</code><br><code>資議 A-Ⅱ-1</code></td><td>能用打字輸入短文</td><td>品德 ／ 安全</td></tr></tbody></table><p style="font-size:clamp(13px,1.1vw,16px);color:var(--mute);font-style:italic;">表頭設計成 5 欄。</p>',
         violation: '<span class="v-tag">違反 2-2-4</span>表格<span class="err">多開了一個「參考說明」獨立欄</span>放資議指標。資議是課程<strong>主體指標</strong>，應與其他領域指標<strong>平行併呈</strong>於「學習表現／學習內容」欄、不能獨立成欄（獨立欄等於宣告「資議是額外的」）。',
-        fix: '<span class="f-tag">FIX</span>表格欄位刪除「參考說明」欄、把資議併入：<br><code>學習表現：國 6-Ⅱ-1 ／ 資議 a-Ⅱ-1</code><br><code>學習內容：國 Ac-Ⅱ-1 ／ 資議 d-Ⅱ-2</code>。空白表 v4.1 已是這樣設計。'
+        fix: '<span class="f-tag">FIX</span>表格欄位刪除「參考說明」欄、把資議併入：<br><code>學習表現：國 6-Ⅱ-1 ／ 資議 a-Ⅱ-1</code>（學習表現 = 小寫前綴）<br><code>學習內容：國 Ac-Ⅱ-1 ／ 資議 A-Ⅱ-1</code>（學習內容 = 大寫前綴）。空白表 v4.1 已是這樣設計。'
       },
       {
         rule: '3-1-1', topic: '形式跨域',
@@ -4016,7 +4021,7 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       {
         rule: '3-1-3', topic: '教材廠商化',
         title: '<em>教材來源</em>這欄寫法哪裡有問題？',
-        data: '<div class="meta-row"><span>單元 · <b>文書處理入門</b></span><span>學習階段 · <b>五年級</b></span><span>節數 · <b>4 節</b></span></div><table><tr><th>核心素養</th><td>E-B2</td></tr><tr><th>學習重點</th><td>資議 d-Ⅲ-1 ／ 國 6-Ⅲ-1</td></tr><tr><th>教學內容</th><td>文件編輯、段落格式、版面排版</td></tr><tr><th>教材來源</th><td><strong>翰林版資訊第 5 冊（第 3-5 課）<br>小石頭 PowerPoint 2019 入門書<br>Word 文書超簡單（碁峰）</strong></td></tr><tr><th>評量</th><td>能完成一份 1 頁的自我介紹文件</td></tr></table>',
+        data: '<div class="meta-row"><span>單元 · <b>文書處理入門</b></span><span>學習階段 · <b>五年級</b></span><span>節數 · <b>4 節</b></span></div><table><tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。</td></tr><tr><th>學習重點</th><td>資議 d-Ⅲ-1 ／ 國 6-Ⅲ-1</td></tr><tr><th>教學內容</th><td>文件編輯、段落格式、版面排版</td></tr><tr><th>教材來源</th><td><strong>翰林版資訊第 5 冊（第 3-5 課）<br>小石頭 PowerPoint 2019 入門書<br>Word 文書超簡單（碁峰）</strong></td></tr><tr><th>評量</th><td>能完成一份 1 頁的自我介紹文件</td></tr></table>',
         violation: '<span class="v-tag">違反 3-1-3</span>教材來源欄填了<span class="err">「翰林版資訊第 5 冊」</span>、<span class="err">「小石頭 PowerPoint 2019」</span>、<span class="err">「Word 文書超簡單（碁峰）」</span> — 全是<strong>廠商書名 + 出版社 + 版次</strong>，等同宣告「這只是廠商教材的延伸」，與校訂課程「學校自行設計特色課程」精神矛盾。',
         fix: '<span class="f-tag">FIX</span>改成<strong>通用描述</strong>：<code>文書處理教材</code> ／ <code>簡報製作教材</code> ／ <code>文件編輯相關教材</code>。例外：通用工具軟體名（Scratch、Canva、Chrome、Google Maps）可直接寫，因為是技術名稱不是「教材／書籍」。'
       },
@@ -4030,14 +4035,14 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
       {
         rule: '3-2-1', topic: '資議錯置',
         title: '<em>議題融入欄</em>填的東西為什麼錯？',
-        data: '<div class="meta-row"><span>單元 · <b>數位生活探究</b></span><span>學習階段 · <b>三年級</b></span></div><table><tr><th>核心素養</th><td>E-B2</td></tr><tr><th>學習表現</th><td>國 6-Ⅱ-1</td></tr><tr><th>學習內容</th><td>國 Ac-Ⅱ-1</td></tr><tr><th>教學活動</th><td>用文書軟體輸入自我介紹短文</td></tr><tr><th>議題融入</th><td><strong>資議 a-Ⅱ-1　資訊科技在生活中的應用<br>科議 t-Ⅲ-2　科技工具的選用</strong></td></tr></table>',
-        violation: '<span class="v-tag">違反 3-2-1</span><strong>議題融入欄</strong>填了「<span class="err">資議 a-Ⅱ-1</span>」「<span class="err">科議 t-Ⅲ-2</span>」 — 資議／科議是<strong>校訂課程主體指標</strong>，<strong>建議</strong>放「學習重點」欄、<strong>不能</strong>錯置於「議題融入」欄。',
-        fix: '<span class="f-tag">FIX</span>把資議／科議搬回學習重點欄：<code>學習表現：資議 a-Ⅱ-1 ／ 國 6-Ⅱ-1</code>、<code>學習內容：科議 t-Ⅱ-2 ／ 國 Ac-Ⅱ-1</code>。議題融入欄改填 18 項合法議題（如品德、安全、性別平等、科技）。'
+        data: '<div class="meta-row"><span>單元 · <b>數位生活探究</b></span><span>學習階段 · <b>三年級</b></span></div><table><tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。</td></tr><tr><th>學習表現</th><td>國 6-Ⅱ-1</td></tr><tr><th>學習內容</th><td>國 Ac-Ⅱ-1</td></tr><tr><th>教學活動</th><td>用文書軟體輸入自我介紹短文</td></tr><tr><th>議題融入</th><td><strong>資議 a-Ⅱ-1　資訊科技在生活中的應用<br>科議 t-Ⅱ-1　體驗常見的科技工具</strong></td></tr></table>',
+        violation: '<span class="v-tag">違反 3-2-1</span><strong>議題融入欄</strong>填了「<span class="err">資議 a-Ⅱ-1</span>」「<span class="err">科議 t-Ⅱ-1</span>」 — 資議／科議是<strong>校訂課程主體指標</strong>（出自《參考說明》），<strong>建議</strong>放「學習重點」欄、<strong>不能</strong>錯置於「議題融入」欄。',
+        fix: '<span class="f-tag">FIX</span>把資議／科議搬回學習重點欄：<code>學習表現：資議 a-Ⅱ-1 ／ 國 6-Ⅱ-1</code>（學習表現＝小寫前綴）、<code>學習內容：資議 A-Ⅱ-1 ／ 國 Ac-Ⅱ-1</code>（學習內容＝大寫前綴）。議題融入欄改填 18 項合法議題（如品德、安全、性別平等、科技）。'
       },
       {
         rule: '3-2-2', topic: '大魔王 · 自融自',
         title: '<em>議題融入欄</em>填了三組代碼 — 為什麼是<em>最大踩雷</em>？',
-        data: '<div class="meta-row"><span>單元 · <b>數位倫理探究</b></span><span>學習階段 · <b>五年級</b></span><span style="color:var(--vermillion);font-weight:700;">⚠ 全市 63.4% 踩此題</span></div><table><tr><th>核心素養</th><td>E-B2 + 社-E-A2</td></tr><tr><th>學習重點</th><td>資議 a-Ⅲ-2 ／ 社 3b-Ⅲ-1</td></tr><tr><th>教學活動</th><td>1. 討論網路發言案例 2. 角色扮演 3. 撰寫倡議短文</td></tr><tr><th>議題融入</th><td><strong>資 E1　認識常見的資訊系統<br>資 E5　網際網路應用<br>資 E12　數位禮儀</strong></td></tr></table>',
+        data: '<div class="meta-row"><span>單元 · <b>數位倫理探究</b></span><span>學習階段 · <b>五年級</b></span><span style="color:var(--vermillion);font-weight:700;">⚠ 全市 63.4% 踩此題</span></div><table><tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。 + 社-E-A2</td></tr><tr><th>學習重點</th><td>資議 a-Ⅲ-2 ／ 社 3b-Ⅲ-1</td></tr><tr><th>教學活動</th><td>1. 討論網路發言案例 2. 角色扮演 3. 撰寫倡議短文</td></tr><tr><th>議題融入</th><td><strong>資 E1　認識常見的資訊系統<br>資 E5　網際網路應用<br>資 E12　數位禮儀</strong></td></tr></table>',
         violation: '<span class="v-tag">違反 3-2-2</span>這是<strong>校訂資訊課</strong>（主體 = 資訊），議題融入欄填了「<span class="err">資 E1、資 E5、資 E12</span>」 — <strong>主體與融入議題重複</strong>，等同<strong>「自己融自己」</strong>邏輯混亂。',
         fix: '<span class="f-tag">FIX</span>議題融入欄只能填 <strong>18 項合法議題</strong>（19 項扣除「資訊」自融自；科技可融入）：4 大重大議題（性別平等／人權／環境／海洋）+ 14 項其他重要議題（科技、能源、家庭、原住民族、品德、生命、法治、安全、防災、生涯規劃、多元文化、閱讀素養、戶外、國際）。'
       },
