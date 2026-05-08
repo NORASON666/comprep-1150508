@@ -1314,6 +1314,22 @@ a.version-hash-link:hover {
 }
 .q-data td { color: var(--ink); font-weight: 500; }
 .q-data td.compact { font-family: 'JetBrains Mono', monospace; font-size: 0.92em; }
+.q-data table.rubric-inner { font-size: clamp(12px, 1.0vw, 15px); margin-top: 4px; table-layout: fixed; }
+.q-data table.rubric-inner th,
+.q-data table.rubric-inner td {
+  width: auto; padding: 8px 8px; text-align: center; vertical-align: middle;
+  border: 1px solid rgba(28,28,34,0.18);
+  font-family: inherit; letter-spacing: 0.02em; text-transform: none;
+  white-space: normal; line-height: 1.45;
+}
+.q-data table.rubric-inner th {
+  background: rgba(28,28,34,0.05); color: var(--ink);
+  font-size: 0.95em; font-weight: 700;
+}
+.q-data table.rubric-inner td:first-child,
+.q-data table.rubric-inner th:first-child {
+  text-align: left; width: 34%;
+}
 .q-data .meta-row {
   display: flex; gap: 14px; flex-wrap: wrap;
   font-size: clamp(13px, 1.1vw, 16px);
@@ -4141,11 +4157,11 @@ E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的
         fix: '<span class="f-tag">FIX</span>議題融入欄只能填 <strong>18 項合法議題</strong>（19 項扣除「資訊」自融自；科技可融入）：4 大重大議題（性別平等／人權／環境／海洋）+ 14 項其他重要議題（科技、能源、家庭、原住民族、品德、生命、法治、安全、防災、生涯規劃、多元文化、閱讀素養、戶外、國際）。'
       },
       {
-        rule: '4-1-1', topic: '評量三件套',
-        title: '<em>評量規準</em>哪裡寫得太鬆？',
-        data: '<div class="meta-row"><span>單元 · <b>祝福卡片設計</b></span><span>學習階段 · <b>四年級</b></span><span>跨域 · <b>國語文</b></span></div><table><tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。 + 國-E-B2</td></tr><tr><th>學習重點</th><td>資議 t-Ⅱ-1 ／ 國 6-Ⅱ-1</td></tr><tr><th>教學活動</th><td>用圖文工具製作 3 段祝福語、版面整齊、文字通順</td></tr><tr><th>評量規準</th><td><strong>表現優異 ──　學習表現優異<br>表現良好 ──　口頭發表佳<br>已做到 ────　實作活動完成<br>還要加油 ──　學習態度待改進<br>努力改進 ──　未交件</strong></td></tr></table>',
-        violation: '<span class="v-tag">違反 4-1-1</span>評量規準只列「<span class="err">口頭發表 ／ 實作活動 ／ 學習態度</span>」這類<strong>三件套類別標籤</strong>。完全沒具體可觀察描述、也看不出是否跨域 — 等於沒評到「學什麼」、只評到「做什麼活動」。',
-        fix: '<span class="f-tag">FIX</span>20-40 字黃金法則 — 同時對應【資訊表現】+【跨域目標】：<br><code>表現優異：版面具創意、3 段祝福語皆通順無錯字</code><br><code>表現良好：版面整齊、3 段大致通順、僅 1-2 個錯字</code><br><code>已做到：完成 3 段祝福語、版面清楚</code><br>每條包含「資訊（圖文工具操作）+ 國語（作文段落格式）」兩方面表現。'
+        rule: '4-1-1', topic: '評量等級空白',
+        title: '<em>評量規準</em>哪裡寫得不夠？',
+        data: '<div class="meta-row"><span>單元 · <b>校園生態觀察與環境分析</b></span><span>學習階段 · <b>五年級</b></span><span>跨域 · <b>自然</b></span></div><table><tr><th>核心素養</th><td>E-B2 具備科技與資訊應用的基本素養，並理解各類媒體內容的意義與影響。 + 自-E-B2</td></tr><tr><th>學習重點</th><td>資議 t-III-1 ／ 自然 INe-III-1</td></tr><tr><th>教學活動</th><td>用平板拍攝校園植物與環境、整理為試算表並繪製圖表、向班級分享觀察結果與改善建議</td></tr></table><h4>評量規準</h4><table class="rubric-inner"><thead><tr><th>評量規準</th><th>表現優異</th><th>表現良好</th><th>已經做到</th><th>還要加油</th><th>努力改進</th></tr></thead><tbody><tr><td>能整合資訊工具與自然觀察方法，蒐集校園環境資料、轉化為圖表並提出具體改善建議。</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>能運用試算表進行資料整理與視覺化，並向班級清楚分享觀察結果。</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>',
+        violation: '<span class="v-tag">違反 4-1-1</span>評量規準的<strong>左欄描述清楚</strong>（每條 27-36 字，符合「20-40 字黃金法則」 ✓），但<span class="err">5 個表現等級欄全空白</span> — 沒寫各等級具體可觀察行為。實際打分憑老師感覺、跨班一致性差、學生也不知道「要做到什麼程度」。',
+        fix: '<span class="f-tag">FIX</span>每個等級欄都要寫<strong>具體可觀察行為描述</strong>（同樣 20-40 字黃金法則）。以第一條規準為例：<br><code>表現優異：主動使用 3 種以上工具觀察、轉化為圖表並提出 2 條以上具體改善建議</code><br><code>表現良好：使用 2 種工具完成觀察、轉化為圖表並提出 1 條改善建議</code><br><code>已經做到：使用工具完成觀察記錄、能轉化為基本圖表</code><br><code>還要加油：部分工具操作未完成、圖表結構不完整</code><br><code>努力改進：未完成觀察記錄與圖表</code><br>每條同時涵蓋「資訊（工具操作）+ 自然（觀察方法）」兩方面表現。'
       }
     ];
 
